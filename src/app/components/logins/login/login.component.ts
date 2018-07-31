@@ -3,6 +3,7 @@ import { AuthService} from '../../../services/auth.service';
 import { Router } from '@angular/router';
 import { User } from '../../../models/user';
 import { ErroralertService } from '../../../services/erroralert.service';
+import {SpinnerService} from '../../../services/spinner.service';
 
 @Component({
   selector: 'app-login',
@@ -13,15 +14,17 @@ export class LoginComponent implements OnInit {
   user: User = new User();
   fail: Boolean = false;
 
-  constructor(private auth: AuthService, private router: Router, private error: ErroralertService) { }
+  constructor(private auth: AuthService, private router: Router, private error: ErroralertService, private spinner: SpinnerService) { }
 
   ngOnInit() {
   }
 
   onLogin(): void {
+    this.spinner.displayspinner();
     this.auth.login(this.user)
     .then((user) => {
       this.error.hidemessage();
+      this.spinner.hidespinner();
       sessionStorage.setItem('userid', user.result.userid);
       sessionStorage.setItem('username', user.result.username);
       sessionStorage.setItem('email', user.result.email);
@@ -39,6 +42,7 @@ export class LoginComponent implements OnInit {
     })
     .catch((err) => {
       console.log(err);
+      this.spinner.hidespinner();
       this.error.displaymessage("Incorrect credentials. Try again!");
     });
   }
