@@ -21,6 +21,7 @@ export class CalendarComponent {
   studyTasks: any = [];
   personalTasks: any = [];
   courseTasks: any = [];
+  allTasks: any = [];
 
   labelDays: Array<any> = [];
 
@@ -38,19 +39,28 @@ export class CalendarComponent {
     this.taskService.get_study_tasks(this.current_user_id).subscribe(data => {
       this.studyTasks = data;
       this.mapStudyTaskToCalendar();
-      console.log('study tasks:', this.studyTasks)
+      console.log('study tasks:', this.studyTasks);
     });
 
     this.taskService.get_personal_tasks(this.current_user_id).subscribe(data => {
       this.personalTasks = data;
       this.mapPersonalTaskToCalendar();
-      console.log('personal tasks:', this.personalTasks)
+      console.log('personal tasks:', this.personalTasks);
     });
 
     this.taskService.get_course_tasks(this.current_user_id).subscribe(data => {
       this.courseTasks = data;
       this.mapCourseTaskToCalendar();
-      console.log('course tasks:', this.courseTasks)
+      console.log('course tasks:', this.courseTasks);
+    });
+
+
+    //This is not official, is just for Display purposes
+
+    this.taskService.get_all_task().subscribe(data => {
+      this.allTasks = data;
+      this.mapAllTaskToCalendar();
+      console.log('all tasks:', this.allTasks);
     });
 
   }
@@ -79,6 +89,12 @@ export class CalendarComponent {
 
   mapCourseTaskToCalendar() {
     for(let task of this.courseTasks) {
+      this.mapTasksToCalendar(task);
+    }
+  }
+
+  mapAllTaskToCalendar() {
+    for(let task of this.allTasks) {
       this.mapTasksToCalendar(task);
     }
   }

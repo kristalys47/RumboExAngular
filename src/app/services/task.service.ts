@@ -17,6 +17,11 @@ export class TaskService {
 
   task: Task;
 
+  get_all_task(): Observable<Task[]> {
+    let url: string = `${this.BASE_URL}`;
+    return this.http.get<Task[]>(url);
+  }
+
   get_personal_tasks(user_id): Observable<Task[]> {
     let url: string = `${this.BASE_URL}/personal/${user_id}`;
     return this.http.get<Task[]>(url);
