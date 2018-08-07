@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { MbscEventcalendarOptions } from '@mobiscroll/angular';
 import {TaskService} from "../../services/task.service";
 
-let now = new Date();
-
 @Component({
   selector: 'app-weekly-schedule',
   templateUrl: './weekly-schedule.component.html',
@@ -17,10 +15,14 @@ export class WeeklyScheduleComponent implements OnInit {
   studyTasks: any = [];
   personalTasks: any = [];
   courseTasks: any = [];
+  allTasks: any = [];
 
-  events: Array<any> = [];
+  labelDays: Array<any> = [];
 
-  constructor(private taskService: TaskService) { }
+  colorarray = ['#00aabb', '#8B0000', '#20B2AA', '#FFD700' ];
+
+  constructor(private taskService: TaskService) {}
+
 
   ngOnInit() {
 
@@ -33,47 +35,70 @@ export class WeeklyScheduleComponent implements OnInit {
     this.taskService.get_study_tasks(this.current_user_id).subscribe(data => {
       this.studyTasks = data;
       this.mapStudyTaskToCalendar();
-      console.log('study tasks:', this.studyTasks)
-    });
+      console.log('study tasks:', this.studyTasks);
+    }, data => {'No info'; });
 
     this.taskService.get_personal_tasks(this.current_user_id).subscribe(data => {
       this.personalTasks = data;
       this.mapPersonalTaskToCalendar();
-      console.log('personal tasks:', this.personalTasks)
-    });
+      console.log('personal tasks:', this.personalTasks);
+    }, data => {'No info'; });
 
     this.taskService.get_course_tasks(this.current_user_id).subscribe(data => {
       this.courseTasks = data;
       this.mapCourseTaskToCalendar();
-      console.log('course tasks:', this.courseTasks)
-    });
+      console.log('course tasks:', this.courseTasks);
+    }, data => {'No info'; });
+
+
+    // This is not official, is just for Display purposes
+
+    this.taskService.get_all_task().subscribe(data => {
+      this.allTasks = data;
+      this.mapAllTaskToCalendar();
+      console.log('all tasks:', this.allTasks);
+    }, data => {'No info'; });
 
   }
 
+  /*
+  Lo ideal es que el color se le incerte como un parametro.
+  No se hizo por que ya estamos en el dia final y eso implica bregar en la base de datos.
+  */
   mapTasksToCalendar(task) {
-    this.events.push({
-      d: now,
+    this.labelDays.push({
+      d: new Date(task.start),
       text: task.title,
-      color: '#00aabb',
+      color: this.colorarray[Math.floor(Math.random() * 5)],
       description: task.description
       // console.log(typeof task.start);
     });
   }
 
   mapStudyTaskToCalendar() {
-    for(let task of this.studyTasks) {
+    for (let task of this.studyTasks) {
       this.mapTasksToCalendar(task);
     }
   }
 
+
   mapPersonalTaskToCalendar() {
-    for(let task of this.personalTasks) {
+    for (let task of this.personalTasks) {
       this.mapTasksToCalendar(task);
     }
   }
 
   mapCourseTaskToCalendar() {
-    for(let task of this.courseTasks) {
+    for (let task of this.courseTasks) {
+      console.log(task);
+      this.mapTasksToCalendar(task);
+    }
+  }
+
+
+  mapAllTaskToCalendar() {
+    for (let task of this.allTasks) {
+      console.log('Arrays de todo' + this.labelDays);
       this.mapTasksToCalendar(task);
     }
   }

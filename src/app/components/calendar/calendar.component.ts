@@ -25,6 +25,8 @@ export class CalendarComponent {
 
   labelDays: Array<any> = [];
 
+  colorarray = ['#00aabb', '#8B0000', '#20B2AA', '#FFD700' ];
+
   constructor(private taskService: TaskService) {}
 
 
@@ -55,7 +57,7 @@ export class CalendarComponent {
     }, data => {'No info'; });
 
 
-    //This is not official, is just for Display purposes
+    // This is not official, is just for Display purposes
 
     this.taskService.get_all_task().subscribe(data => {
       this.allTasks = data;
@@ -65,11 +67,15 @@ export class CalendarComponent {
 
   }
 
+  /*
+  Lo ideal es que el color se le incerte como un parametro.
+  No se hizo por que ya estamos en el dia final y eso implica bregar en la base de datos.
+  */
   mapTasksToCalendar(task) {
     this.labelDays.push({
       d: new Date(task.start),
       text: task.title,
-      color: '#00aabb',
+      color: this.colorarray[Math.floor(Math.random() * 5)],
       description: task.description
       // console.log(typeof task.start);
     });
@@ -80,6 +86,7 @@ export class CalendarComponent {
       this.mapTasksToCalendar(task);
     }
   }
+
 
   mapPersonalTaskToCalendar() {
     for (let task of this.personalTasks) {
