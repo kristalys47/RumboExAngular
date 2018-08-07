@@ -1,4 +1,4 @@
 export class Course {
-  constructor(name?: string){
+  constructor(name?: string, codification?: string, section?: string) {
   }
 }

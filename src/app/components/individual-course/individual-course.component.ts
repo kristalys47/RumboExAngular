@@ -1,16 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
+import {Course} from '../../models/course';
 
 @Component({
   selector: 'app-individual-course',
   templateUrl: './individual-course.component.html',
   styleUrls: ['./individual-course.component.css']
 })
+
+
+
 export class IndividualCourseComponent implements OnInit {
 
   settings: any = {
         theme: 'ios'
-  }
+  };
 
   sub;
   course;
@@ -25,7 +29,7 @@ export class IndividualCourseComponent implements OnInit {
         console.log(params['course']);
         this.course = params['course'];
       });
-    console.log('current course:', this.course);
+    console.log('current course:', this.course.name);
   }
 
   ngOnDestroy() {
