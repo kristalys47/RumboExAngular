@@ -24,6 +24,7 @@ import {CalendarComponent} from './components/calendar/calendar.component';
 
 import {IndividualCourseComponent} from './components/individual-course/individual-course.component';
 import {LoginmenuComponent} from './components/loginmenu/loginmenu.component';
+import {DashboardComponent} from './components/dashboard/dashboard.component';
 
 
 const routes: Routes = [
@@ -38,6 +39,7 @@ const routes: Routes = [
   { path: 'professorlogin', component: ProfessorloginComponent },
   { path: 'advisorlogin', component: AdvisorloginComponent },
 
+
   // This things haves to be guarded and classified
   { path: 'logout', component: LogoutComponent, canActivate: [AuthGuard] },
   { path: 'register', component: RegisterComponent, canActivate: [AdminGuard]},
@@ -45,14 +47,15 @@ const routes: Routes = [
   // { path: 'schedule', component: ScheduleComponent, canActivate: [AuthGuard] },
   { path: 'adminmain', component: AdminmainComponent, canActivate: [AdminGuard]},
 
+
   // Student app routes
   // { path: '', redirectTo: '/main', pathMatch: 'full' },
   { path: 'main', component: MainComponent,  canActivate: [AuthGuard], children: [
       { path: 'calendar', component: CalendarComponent, outlet: 'content' },
       { path: 'today', component: DailyScheduleComponent, outlet: 'content' },
       { path: 'this-week', component: WeeklyScheduleComponent, outlet: 'content' },
-
-      { path: 'course', component: IndividualCourseComponent, outlet: 'content'}
+      { path: 'course', component: IndividualCourseComponent, outlet: 'content'},
+      { path: 'dashboard', component: DashboardComponent, outlet: 'content'}
     ]
   },
 ];

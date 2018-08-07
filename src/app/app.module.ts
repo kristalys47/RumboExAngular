@@ -13,7 +13,7 @@ import { StatusComponent } from './components/status/status.component';
 import { MainComponent } from './components/mains/main/main.component';
 import { ScheduleComponent } from './components/schedule/schedule.component';
 import { LogoutComponent } from './components/logout/logout.component';
-import { AuthGuard} from './guards/auth.guard';
+import { AuthGuard } from './guards/auth.guard';
 
 import { TaskService } from './services/task.service';
 import { AdminloginComponent } from './components/logins/adminlogin/adminlogin.component';
@@ -22,18 +22,17 @@ import { CounselorloginComponent } from './components/logins/counselorlogin/coun
 import { MentorloginComponent } from './components/logins/mentorlogin/mentorlogin.component';
 import { ProfessorloginComponent } from './components/logins/professorlogin/professorlogin.component';
 import { RegisterComponent } from './components/register/register.component';
-import {AdminGuard} from './guards/admin.guard';
+import { AdminGuard } from './guards/admin.guard';
 import { StudentGuard } from './guards/student.guard';
 import { AdvisorloginComponent } from './components/logins/advisorlogin/advisorlogin.component';
 import { CounselormainComponent } from './components/mains/counselormain/counselormain.component';
 import { AdminmainComponent } from './components/mains/adminmain/adminmain.component';
-import {StudentService} from './services/student.service';
-import {ErroralertService} from './services/erroralert.service';
+import { StudentService} from './services/student.service';
+import { ErroralertService} from './services/erroralert.service';
 import { ErroralertComponent } from './components/erroralert/erroralert.component';
 import { SidebarComponent } from './components/sharedComponents/sidebar/sidebar.component';
 import { TopnavbarComponent } from './components/sharedComponents/topnavbar/topnavbar.component';
 import { BreadcrumbComponent } from './components/sharedComponents/breadcrumb/breadcrumb.component';
-import { DashboardComponent } from './components/sharedComponents/dashboard/dashboard.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { DailyScheduleComponent } from './components/daily-schedule/daily-schedule.component';
 import { WeeklyScheduleComponent } from './components/weekly-schedule/weekly-schedule.component';
@@ -41,38 +40,11 @@ import { NewTaskFormComponent } from './components/new-task-form/new-task-form.c
 import { WidgetComponent } from './components/widget/widget.component';
 import { IndividualCourseComponent } from './components/individual-course/individual-course.component';
 import { LoginmenuComponent } from './components/loginmenu/loginmenu.component';
-import {MaterialsModule} from './materials/materials.module';
-import {PopoverComponent} from './components/popover/popover.component';
-import {ModalComponent} from './components/modal/modal.component';
+import { MaterialsModule } from './materials/materials.module';
+import { PopoverComponent } from './components/popover/popover.component';
+import { ModalComponent } from './components/modal/modal.component';
+import {DashboardComponent} from './components/dashboard/dashboard.component';
 
-// const appRoutes: Routes = [
-//   { path: 'schedule/calendar', component: CalendarComponent },
-//   { path: 'schedule/today', component: DailyScheduleComponent },
-//   { path: 'schedule/this-week', component: WeeklyScheduleComponent }
-// ];
-//
-// const loginRoutes: Routes = [
-//   // This part are the login's. They don't use guard. (The guard of the login is practically the code in flask.)
-//   { path: 'login', component: LoginComponent },
-//   { path: 'adminlogin', component: AdminloginComponent },
-//   { path: 'studentlogin', component: StudentloginComponent },
-//   { path: 'counselorlogin', component: CounselorloginComponent },
-//   { path: 'mentorlogin', component: MentorloginComponent },
-//   { path: 'professorlogin', component: ProfessorloginComponent },
-//   { path: 'advisorlogin', component: AdvisorloginComponent }
-// ];
-//
-// const otherRoutes: Routes = [
-//   // This things haves to be guarded and classified
-//   { path: 'logout', component: LogoutComponent, canActivate: [AuthGuard] },
-//   { path: 'register', component: RegisterComponent, canActivate: [AdminGuard]},
-//   { path: 'status', component: StatusComponent},
-//   { path: 'schedule', component: ScheduleComponent, canActivate: [AuthGuard] },
-//   { path: 'main', component: MainComponent,  canActivate: [AuthGuard]},
-//   { path: 'adminmain', component: AdminmainComponent, canActivate: [AdminGuard]}
-// ];
-//
-// const routes = Array.prototype.concat(appRoutes, loginRoutes, otherRoutes);
 
 @NgModule({
   declarations: [
