@@ -40,19 +40,19 @@ export class CalendarComponent {
       this.studyTasks = data;
       this.mapStudyTaskToCalendar();
       console.log('study tasks:', this.studyTasks);
-    });
+    }, data => {'No info'; });
 
     this.taskService.get_personal_tasks(this.current_user_id).subscribe(data => {
       this.personalTasks = data;
       this.mapPersonalTaskToCalendar();
       console.log('personal tasks:', this.personalTasks);
-    });
+    }, data => {'No info'; });
 
     this.taskService.get_course_tasks(this.current_user_id).subscribe(data => {
       this.courseTasks = data;
       this.mapCourseTaskToCalendar();
       console.log('course tasks:', this.courseTasks);
-    });
+    }, data => {'No info'; });
 
 
     //This is not official, is just for Display purposes
@@ -61,13 +61,13 @@ export class CalendarComponent {
       this.allTasks = data;
       this.mapAllTaskToCalendar();
       console.log('all tasks:', this.allTasks);
-    });
+    }, data => {'No info'; });
 
   }
 
   mapTasksToCalendar(task) {
     this.labelDays.push({
-      d: now,
+      d: new Date(task.start),
       text: task.title,
       color: '#00aabb',
       description: task.description
@@ -76,25 +76,28 @@ export class CalendarComponent {
   }
 
   mapStudyTaskToCalendar() {
-    for(let task of this.studyTasks) {
+    for (let task of this.studyTasks) {
       this.mapTasksToCalendar(task);
     }
   }
 
   mapPersonalTaskToCalendar() {
-    for(let task of this.personalTasks) {
+    for (let task of this.personalTasks) {
       this.mapTasksToCalendar(task);
     }
   }
 
   mapCourseTaskToCalendar() {
-    for(let task of this.courseTasks) {
+    for (let task of this.courseTasks) {
+      console.log(task);
       this.mapTasksToCalendar(task);
     }
   }
 
+
   mapAllTaskToCalendar() {
-    for(let task of this.allTasks) {
+    for (let task of this.allTasks) {
+      console.log('Arrays de todo' + this.labelDays);
       this.mapTasksToCalendar(task);
     }
   }
