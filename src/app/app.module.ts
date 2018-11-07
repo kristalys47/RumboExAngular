@@ -58,12 +58,13 @@ import { NewCourseTaskForm } from './components/individual-course/individual-cou
 import { WidgetComponent } from './components/widget/widget.component';
 import { IndividualCourseComponent } from './components/individual-course/individual-course.component';
 import { LoginmenuComponent } from './components/loginmenu/loginmenu.component';
-import { DashboardComponent } from "./components/dashboard/dashboard.component";
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 import {MaterialsModule} from './materials/materials.module';
 import {PopoverComponent} from './components/popover/popover.component';
 import {ModalComponent} from './components/modal/modal.component';
-import {CourseService} from "./services/course.service";
-import {GooglechartService} from "./services/googlechart.service";
+import {CourseService} from './services/course.service';
+import {GooglechartService} from './services/googlechart.service';
+import { PsychologistmainComponent } from './components/mains/psychologistmain/psychologistmain.component';
 
 
 @NgModule({
@@ -97,10 +98,11 @@ import {GooglechartService} from "./services/googlechart.service";
     NewCourseTaskForm,
     LoginmenuComponent,
     PopoverComponent,
-    ModalComponent
+    ModalComponent,
+    PsychologistmainComponent
   ],
-  imports: [ 
-    MbscModule, 
+  imports: [
+    MbscModule,
     BrowserModule,
     FormsModule,
     MaterialsModule,

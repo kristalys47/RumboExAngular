@@ -1,10 +1,10 @@
 import {Inject, Injectable} from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Task } from "../models/task";
-import {Observable} from "rxjs/internal/Observable";
-import {HttpResponse} from "@angular/common/http";
-import {catchError} from "rxjs/operators";
-import {Cacheable} from "ngx-cacheable";
+import {Observable} from 'rxjs/internal/Observable';
+import {HttpResponse} from '@angular/common/http';
+import {catchError} from 'rxjs/operators';
+import {Cacheable} from 'ngx-cacheable';
 
 @Injectable({
   providedIn: 'root'
