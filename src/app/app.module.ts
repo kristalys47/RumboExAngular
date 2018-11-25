@@ -49,13 +49,14 @@ import {NewTaskForm} from "./components/daily-schedule/daily-schedule.component"
 import { WidgetComponent } from './components/widget/widget.component';
 import { IndividualCourseComponent } from './components/individual-course/individual-course.component';
 import { LoginmenuComponent } from './components/loginmenu/loginmenu.component';
-import { DashboardComponent } from "./components/dashboard/dashboard.component";
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 import {MaterialsModule} from './materials/materials.module';
 import {PopoverComponent} from './components/popover/popover.component';
 import {ModalComponent} from './components/modal/modal.component';
 import {CourseService} from "./services/course.service";
 import {GooglechartService} from "./services/googlechart.service";
 import { ProfileComponent } from './components/profile/profile.component';
+import { PsychologistmainComponent } from './components/mains/psychologistmain/psychologistmain.component';
 
 // import {StoreModule} from '@ngrx/store';
 // import {reducer} from './store2/reducers/student.reducer';

@@ -1,10 +1,10 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
-import {Task} from "../../models/task";
-import {TaskService} from "../../services/task.service";
-import {CourseService} from "../../services/course.service";
-import {GooglechartService} from "../../services/googlechart.service";
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from "@angular/material";
+import {ActivatedRoute} from '@angular/router';
+import {Task} from '../../models/task';
+import {TaskService} from '../../services/task.service';
+import {CourseService} from '../../services/course.service';
+import {GooglechartService} from '../../services/googlechart.service';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 import {AuthService} from "../../services/auth.service";
 
@@ -79,7 +79,7 @@ export class IndividualCourseComponent implements OnInit {
     let data = [
       ['Label', 'Value'],
       ['Current Grade', this.progress],
-      //this is hardcoded
+      // this is hardcoded
       ['Projected Grade', 80]
     ];
     let options = {

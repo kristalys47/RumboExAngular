@@ -10,6 +10,9 @@ export class PsychologistmainComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
+    let curr_user_id = sessionStorage.getItem('userid');
+
   }
 
 }
