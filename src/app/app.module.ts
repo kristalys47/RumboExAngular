@@ -4,22 +4,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
+import {AngularMaterialModule} from "./angular-material.module";
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatCardModule} from '@angular/material/card';
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MatListModule} from '@angular/material/list';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
-import {MatChipsModule} from '@angular/material/chips';
-import {MatGridListModule} from '@angular/material/grid-list';
-import {MatTableModule} from '@angular/material/table';
-import {MatExpansionModule} from '@angular/material/expansion';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatDialogModule} from '@angular/material/dialog';
-import {MatButtonModule} from '@angular/material/button';
-import {MatTooltipModule} from '@angular/material/tooltip';
-// import {MatDialog, MatDialogRef} from "@angular/material/dialog";
+
 
 // import {GoogleChartsModule} from 'angular-google-charts';
 
@@ -27,7 +15,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/logins/login/login.component';
 import { AuthService } from './services/auth.service';
 import { StatusComponent } from './components/status/status.component';
-import { MainComponent } from './components/mains/main/main.component';
+import { StudentmainComponent } from './components/mains/main/studentmain.component';
 import { ScheduleComponent } from './components/schedule/schedule.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { AuthGuard} from './guards/auth.guard';
@@ -53,8 +41,11 @@ import { BreadcrumbComponent } from './components/sharedComponents/breadcrumb/br
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { DailyScheduleComponent } from './components/daily-schedule/daily-schedule.component';
 import { WeeklyScheduleComponent } from './components/weekly-schedule/weekly-schedule.component';
+
 import { NewTaskFormComponent } from './components/new-task-form/new-task-form.component';
 import { NewCourseTaskForm } from './components/individual-course/individual-course.component';
+import {NewTaskForm} from "./components/daily-schedule/daily-schedule.component";
+
 import { WidgetComponent } from './components/widget/widget.component';
 import { IndividualCourseComponent } from './components/individual-course/individual-course.component';
 import { LoginmenuComponent } from './components/loginmenu/loginmenu.component';
@@ -62,17 +53,36 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import {MaterialsModule} from './materials/materials.module';
 import {PopoverComponent} from './components/popover/popover.component';
 import {ModalComponent} from './components/modal/modal.component';
-import {CourseService} from './services/course.service';
-import {GooglechartService} from './services/googlechart.service';
+import {CourseService} from "./services/course.service";
+import {GooglechartService} from "./services/googlechart.service";
+import { ProfileComponent } from './components/profile/profile.component';
 import { PsychologistmainComponent } from './components/mains/psychologistmain/psychologistmain.component';
 
+// import {StoreModule} from '@ngrx/store';
+// import {reducer} from './store2/reducers/student.reducer';
+// import {EffectsModule} from "@ngrx/effects";
+// import {StudentEffect} from "./store2/effects/student.effect";
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { reducers, metaReducers } from './store/reducers';
+import { environment } from '../environments/environment';
+import { StudentEffects } from './store/effects/student.effects';
+import {CourseEffects} from "./store/effects/course.effects";
+import { PsychologistmainComponent } from './components/mains/psychologistmain/psychologistmain.component';
+import { MessagesComponent } from './components/messages/messages.component';
+import {TaskEffects} from "./store/effects/task.effects";
+import {AppStoreModule} from "./app-store.module";
+import { MentormainComponent } from './components/mains/mentormain/mentormain.component';
+import { StudentListComponent } from './components/student-list/student-list.component';
+import { NotificationsComponent } from './components/sharedComponents/notifications/notifications.component';
+import {MessagesMenuComponent} from "./components/sharedComponents/messages/messages-menu.component";
+import { PsychologistloginComponent } from './components/logins/psychologistlogin/psychologistlogin.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     StatusComponent,
-    MainComponent,
+    StudentmainComponent,
     ScheduleComponent,
     LogoutComponent,
     AdminloginComponent,
@@ -96,10 +106,18 @@ import { PsychologistmainComponent } from './components/mains/psychologistmain/p
     IndividualCourseComponent,
     NewTaskFormComponent,
     NewCourseTaskForm,
+    NewTaskForm,
     LoginmenuComponent,
     PopoverComponent,
     ModalComponent,
-    PsychologistmainComponent
+    ProfileComponent,
+    PsychologistmainComponent,
+    MessagesComponent,
+    MentormainComponent,
+    StudentListComponent,
+    NotificationsComponent,
+    MessagesMenuComponent,
+    PsychologistloginComponent
   ],
   imports: [
     MbscModule,
@@ -108,25 +126,11 @@ import { PsychologistmainComponent } from './components/mains/psychologistmain/p
     MaterialsModule,
     HttpClientModule,
     AppRoutingModule,
+    AngularMaterialModule,
     BrowserAnimationsModule,
-    MatCardModule,
-    MatCheckboxModule,
-    MatListModule,
-    MatProgressBarModule,
-    MatChipsModule,
-    MatGridListModule,
-    MatTableModule,
-    MatExpansionModule,
-    MatFormFieldModule,
-    MatDatepickerModule,
-    MatDialogModule,
-    MatButtonModule,
-    MatTooltipModule,
-    // MatDialog,
-    // MatDialogRef
-    // GoogleChartsModule
+    AppStoreModule
   ],
-  entryComponents: [NewCourseTaskForm],
+  // entryComponents: [NewCourseTaskForm, NewTaskForm],
   // Each guard just check that the user have an specific characteristic to authorize the navegation. In this case it checks that the user
   // have the role to enter the respective pages. It is like and RBAC but for Angular.
   providers: [AuthService, TaskService, AuthGuard, AdminGuard, StudentGuard, StudentService, ErroralertService, CourseService, GooglechartService],

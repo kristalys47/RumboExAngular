@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {CourseService} from '../../services/course.service';
 import {GooglechartService} from '../../services/googlechart.service';
-import {TaskCountService} from '../../services/task-count.service';
+// import {TaskCountService} from '../../services/task-count.service';
 import {config} from 'rxjs';
 import {nextMonthDisabled} from '@ng-bootstrap/ng-bootstrap/datepicker/datepicker-tools';
 
@@ -24,29 +24,29 @@ export class DashboardComponent implements OnInit {
   studyTask = [];
 
   constructor(private courseService: CourseService,
-              private chartService: GooglechartService,
-              private taskCountService: TaskCountService) {
+              private chartService: GooglechartService  ){
+              // private taskCountService: TaskCountService) {
   }
-getChartValues() {
-       this.taskCountService.get_apppointment_tasks_count(this.curr_student_id).subscribe(data => {
-      this.appointmentTask = data;
-      console.log('count of appointment tasks:', this.appointmentTask[0][0]);
-    });
-    this.taskCountService.get_personal_tasks_count(this.curr_student_id).subscribe(data => {
-      this.personalTask = data;
-      console.log('count of personal tasks:', this.personalTask[0][0]);
-    });
-    this.taskCountService.get_study_tasks_count(this.curr_student_id).subscribe(data => {
-      this.studyTask = data;
-      console.log('count of study tasks:', this.studyTask[0][0]);
-      });
-    this.taskCountService.get_course_tasks_count(this.curr_student_id).subscribe( data => {
-      this.courseTask = data;
-      console.log('count of course tasks:', this.courseTask[0][0]);
-      });
-  }
+// getChartValues() {
+//        this.taskCountService.get_apppointment_tasks_count(this.curr_student_id).subscribe(data => {
+//       this.appointmentTask = data;
+//       console.log('count of appointment tasks:', this.appointmentTask[0][0]);
+//     });
+//     this.taskCountService.get_personal_tasks_count(this.curr_student_id).subscribe(data => {
+//       this.personalTask = data;
+//       console.log('count of personal tasks:', this.personalTask[0][0]);
+//     });
+//     this.taskCountService.get_study_tasks_count(this.curr_student_id).subscribe(data => {
+//       this.studyTask = data;
+//       console.log('count of study tasks:', this.studyTask[0][0]);
+//       });
+//     this.taskCountService.get_course_tasks_count(this.curr_student_id).subscribe( data => {
+//       this.courseTask = data;
+//       console.log('count of course tasks:', this.courseTask[0][0]);
+//       });
+//   }
   ngOnInit() {
-    this.getChartValues();
+    // this.getChartValues();
     this.courseService.get_courses(this.curr_student_id).subscribe(data => {
       data.map(course => {
         this.courses.push({
@@ -59,10 +59,15 @@ getChartValues() {
     });
     let data1 = [
       ['Task', 'Hours per Day'],
-      ['Personal', this.personalTask[0][0]],
-      ['Courses' , this.courseTask[0][0]],
-      ['Appointments', this.appointmentTask[0][0]],
-      ['Study', this.studyTask[0][0]],
+      // fix this
+      // ['Personal', this.personalTask[0][0]],
+      // ['Courses' , this.courseTask[0][0]],
+      // ['Appointments', this.appointmentTask[0][0]],
+      // ['Study', this.studyTask[0][0]],
+      ['Personal', 2],
+      ['Courses', 4],
+      ['Appointments', 1],
+      ['Study', 3]
     ];
 
     let config1 = {'pieHole': 0.4};
