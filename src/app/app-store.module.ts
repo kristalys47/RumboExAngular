@@ -1,4 +1,4 @@
-import{NgModule} from "@angular/core";
+import {NgModule} from "@angular/core";
 
 import {StoreModule} from '@ngrx/store';
 import {reducer} from './store2/reducers/student.reducer';
@@ -14,11 +14,13 @@ import {TaskEffects} from "./store/effects/task.effects";
 @NgModule({
   imports: [
     StoreModule.forRoot({
-      student: reducer
+      student: reducer,
+      psychologist: reducer
     }),
     EffectsModule.forRoot([StudentEffects, CourseEffects, TaskEffects]),
     StoreModule.forRoot(reducers, { metaReducers }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
+    StoreModule.forFeature('students', reducers),
   ]
 })
 

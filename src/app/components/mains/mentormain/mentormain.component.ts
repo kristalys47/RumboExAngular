@@ -16,7 +16,7 @@ export class MentormainComponent implements OnInit {
   ngOnInit() {
     this.studentService.getstudentlist().subscribe(data => {
       this.students = data;
-    })
+    });
   }
 
 }

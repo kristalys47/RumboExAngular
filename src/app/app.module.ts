@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
-import {AngularMaterialModule} from "./angular-material.module";
+import {AngularMaterialModule} from './angular-material.module';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -44,7 +44,7 @@ import { WeeklyScheduleComponent } from './components/weekly-schedule/weekly-sch
 
 import { NewTaskFormComponent } from './components/new-task-form/new-task-form.component';
 import { NewCourseTaskForm } from './components/individual-course/individual-course.component';
-import {NewTaskForm} from "./components/daily-schedule/daily-schedule.component";
+import {NewTaskForm} from './components/daily-schedule/daily-schedule.component';
 
 import { WidgetComponent } from './components/widget/widget.component';
 import { IndividualCourseComponent } from './components/individual-course/individual-course.component';
@@ -53,10 +53,9 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import {MaterialsModule} from './materials/materials.module';
 import {PopoverComponent} from './components/popover/popover.component';
 import {ModalComponent} from './components/modal/modal.component';
-import {CourseService} from "./services/course.service";
-import {GooglechartService} from "./services/googlechart.service";
+import {CourseService} from './services/course.service';
+import {GooglechartService} from './services/googlechart.service';
 import { ProfileComponent } from './components/profile/profile.component';
-import { PsychologistmainComponent } from './components/mains/psychologistmain/psychologistmain.component';
 
 // import {StoreModule} from '@ngrx/store';
 // import {reducer} from './store2/reducers/student.reducer';
@@ -70,11 +69,11 @@ import {CourseEffects} from "./store/effects/course.effects";
 import { PsychologistmainComponent } from './components/mains/psychologistmain/psychologistmain.component';
 import { MessagesComponent } from './components/messages/messages.component';
 import {TaskEffects} from "./store/effects/task.effects";
-import {AppStoreModule} from "./app-store.module";
+import {AppStoreModule} from './app-store.module';
 import { MentormainComponent } from './components/mains/mentormain/mentormain.component';
 import { StudentListComponent } from './components/student-list/student-list.component';
 import { NotificationsComponent } from './components/sharedComponents/notifications/notifications.component';
-import {MessagesMenuComponent} from "./components/sharedComponents/messages/messages-menu.component";
+import {MessagesMenuComponent} from './components/sharedComponents/messages/messages-menu.component';
 import { PsychologistloginComponent } from './components/logins/psychologistlogin/psychologistlogin.component';
 
 @NgModule({
