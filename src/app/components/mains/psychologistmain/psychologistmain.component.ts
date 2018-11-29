@@ -11,15 +11,14 @@ import * as fromStoreReducers from '../../../store/reducers';
   styleUrls: ['./psychologistmain.component.css']
 })
 export class PsychologistmainComponent implements OnInit {
-
+  students$: Observable<Student[]>;     //THe list of students
   constructor(private store: Store<fromStoreReducers.State> ) { }
 
-  ngOnInit() {
 
+  ngOnInit() {
+    //console.log(state);
     //let curr_user_id = sessionStorage.getItem('userid');
-    this.store.select('psychologist').subscribe(state =>{
-      console.log(state);
-    });
+    this.students$ = this.store.select(fromStoreReducers.getALlStudents);
   }
 
 }
