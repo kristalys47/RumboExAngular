@@ -10,7 +10,7 @@ import {AdvisorloginComponent} from './components/logins/advisorlogin/advisorlog
 import {StudentloginComponent} from './components/logins/studentlogin/studentlogin.component';
 
 import {ScheduleComponent} from './components/schedule/schedule.component';
-import {StudentmainComponent} from './components/mains/main/studentmain.component';
+import {StudentmainComponent} from './components/mains/studentmain/studentmain.component';
 import {RegisterComponent} from './components/register/register.component';
 import {AdminmainComponent} from './components/mains/adminmain/adminmain.component';
 import {LogoutComponent} from './components/logout/logout.component';
@@ -39,6 +39,10 @@ import {BreadcrumbComponent} from "./components/sharedComponents/breadcrumb/brea
 import {TopnavbarComponent} from "./components/sharedComponents/topnavbar/topnavbar.component";
 import {PopoverComponent} from "./components/popover/popover.component";
 import {MentormainComponent} from "./components/mains/mentormain/mentormain.component";
+import {MentorsComponent} from "./components/mentors/mentors.component";
+import {AppointmentFormComponent} from "./components/appointment-form/appointment-form.component";
+import {PsychologistFormComponent} from "./components/appointment-form/psychologist-form";
+import {ChatComponent} from "./components/chat/chat.component";
 
 
 const routes: Routes = [
@@ -61,15 +65,22 @@ const routes: Routes = [
   { path: 'adminmain', component: AdminmainComponent, canActivate: [AdminGuard]},
 
   // Student app routes
-  // { path: '', redirectTo: '/main', pathMatch: 'full' },
+  // { path: '', redirectTo: '/studentmain', pathMatch: 'full' },
   { path: 'studentmain', component: StudentmainComponent,  canActivate: [AuthGuard], children: [
+    // why this doesnt work?
+    //   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'calendar', component: CalendarComponent, outlet: 'content' },
       { path: 'today', component: DailyScheduleComponent, outlet: 'content' },
       { path: 'this-week', component: WeeklyScheduleComponent, outlet: 'content' },
 
       { path: 'course', component: IndividualCourseComponent, outlet: 'content'},
       { path: 'dashboard', component: DashboardComponent, outlet: 'content'},
-      { path: 'profile', component: ProfileComponent, outlet: 'content'}
+      { path: 'profile', component: ProfileComponent, outlet: 'content'},
+      { path: 'mentors', component: MentorsComponent, outlet: 'content' },
+      { path: 'counselor-form', component: AppointmentFormComponent, outlet: 'content' },
+      { path: 'psychologist-form', component: PsychologistFormComponent, outlet: 'content' },
+      { path: 'chat', component: ChatComponent, outlet: 'content' }
+
     ]
   },
 

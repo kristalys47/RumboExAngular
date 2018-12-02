@@ -1,0 +1,14 @@
+<mat-card>
+  <mat-card-title>{{chat.receipient}}</mat-card-title>
+  <mat-card-content>
+    <mat-card *ngFor="let m of chat.messages">
+      <mat-card-title *ngIf="m.sent_by==usr_id; else receipient" >You</mat-card-title>
+      <mat-card-title #receipient>{{chat.receipient}}</mat-card-title>
+      <p>{{m.text}}</p>
+      <p>{{m.date | date}}</p>
+    </mat-card>
+    <mat-card>
+      <input type="text" value="new_msg">
+    </mat-card>
+  </mat-card-content>
+</mat-card>
