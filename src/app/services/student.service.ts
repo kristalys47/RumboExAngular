@@ -18,6 +18,7 @@ export class StudentService {
     return this.http.get<Student>(url);
   }
 
+  @Cacheable()
   getstudentlist(): Observable<any> {
     let url: string = `${this.BASE_URL}/student`;
     return this.http.get<any>(url);

@@ -19,7 +19,8 @@ export class CourseEffects {
 
 
   @Effect()
-  loadStudent$: Observable<Action> = this.courseService.get_courses(sessionStorage.getItem('userid'))
+  loadStudent$: Observable<Action> =
+    this.courseService.get_courses_with_grades(sessionStorage.getItem('userid'))
     .pipe(map(course => {
       console.log(course);
       return handleCourse(course);
@@ -33,22 +34,20 @@ function handleCourse(c: any[]): Action {
     console.log(c[i]);
     console.log(c[i].codification);
     let course_id: number = c[i].codification;
-      var grades: Grade[] = getGrades(course_id);
-      console.log(grades);
-      var avg: number = getCumAvg(grades);
-      var status: Status = setStatus(avg);
-      var course: Course = {
-        codification: c[i].codification,
-        name: c[i].course_name,
-        professor_id: c[i].professor_id,
-        section: c[i].section,
-        grades: grades,
-        cumulative_average: avg,
-        general_average: avg,
-        status: status,
-        tasks: []
-      };
-      courses.push(course);
+    var avg: number = getCumAvg(c[i].grades);
+    var status: Status = setStatus(avg);
+    var course: Course = {
+      codification: c[i].codification,
+      name: c[i].course_name,
+      professor_id: c[i].professor_id,
+      section: c[i].section,
+      grades: c[i].grades,
+      cumulative_average: avg,
+      general_average: avg,
+      status: status,
+      tasks: []
+    };
+    courses.push(course);
     console.log(course);
   }
   console.log(courses);

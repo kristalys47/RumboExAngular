@@ -1,14 +1,32 @@
 <mat-card>
-  <mat-card-title>{{chat.receipient}}</mat-card-title>
+  <mat-card-title>{{chat.receipient}}Sergio</mat-card-title>
   <mat-card-content>
-    <mat-card *ngFor="let m of chat.messages">
-      <mat-card-title *ngIf="m.sent_by==usr_id; else receipient" >You</mat-card-title>
-      <mat-card-title #receipient>{{chat.receipient}}</mat-card-title>
-      <p>{{m.text}}</p>
-      <p>{{m.date | date}}</p>
-    </mat-card>
+    <!--<mat-card *ngFor="let m of chat.messages">-->
+      <!--<mat-card-title *ngIf="m.sent_by==usr_id; else receipient" >You</mat-card-title>-->
+      <!--<mat-card-title #receipient>{{chat.receipient}}</mat-card-title>-->
+      <!--<p>{{m.text}}</p>-->
+      <!--<p>{{m.date | date}}</p>-->
+    <!--</mat-card>-->
+    <!-- this is hardcoded -->
     <mat-card>
-      <input type="text" value="new_msg">
+      <mat-card-title >Sergio</mat-card-title>
+      <p>Te estas colgando</p>
+    </mat-card>
+     <mat-card>
+      <mat-card-title >You</mat-card-title>
+      <p>Tengo zika</p>
+    </mat-card>
+     <mat-card>
+      <mat-card-title >Sergio</mat-card-title>
+      <p>estudia desde el hospital</p>
+    </mat-card>
+     <mat-card>
+      <mat-card-title >Sergio</mat-card-title>
+      <p>o date de baja</p>
+    </mat-card>
+    <!-- -->
+    <mat-card>
+      <textarea></textarea>
     </mat-card>
   </mat-card-content>
 </mat-card>

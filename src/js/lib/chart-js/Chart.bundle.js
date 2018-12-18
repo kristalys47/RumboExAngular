@@ -8278,7 +8278,7 @@ module.exports = function(Chart) {
 
 	/**
 	 * @class Chart.Controller
-	 * The main controller of a chart.
+	 * The studentmain controller of a chart.
 	 */
 	Chart.Controller = function(item, config, instance) {
 		var me = this;

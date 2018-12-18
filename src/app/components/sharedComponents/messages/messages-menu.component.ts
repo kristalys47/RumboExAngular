@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {MessagesService} from "../../../services/messages.service";
 
 @Component({
   selector: 'app-messages-menu',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MessagesMenuComponent implements OnInit {
 
-  constructor() { }
+  messages: any;
+  usr_id = sessionStorage.getItem('userid');
+
+  constructor(private messageService: MessagesService) { }
 
   ngOnInit() {
+    this.messageService.get_messages(this.usr_id).subscribe(data => {
+      this.messages = data;
+      console.log(this.messages);
+    })
   }
 
 }

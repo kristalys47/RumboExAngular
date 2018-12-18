@@ -17,9 +17,9 @@ export class PsychologistmainComponent implements OnInit {
   ngOnInit() {
 
     //let curr_user_id = sessionStorage.getItem('userid');
-    this.store.select('psychologist').subscribe(state =>{
-      console.log(state);
-    });
+    // this.store.select('psychologist').subscribe(state =>{
+    //   console.log(state);
+    // });
   }
 
 }

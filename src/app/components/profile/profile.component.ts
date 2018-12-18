@@ -3,9 +3,9 @@ import {Component, Input, OnInit} from '@angular/core';
 import { Store } from '@ngrx/store';
 // import {AppState} from "../../app.state";
 import {Student} from "../../models/student";
-import * as Actions from '../../store2/actions/student.action';
+// import * as Actions from '../../store2/actions/student.action';
 import { Observable } from 'rxjs/Observable';
-import {StudentState} from "../../store2/reducers/student.reducer";
+// import {StudentState} from "../../store2/reducers/student.reducer";
 import * as fromRoot from '../../store/reducers';
 
 @Component({

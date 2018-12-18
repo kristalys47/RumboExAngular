@@ -14,16 +14,11 @@ export const initialState: State = {
 export function reducer(state = initialState, action: courseActions.CourseActions): State {
   switch (action.type) {
     case courseActions.CourseActionTypes.SetCourses:
-      return handleSetCourses(state, action);
+      console.log(action.payload);
+      return {courses: action.payload};
 
     default:
       return state;
   }
-}
 
-function handleSetCourses(state: State, action: courseActions.SetCourses): State {
-  return {
-    ...state,
-    courses: action.payload
-  }
 }

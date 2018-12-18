@@ -1,0 +1,47 @@
+<mat-card >
+  <h1>Establish a Goal</h1>
+
+  <div class="step-container">
+  <p class="prompt">What type of goal is it?</p>
+  <mat-radio-group class="input">
+    <mat-radio-button>Personal</mat-radio-button>&nbsp;&nbsp;&nbsp;
+    <mat-radio-button>Academic</mat-radio-button>&nbsp;&nbsp;&nbsp;
+    <mat-radio-button>Professional</mat-radio-button>&nbsp;&nbsp;&nbsp;
+    <mat-radio-button>Other</mat-radio-button>
+  </mat-radio-group>
+  <mat-divider></mat-divider>
+  </div>
+
+  <div class="step-container">
+  <p class="prompt">Goal Name</p>
+  <mat-form-field class="input">
+    <input matInput placeholder="Give a name to your goal">
+  </mat-form-field>
+  <mat-divider></mat-divider>
+  </div>
+
+  <div class="step-container">
+  <p class="prompt">End Date</p>
+  <mat-form-field class="input">
+    <input matInput [matDatepicker]="picker" placeholder="When do you want your goal finished?">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <mat-divider></mat-divider>
+  </div>
+
+  <div class="step-container">
+  <p class="prompt">Add Tasks</p>
+  <!--<div class="input">-->
+    <div *ngFor="let task of tasks; let i = index" class="input">
+      <mat-checkbox disabled="true" name="{{task}}"></mat-checkbox>
+      <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="removeTask()">X</button>
+    </div>
+    <mat-form-field class="input">
+      <input matInput #new_task  placeholder="What tasks are needed to carry out your goal?">
+      <button mat-button (click)="addTask($event)">Add</button>
+    </mat-form-field>
+  <!--</div>-->
+  </div>
+
+</mat-card>

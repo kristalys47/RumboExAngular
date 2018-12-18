@@ -20,7 +20,7 @@ user: User = new User();
     this.auth.register(this.user)
     .then((user) => {
       console.log(user);
-      this.router.navigate(['/main']);
+      this.router.navigate(['/studentmain']);
     })
     .catch((err) => {
       console.log(err);

@@ -18,19 +18,20 @@ export class StudentEffects {
 
   @Effect()
   loadStudent$: Observable<Action> =
-    // this.studentService.getStudent(sessionStorage.getItem('userid'))
-    // .pipe(map(user => {
-    //   return new studentActions.SetStudent(user);
-    // }))
-    this.actions$.pipe(
-    ofType(studentActions.StudentActionTypes.LoadStudent),
-    switchMap(() => {
-      return this.studentService.getStudent(sessionStorage.getItem('userid'))
-        .pipe(
-          map((user) => {
-            return new studentActions.SetStudent(user);
-          })
-        )
-    })
-  )
+    this.studentService.getStudent(sessionStorage.getItem('userid'))
+    .pipe(map(user => {
+      return new studentActions.SetStudent(user);
+    }))
+  //   this.actions$.pipe(
+  //   ofType(studentActions.StudentActionTypes.LoadStudent),
+  //   switchMap(() => {
+  //     return this.studentService.getStudent(sessionStorage.getItem('userid'))
+  //       .pipe(
+  //         map((user) => {
+  //           console.log(user);
+  //           return new studentActions.SetStudent(user);
+  //         })
+  //       )
+  //   })
+  // )
 }

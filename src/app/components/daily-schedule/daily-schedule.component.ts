@@ -10,7 +10,7 @@ import {AppState} from "../../app.state";
 
 import {Observable} from "rxjs";
 import {Student} from "../../models/student";
-import {StudentState} from "../../store2/reducers/student.reducer";
+// import {StudentState} from "../../store2/reducers/student.reducer";
 
 
 let now = new Date();
@@ -23,7 +23,7 @@ let now = new Date();
 
 export class DailyScheduleComponent  implements OnInit {
 
-  student: Observable<StudentState>;
+  // student: Observable<StudentState>;
 
   current_user_id = sessionStorage.getItem('userid');
 

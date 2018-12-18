@@ -15,7 +15,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/logins/login/login.component';
 import { AuthService } from './services/auth.service';
 import { StatusComponent } from './components/status/status.component';
-import { StudentmainComponent } from './components/mains/main/studentmain.component';
+import { StudentmainComponent } from './components/mains/studentmain/studentmain.component';
 import { ScheduleComponent } from './components/schedule/schedule.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { AuthGuard} from './guards/auth.guard';
@@ -75,6 +75,13 @@ import { StudentListComponent } from './components/student-list/student-list.com
 import { NotificationsComponent } from './components/sharedComponents/notifications/notifications.component';
 import {MessagesMenuComponent} from './components/sharedComponents/messages/messages-menu.component';
 import { PsychologistloginComponent } from './components/logins/psychologistlogin/psychologistlogin.component';
+import { StudentTableComponent } from './components/student-table/student-table.component';
+import { ChatComponent } from './components/chat/chat.component';
+import { AppointmentFormComponent } from './components/appointment-form/appointment-form.component';
+import { MentorsComponent } from './components/mentors/mentors.component';
+import {PsychologistFormComponent} from "./components/appointment-form/psychologist-form";
+import { StudentDetailComponent } from './components/student-detail/student-detail.component';
+import { GoalFormComponent } from './components/goal-form/goal-form.component';
 
 @NgModule({
   declarations: [
@@ -89,6 +96,7 @@ import { PsychologistloginComponent } from './components/logins/psychologistlogi
     CounselorloginComponent,
     MentorloginComponent,
     ProfessorloginComponent,
+    PsychologistloginComponent,
     RegisterComponent,
     AdvisorloginComponent,
     CounselormainComponent,
@@ -116,7 +124,13 @@ import { PsychologistloginComponent } from './components/logins/psychologistlogi
     StudentListComponent,
     NotificationsComponent,
     MessagesMenuComponent,
-    PsychologistloginComponent
+    StudentTableComponent,
+    ChatComponent,
+    AppointmentFormComponent,
+    PsychologistFormComponent,
+    MentorsComponent,
+    StudentDetailComponent,
+    GoalFormComponent,
   ],
   imports: [
     MbscModule,

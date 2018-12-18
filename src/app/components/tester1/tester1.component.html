@@ -1,0 +1,7 @@
+<nav>
+  <a [routerLink]="[{ outlets: { content: ['schedule/today'] } } ]">today</a>
+  <a [routerLink]="[{ outlets: { content: ['schedule/calendar'] } } ]">calendar</a>
+  <a [routerLink]="[{ outlets: { content: ['schedule/this-week'] } } ]">week</a>
+</nav>
+
+<router-outlet name="content"></router-outlet>

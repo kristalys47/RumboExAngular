@@ -7,7 +7,6 @@ import {Observable} from "rxjs";
 import {Store, State} from '@ngrx/store';
 import {Student} from "../../models/student";
 import {AppState} from "../../app.state";
-import * as StudentActions from '../../store2/actions/student.action';
 
 // mobiscroll.settings = {
 //     theme: 'web'

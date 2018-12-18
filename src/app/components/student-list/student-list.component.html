@@ -1,31 +1,120 @@
 <mat-card>
-  <mat-list>
-    <h1 matSubheader>Students</h1>
-    <mat-paginator [length]="200"
-              [pageSize]="10"
-              [pageSizeOptions]="[1, 5, 10, 25, 100]">
-    </mat-paginator>
+  <mat-card-title>Student List</mat-card-title>
+  <mat-card-content>
 
-    <mat-tab-group>
-      <mat-tab *ngFor="let department of departments" label="{{department.name}}">
-        <div *ngFor="let student of students">
-          <mat-list-item *ngIf="student.enrolled_program==department.num">
-            <h3 matLine> {{student.name}} {{student.lastname}}</h3>
-            <p matLine>
-              <span> {{student.email}} </span>
-              <span class="demo-2" align="right">Send Message</span>
-            </p>
-          </mat-list-item>
-        </div>
-      </mat-tab>
-    </mat-tab-group>
+    <!-- What to show selector -->
+    <mat-form-field class="selector">
+      <h5>Showing:</h5>
+      <mat-select [(ngModel)]="selected" (selectionChange)="filterData()">
+        <mat-option value="all">All</mat-option>
+        <mat-option value="alphabetical">Alphabetically</mat-option>
+        <mat-option value="faculty">Faculty</mat-option>
+        <mat-option value="alert">Alert Students</mat-option>
+        <mat-option value="goals">Goals</mat-option>
+      </mat-select>
+    </mat-form-field>
 
-    <!--<mat-list-item *ngFor="let student of students">-->
-      <!--<h3 matLine> {{student.name}} {{student.lastname}}</h3>-->
-      <!--<p matLine>-->
-        <!--<span> {{student.email}} </span>-->
-        <!--<span class="demo-2"> &#45;&#45; Message </span>-->
-      <!--</p>-->
-    <!--</mat-list-item>-->
-  </mat-list>
+    <!-- Search field -->
+    <!--<mat-icon matSuffix>search</mat-icon>-->
+    <mat-form-field class="search" appearance="outline">
+      <mat-label>Search</mat-label>
+      <input matInput (keyup)="searchData($event.target.value)" placeholder="Search student by name, e.g. Juan del Pueblo">
+    </mat-form-field>
+
+
+
+    <ng-container [ngSwitch]="selected">
+
+      <div *ngSwitchCase="'all'">
+        <!--{{filterData()}}-->
+      </div>
+
+      <div *ngSwitchCase="'alphabetical'">
+        <mat-tab-group (selectedTabChange)="filterData({'name':$event.tab.textLabel})">
+          <mat-tab *ngFor="let letter of alphabet" label="{{letter}}" class="letter">
+          </mat-tab>
+        </mat-tab-group>
+
+      </div>
+
+      <div *ngSwitchCase="'faculty'">
+        <mat-tab-group (selectedTabChange)="filterData({'department':$event.tab.textLabel})">
+          <mat-tab *ngFor="let department of departments" label="{{department.name}}">
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+
+      <div *ngSwitchCase="'alert'">
+      </div>
+
+      <div *ngSwitchCase="'goals'">
+        <mat-tab-group>
+          <mat-tab *ngFor="let goal of goals" label="{{goal}}">
+
+
+
+            <table mat-table [dataSource]="goalData" class="table table-hover">
+
+              <!-- Name Column -->
+              <ng-container matColumnDef="name">
+                <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+              </ng-container>
+
+              <!-- Faculty Column -->
+              <ng-container matColumnDef="goal">
+                <mat-header-cell *matHeaderCellDef> Goal </mat-header-cell>
+                <mat-cell class="goal" *matCellDef="let element"> {{element.goal}} </mat-cell>
+              </ng-container>
+
+
+              <mat-header-row *matHeaderRowDef="['name','goal']; sticky: true"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: ['name','goal'];"></mat-row>
+            </table>
+
+
+
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+
+    </ng-container>
+
+
+
+
+    <!-- Student table -->
+    <table  *ngIf="selected!='goals'" mat-table [dataSource]="sortedStudent" matSort (matSortChange)="sortData($event)" class="mat-elevation-z8" class="table table-hover">
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header text-md-center=""> Name </th>
+        <td mat-cell *matCellDef="let element"> <a [routerLink]="[ '/mentormain', { outlets: { content: 'student-detail' }, student: element }]"> {{element.name}} {{element.lastname}} </a></td>
+      </ng-container>
+
+      <!-- Faculty Column -->
+      <ng-container matColumnDef="department_name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Faculty </th>
+        <td mat-cell *matCellDef="let element"> {{element.department_name}} </td>
+      </ng-container>
+
+      <!-- Grade Average Column -->
+      <ng-container matColumnDef="grade">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> GPA </th>
+        <td mat-cell *matCellDef="let element"> {{element.user_id}} </td>
+      </ng-container>
+
+      <!-- Email Column -->
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+        <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+
+  </mat-card-content>
+
 </mat-card>

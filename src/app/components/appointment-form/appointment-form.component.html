@@ -1,3 +1,63 @@
-<p>
-  appointment-form works!
-</p>
+<mat-horizontal-stepper [linear]="true" #stepper>
+
+  <mat-step [stepControl]="firstFormGroup">
+    <ngForm control="firstFormGroup">
+      <ng-template matStepLabel>Razon de cita</ng-template>
+      <p>Marque todas las que apliquen</p>
+      <mat-list *ngFor="let p of problemas">
+        <mat-list-item><mat-checkbox>{{p}}</mat-checkbox></mat-list-item>
+      </mat-list>
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+      <!--<mat-form-field>-->
+        <!--<input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>-->
+      <!--</mat-form-field>-->
+
+    </ngForm>
+  </mat-step>
+
+  <mat-step [stepControl]="secondFormGroup">
+    <ngForm control="secondFormGroup">
+      <ng-template matStepLabel>Fecha</ng-template>
+      <p>Fechas que el mentor tiene disponible. Marque las que le convenga.</p>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+      <!--<mat-form-field>-->
+        <!--<input matInput placeholder="" formControlName="secondCtrl" required>-->
+      <!--</mat-form-field>-->
+      <div class="row">
+        <div class="col-sm-4">
+          <mbsc-eventcalendar [data]="timeslots" [options]="eventSettings" #mbscMonthCalendar="mobiscroll"></mbsc-eventcalendar>
+        </div>
+        <div class="col-sm-8">
+          <mbsc-eventcalendar [data]="timeslots" [options]="daySettings" #mbscDayCalendar="mobiscroll"></mbsc-eventcalendar>
+        </div>
+      </div>
+
+    </ngForm>
+  </mat-step>
+
+  <mat-step [stepControl]="thirdFormGroup">
+    <ngForm control="thirdFormGroup">
+      <ng-template matStepLabel>Comments</ng-template>
+      <p>Comentarios adicionales</p>
+      <textarea matInput></textarea>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </ngForm>
+  </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    You are now done.
+    <div>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+      <button mat-button >Submit</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>

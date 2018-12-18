@@ -34,7 +34,7 @@ export class MentorloginComponent implements OnInit {
       console.log(sessionStorage.getItem('username'));
       console.log(sessionStorage.getItem('email'));
       console.log(sessionStorage.getItem('role'));
-      this.router.navigate(['/mentormain']);
+      this.router.navigate(['/mentormain/(content:student-list)']);
     })
     .catch((err) => {
       console.log(err);

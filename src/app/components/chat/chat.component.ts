@@ -46,7 +46,7 @@ export class ChatComponent implements OnInit {
         "text": "estudia desde el hospital"
       }
     ],
-    "receipient": "Vilma Santiago"
+    // "receipient": "Vilma Santiago"
   };
   usr_id = sessionStorage.getItem('userid');
 

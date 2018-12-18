@@ -1,0 +1,27 @@
+.prompt {
+  font-weight: bold;
+  color: black;
+  text-align: right;
+  margin-right: 70%;
+  padding-top: 15px;
+  white-space: nowrap;
+}
+
+.input {
+  /*outline-offset: 50%;*/
+  margin-left: 40%;
+  width: 40%;
+  white-space: nowrap;
+  padding-bottom: 15px;
+}
+
+mat-card {
+  white-space: normal;
+  width: 75%;
+  margin-left:12.5%;
+}
+
+.step-container {
+  /*padding-top: 15px;*/
+  /*padding-bottom: 15px;*/
+}

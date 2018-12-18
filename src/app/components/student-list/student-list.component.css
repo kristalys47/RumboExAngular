@@ -1,0 +1,33 @@
+mat-card {
+  margin-top: 10px;
+}
+
+/*table.goals {*/
+  /*width: auto;*/
+/*}*/
+
+table {
+  width: 100%;
+}
+
+mat-form-field.selector {
+  width: 100px;
+  white-space: nowrap;
+}
+
+mat-form-field.search {
+  width: 400px;
+  overflow: hidden;
+  float: right;
+}
+
+/deep/.mat-tab-label, /deep/.mat-tab-label-active {
+  min-width: 3.84% !important;
+}
+
+/*/deep/.mat-cell.goal {*/
+  /*display: flex;*/
+  /*justify-content: center;*/
+  /*text-align: left;*/
+  /*align-self: left;*/
+/*}*/

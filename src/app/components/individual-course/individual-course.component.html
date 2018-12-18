@@ -104,9 +104,9 @@
   <div class="col-sm-6">
     <mat-card>
       <div class="row">
-        <div class="col-sm-6" matTooltip="esto es una prueba">TO DO
+        <div class="col-sm-6" >TO DO
           <mat-list *ngFor="let t of undoneTasks">
-            <mat-list-item><mat-checkbox matTooltip="{{t.description}}">{{t.title}}</mat-checkbox></mat-list-item>
+            <mat-list-item><mat-checkbox>{{t.title}}</mat-checkbox></mat-list-item>
           </mat-list>
           <button mat-mini-fab (click)="openForm()">+</button>
         </div>
