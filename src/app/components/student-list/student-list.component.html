@@ -5,7 +5,7 @@
     <!-- What to show selector -->
     <mat-form-field class="selector">
       <h5>Showing:</h5>
-      <mat-select [(ngModel)]="selected" (selectionChange)="filterData()">
+      <mat-select [(ngModel)]="selected" (selectionChange)="selected = $event.value; filter = null">
         <mat-option value="all">All</mat-option>
         <mat-option value="alphabetical">Alphabetically</mat-option>
         <mat-option value="faculty">Faculty</mat-option>
@@ -18,7 +18,7 @@
     <!--<mat-icon matSuffix>search</mat-icon>-->
     <mat-form-field class="search" appearance="outline">
       <mat-label>Search</mat-label>
-      <input matInput (keyup)="searchData($event.target.value)" placeholder="Search student by name, e.g. Juan del Pueblo">
+      <input matInput (keyup)="filter = {'search': $event.target.value}" placeholder="Search student by name, e.g. Juan del Pueblo">
     </mat-form-field>
 
 
@@ -26,11 +26,11 @@
     <ng-container [ngSwitch]="selected">
 
       <div *ngSwitchCase="'all'">
-        <!--{{filterData()}}-->
+        <!-- no tabs to show -->
       </div>
 
       <div *ngSwitchCase="'alphabetical'">
-        <mat-tab-group (selectedTabChange)="filterData({'name':$event.tab.textLabel})">
+        <mat-tab-group (selectedTabChange)="filter = {'name': $event.tab.textLabel}">
           <mat-tab *ngFor="let letter of alphabet" label="{{letter}}" class="letter">
           </mat-tab>
         </mat-tab-group>
@@ -38,7 +38,7 @@
       </div>
 
       <div *ngSwitchCase="'faculty'">
-        <mat-tab-group (selectedTabChange)="filterData({'department':$event.tab.textLabel})">
+        <mat-tab-group (selectedTabChange)="filter = {'department': $event.tab.textLabel}">
           <mat-tab *ngFor="let department of departments" label="{{department.name}}">
           </mat-tab>
         </mat-tab-group>
@@ -84,7 +84,8 @@
 
 
     <!-- Student table -->
-    <table  *ngIf="selected!='goals'" mat-table [dataSource]="sortedStudent" matSort (matSortChange)="sortData($event)" class="mat-elevation-z8" class="table table-hover">
+    <!-- pipes first filter the list to show selected attributes and then sort it by the chosen attribute -->
+    <table  *ngIf="selected!='goals'" mat-table [dataSource]="studentsList | filter: filter | sort: sort" matSort (matSortChange)="sort = {direction: $event.direction, active: $event.active}" class="mat-elevation-z8" class="table table-hover">
 
       <!-- Name Column -->
       <ng-container matColumnDef="name">

@@ -82,6 +82,8 @@ import { MentorsComponent } from './components/mentors/mentors.component';
 import {PsychologistFormComponent} from "./components/appointment-form/psychologist-form";
 import { StudentDetailComponent } from './components/student-detail/student-detail.component';
 import { GoalFormComponent } from './components/goal-form/goal-form.component';
+import { SortPipe } from './pipes/sort/sort.pipe';
+import { FilterPipe } from './pipes/filter/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -131,6 +133,8 @@ import { GoalFormComponent } from './components/goal-form/goal-form.component';
     MentorsComponent,
     StudentDetailComponent,
     GoalFormComponent,
+    SortPipe,
+    FilterPipe,
   ],
   imports: [
     MbscModule,

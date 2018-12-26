@@ -17,7 +17,7 @@ export class GoalFormComponent implements OnInit {
 
   addTask(task: string) {
     console.log(task);
-    console.log(this.task);
+    // console.log(this.task);
     this.tasks.push('aaaaaaaaaaaaaaaaaaaaa');
   }
 
