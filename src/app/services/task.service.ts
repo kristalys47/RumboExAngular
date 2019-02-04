@@ -61,8 +61,17 @@ export class TaskService {
   }
 
   insert_personal_task(user_id, task: Task): Promise<any> {
+    console.log('aqui se jodio');
     let url: string = `${this.BASE_URL}/personal/${user_id}`;
-    return this.http.post<Task>(url, task, {headers: this.httpheaders}).toPromise();
+    let new_task = {
+      'task_name': task['title'],
+      'task_description': task['description'],
+      'start_time': task['start'],
+      'end_time': task['end'],
+      'finished': false,
+    };
+    console.log(new_task);
+    return this.http.post(url, new_task, {headers: this.httpheaders}).toPromise();
   }
 
   get_all(): Observable<Task[]> {

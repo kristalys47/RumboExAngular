@@ -57,6 +57,8 @@ import {CourseService} from './services/course.service';
 import {GooglechartService} from './services/googlechart.service';
 import { ProfileComponent } from './components/profile/profile.component';
 
+import {MsgInputForm} from "./components/comment-button/comment-button.component";
+
 // import {StoreModule} from '@ngrx/store';
 // import {reducer} from './store2/reducers/student.reducer';
 // import {EffectsModule} from "@ngrx/effects";
@@ -79,11 +81,17 @@ import { StudentTableComponent } from './components/student-table/student-table.
 import { ChatComponent } from './components/chat/chat.component';
 import { AppointmentFormComponent } from './components/appointment-form/appointment-form.component';
 import { MentorsComponent } from './components/mentors/mentors.component';
-import {PsychologistFormComponent} from "./components/appointment-form/psychologist-form";
 import { StudentDetailComponent } from './components/student-detail/student-detail.component';
 import { GoalFormComponent } from './components/goal-form/goal-form.component';
 import { SortPipe } from './pipes/sort/sort.pipe';
 import { FilterPipe } from './pipes/filter/filter.pipe';
+import { CommentButtonComponent } from './components/comment-button/comment-button.component';
+import {FormModal, TaskFormComponent} from './components/task-form/task-form.component';
+import { StudentCoursesTableComponent } from './components/student-courses-table/student-courses-table.component';
+import { MentorCalendarComponent } from './components/mentor-calendar/mentor-calendar.component';
+import { TimeManagementPieChartComponent } from './components/time-management-pie-chart/time-management-pie-chart.component';
+import {DialogMessageComponent} from "./components/dialog-message/dialog-message.component";
+import { GradeGaugeComponent } from './grade-gauge/grade-gauge.component';
 
 @NgModule({
   declarations: [
@@ -116,6 +124,7 @@ import { FilterPipe } from './pipes/filter/filter.pipe';
     NewTaskFormComponent,
     NewCourseTaskForm,
     NewTaskForm,
+    MsgInputForm,
     LoginmenuComponent,
     PopoverComponent,
     ModalComponent,
@@ -129,12 +138,19 @@ import { FilterPipe } from './pipes/filter/filter.pipe';
     StudentTableComponent,
     ChatComponent,
     AppointmentFormComponent,
-    PsychologistFormComponent,
     MentorsComponent,
     StudentDetailComponent,
     GoalFormComponent,
     SortPipe,
     FilterPipe,
+    CommentButtonComponent,
+    TaskFormComponent,
+    FormModal,
+    StudentCoursesTableComponent,
+    MentorCalendarComponent,
+    DialogMessageComponent,
+    TimeManagementPieChartComponent,
+    GradeGaugeComponent
   ],
   imports: [
     MbscModule,
@@ -146,6 +162,11 @@ import { FilterPipe } from './pipes/filter/filter.pipe';
     AngularMaterialModule,
     BrowserAnimationsModule,
     AppStoreModule
+  ],
+  entryComponents: [
+    MsgInputForm,
+    FormModal,
+    DialogMessageComponent
   ],
   // entryComponents: [NewCourseTaskForm, NewTaskForm],
   // Each guard just check that the user have an specific characteristic to authorize the navegation. In this case it checks that the user

@@ -1,52 +1,73 @@
+<h1 margin-top="10px" margin-bottom="10px">{{student.student.name}} {{student.student.lastname}}</h1>
+<!--<div>-->
+  <!--<mat-card>-->
 
-  <h1 margin-top="10px" margin-bottom="10px">{{student.student.name}} {{student.student.lastname}}</h1>
-<div >
+  <!--</mat-card>-->
+<!--</div>-->
+
+
   <mat-card >
     <div class="row">
-    <div class="col-sm-4">
+    <div class="col-sm-12">
       <h5>Department</h5>
       <div>{{student.student.department_name}}</div><br/>
       <h5>Email Address</h5>
       <div>{{student.student.email}}</div><br/>
     </div>
+      <!--<app-comment-button></app-comment-button>-->
 
-    <div class="col-sm-4" >
-    <div class="table-responsive">
-      <h2>Courses</h2>
-      <table  class="table table-hover">
-        <thead>
-        <tr>
-          <th>Name</th>
-          <th>Grade</th>
-          <th>Status</th>
-        </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let c of student.courses">
-            <th scope="row">{{c.course_name}}</th>
-            <td>{{c.general_average}}</td>
-            <td><span *ngIf="c.status==1" class="badge badge-success">PASSING</span>
-                <span *ngIf="c.status==3" class="badge badge-danger">NOT PASSING</span>
-                <span *ngIf="c.status==2" class="badge badge-warning">SURVIVING</span>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    </div>
+    <!--<div class="col-sm-4" >-->
+    <!--<div class="table-responsive">-->
+      <!--<h2>Courses</h2>-->
+      <!--<table  class="table table-hover">-->
+        <!--<thead>-->
+        <!--<tr>-->
+          <!--<th>Name</th>-->
+          <!--<th>Grade</th>-->
+          <!--<th>Status</th>-->
+        <!--</tr>-->
+        <!--</thead>-->
+        <!--<tbody>-->
+          <!--<tr *ngFor="let c of student.courses">-->
+            <!--<th scope="row">{{c.course_name}}</th>-->
+            <!--<td>{{c.general_average}}</td>-->
+            <!--<td><span *ngIf="c.status==1" class="badge badge-success">PASSING</span>-->
+                <!--<span *ngIf="c.status==3" class="badge badge-danger">NOT PASSING</span>-->
+                <!--<span *ngIf="c.status==2" class="badge badge-warning">SURVIVING</span>-->
+            <!--</td>-->
+          <!--</tr>-->
+        <!--</tbody>-->
+      <!--</table>-->
+    <!--</div>-->
+      <!--<app-student-courses-table></app-student-courses-table>-->
+    <!--</div>-->
+      <!--<app-comment-button></app-comment-button>-->
 </div>
 
   </mat-card>
+
+<mat-card>
+  <h2>Courses</h2>
+  <app-student-courses-table></app-student-courses-table>
+  <app-comment-button></app-comment-button>
+</mat-card>
+
+<mat-card>
+  <app-time-management-pie-chart></app-time-management-pie-chart>
+  <app-comment-button></app-comment-button>
+</mat-card>
 
   <mat-card class="col-sm-8">
     <h2>Schedule</h2>
     <mbsc-eventcalendar showOnFocus="true"></mbsc-eventcalendar>
   </mat-card>
-</div>
+  <app-comment-button></app-comment-button>
+
 
   <mat-card>
     <h2>Goals</h2>
   </mat-card>
+<app-comment-button></app-comment-button>
 
 
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {MbscEventcalendarOptions, mobiscroll} from '@mobiscroll/angular';
 import { TaskService } from "../../services/task.service";
 import {PopoverComponent} from "../popover/popover.component";
@@ -7,12 +7,14 @@ import {Observable} from "rxjs";
 import {Store, State} from '@ngrx/store';
 import {Student} from "../../models/student";
 import {AppState} from "../../app.state";
+import {NewCourseTaskForm} from "../individual-course/individual-course.component";
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material";
 
 // mobiscroll.settings = {
 //     theme: 'web'
 // };
 
-var now = new Date();
+var date = new Date();
 
 @Component({
   selector: 'app-calendar',
@@ -35,14 +37,15 @@ export class CalendarComponent {
   showModal: Boolean = false;
 
   constructor(private taskService: TaskService,
-              private store: Store<AppState>) {
-    this.student = store.select('student');
-    this.student.subscribe(data => {
-      this.studyTasks = data.tasks.study;
-      this.personalTasks = data.tasks.personal;
-      this.mapPersonalTaskToCalendar();
-      this.mapStudyTaskToCalendar();
-    })
+              private store: Store<AppState>,
+              public dialog: MatDialog) {
+    // this.student = store.select('student');
+    // this.student.subscribe(data => {
+    //   this.studyTasks = data.tasks.study;
+    //   this.personalTasks = data.tasks.personal;
+    //   this.mapPersonalTaskToCalendar();
+    //   this.mapStudyTaskToCalendar();
+    this.loadTasks();
   }
 
 
@@ -62,8 +65,8 @@ export class CalendarComponent {
 
     this.taskService.get_study_tasks(this.current_user_id).subscribe(data => {
       this.studyTasks = data;
+      console.log('study tasks:', this.studyTasks);
       this.mapStudyTaskToCalendar();
-      console.log('study tasks:', this.studyTasks)
     });
 
     this.taskService.get_personal_tasks(this.current_user_id).subscribe(data => {
@@ -75,14 +78,20 @@ export class CalendarComponent {
     this.taskService.get_course_tasks(this.current_user_id).subscribe(data => {
       this.courseTasks = data;
       this.mapCourseTaskToCalendar();
-      console.log('course tasks:', this.courseTasks)
+      console.log('course tasks:', this.courseTasks);
+      console.log(this.labelDays);
     });
 
   }
 
   mapTasksToCalendar(task) {
+    // convert dates from string format to Date object
+    let start = new Date(task.start);
+    let end = new Date(task.end);
     this.labelDays.push({
-      d: now,
+      // d: date.now,
+      start: start,
+      end: end,
       text: task.title,
       color: '#00aabb',
       description: task.description
@@ -120,12 +129,54 @@ export class CalendarComponent {
     );
   }
 
+  // openForm() {
+  //   console.log('opened');
+  //   const dialogRef = this.dialog.open(NewTaskForm,{
+  //     // data: {course: this.course.course_name}
+  //   });
+  //
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     console.log(result);
+  //     this.createTask(result);
+  //   });
+  // }
+  //
+  // createTask(data) {
+  //   console.log('data:', data);
+  //   var title = data['title'];
+  //   var description = data['description'];
+  //   var start = data['start'];
+  //   var end = data['end'];
+  //   // var task = new Task(title, description, start, end, false);
+  //   // console.log(task);
+  //   // this.taskService.insert_study_task(data, this.curr_student_id, this.curr_course_id);
+  //   // this.authService.insert_study_task(data, this.curr_student_id, this.curr_course_id);
+  // }
+
   eventSettings: MbscEventcalendarOptions = {
         theme: 'ios',
+        display: 'inline',
+        eventBubble: true,
+        layout: 'liquid',
+        buttons: ['set'], // ?
+        // showEventCount: true,
         view: {
-          calendar: { type: 'month', popover: true }
+          // calendar: { labels: true },
+          // eventList: { type: 'week', size: 2 }
         }
     };
 
 }
+
+// @Component({
+//   selector: 'new-task-form',
+//   templateUrl: 'new-task-form.component.html'
+// })
+// export class NewTaskForm {
+//
+//   constructor(public dialogRef: MatDialogRef<NewTaskForm>,
+//               private taskService: TaskService,
+//               @Inject(MAT_DIALOG_DATA) public data){}
+//
+// }
 

@@ -48,7 +48,7 @@ export class StudentloginComponent implements OnInit {
       // Load student's tasks
       // this.store.dispatch(new );
 
-      this.router.navigate(['/studentmain']);
+      this.router.navigate([ '/studentmain', { outlets: { content: 'dashboard' } }]);
     })
     .catch((err) => {
       console.log(err);

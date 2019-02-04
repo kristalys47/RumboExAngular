@@ -1,63 +1,86 @@
 <mat-horizontal-stepper [linear]="true" #stepper>
 
+  <!-- Checklist para marcar razon(es) de cita -->
   <mat-step [stepControl]="firstFormGroup">
+    <ng-template matStepLabel>Razon de cita</ng-template>
+    <p>Marque todas las que apliquen. Debes escoger al menos uno.</p>
     <ngForm control="firstFormGroup">
-      <ng-template matStepLabel>Razon de cita</ng-template>
-      <p>Marque todas las que apliquen</p>
-      <mat-list *ngFor="let p of problemas">
-        <mat-list-item><mat-checkbox>{{p}}</mat-checkbox></mat-list-item>
+      <mat-list>
+        <div *ngFor="let p of problemas">
+          <mat-list-item><mat-checkbox (change)="onChange(p, $event.checked)">{{p}}</mat-checkbox></mat-list-item>
+        </div>
+        <mat-list-item><mat-checkbox>Otro (especificar en los comentarios)</mat-checkbox></mat-list-item>
       </mat-list>
-      <div>
+    </ngForm>
+    <div>
         <button mat-button matStepperNext>Next</button>
-      </div>
+    </div>
       <!--<mat-form-field>-->
         <!--<input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>-->
       <!--</mat-form-field>-->
-
-    </ngForm>
   </mat-step>
 
+  <!-- Escoger fecha de cita -->
   <mat-step [stepControl]="secondFormGroup">
-    <ngForm control="secondFormGroup">
+    <!--<ngForm control="secondFormGroup">-->
       <ng-template matStepLabel>Fecha</ng-template>
-      <p>Fechas que el mentor tiene disponible. Marque las que le convenga.</p>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
-      </div>
+      <p>Fechas que el mentor tiene disponible. Marque la que desee.
+        De no poder en ese horario, especificar su disponibilidad en los comentarios</p>
+
       <!--<mat-form-field>-->
         <!--<input matInput placeholder="" formControlName="secondCtrl" required>-->
       <!--</mat-form-field>-->
+
       <div class="row">
         <div class="col-sm-4">
-          <mbsc-eventcalendar [data]="timeslots" [options]="eventSettings" #mbscMonthCalendar="mobiscroll"></mbsc-eventcalendar>
+          <mbsc-eventcalendar [data]="timeslots" [options]="monthSettings" #mbscMonthCalendar="mobiscroll"></mbsc-eventcalendar>
         </div>
         <div class="col-sm-8">
           <mbsc-eventcalendar [data]="timeslots" [options]="daySettings" #mbscDayCalendar="mobiscroll"></mbsc-eventcalendar>
         </div>
       </div>
 
-    </ngForm>
-  </mat-step>
 
-  <mat-step [stepControl]="thirdFormGroup">
-    <ngForm control="thirdFormGroup">
-      <ng-template matStepLabel>Comments</ng-template>
-      <p>Comentarios adicionales</p>
-      <textarea matInput></textarea>
       <div>
         <button mat-button matStepperPrevious>Back</button>
         <button mat-button matStepperNext>Next</button>
       </div>
-    </ngForm>
+    <!--</ngForm>-->
   </mat-step>
 
+  <!-- Escribir comentarios adicionales -->
+  <mat-step [stepControl]="thirdFormGroup">
+    <!--<ngForm control="thirdFormGroup">-->
+      <ng-template matStepLabel>Comments</ng-template>
+      <p>Comentarios adicionales</p>
+      <textarea matInput [(ngModel)]="appointment.comment"></textarea>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    <!--</ngForm>-->
+  </mat-step>
+
+  <!-- Finalizar -->
   <mat-step>
     <ng-template matStepLabel>Done</ng-template>
-    You are now done.
+    <div>
+      <p>Va a solicitar una cita con {{mentor.name}}, {{mentor.role}}.</p>
+      <p *ngIf="appointment.date">
+        El dia: {{appointment.date | date: "fullDate"}} <br/>
+        Hora: {{appointment.date | date: "shortTime"}} <br/>
+      </p>
+      <p *ngIf="appointment.reasons.length > 0">
+        Por las siguientes razones:
+      </p>
+      <ul style="list-style-type:disc;">
+        <li *ngFor="let r of appointment.reasons">{{r}}</li>
+      </ul>
+      <p>Haga submit para confirmar su solicitud</p>
+    </div>
     <div>
       <button mat-button (click)="stepper.reset()">Reset</button>
-      <button mat-button >Submit</button>
+      <button mat-button (click)="submit()">Submit</button>
     </div>
   </mat-step>
 </mat-horizontal-stepper>

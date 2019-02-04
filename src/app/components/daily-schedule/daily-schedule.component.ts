@@ -1,5 +1,5 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {MbscEventcalendarOptions, mobiscroll} from '@mobiscroll/angular';
+import {Component, Inject, OnInit, ViewChild} from '@angular/core';
+import {MbscEventcalendarOptions, MbscDatetimeOptions, mobiscroll, MbscEventcalendar} from '@mobiscroll/angular';
 import {TaskService} from "../../services/task.service";
 // import {NewCourseTaskForm} from "../individual-course/individual-course.component";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material";
@@ -14,6 +14,7 @@ import {Student} from "../../models/student";
 
 
 let now = new Date();
+let tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate()+1);
 
 @Component({
   selector: 'app-daily-schedule',
@@ -22,6 +23,9 @@ let now = new Date();
 })
 
 export class DailyScheduleComponent  implements OnInit {
+
+  @ViewChild('mbscList')
+  list: MbscEventcalendar;
 
   // student: Observable<StudentState>;
 
@@ -32,6 +36,12 @@ export class DailyScheduleComponent  implements OnInit {
   courseTasks: any = [];
 
   events: Array<any> = [];
+
+  navigate(inst, val) {
+        if (inst) {
+            inst.navigate(val);
+        }
+    };
 
   constructor(private taskService: TaskService,
               public dialog: MatDialog,
@@ -49,6 +59,8 @@ export class DailyScheduleComponent  implements OnInit {
   ngOnInit() {
 
     // this.loadTasks();
+    console.log(now.getDate(), tomorrow);
+    this.navigate(this.list.instance, tomorrow);
 
   }
 
@@ -101,33 +113,6 @@ export class DailyScheduleComponent  implements OnInit {
     }
   }
 
-  openForm() {
-    console.log('opened');
-    const dialogRef = this.dialog.open(NewTaskForm, {
-      data: {}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
-      this.createTask(result);
-    });
-  }
-
-  createTask(data) {
-    console.log('data:', data);
-    var title = data['title'];
-    var description = data['description'];
-    var start = data['start'];
-    var end = data['end'];
-    // var task = new Task(title, description, start, end, false);
-    // console.log(task);
-    this.events.push({
-      d: start,
-      text: title,
-      color: '#00aabb',
-      description: description
-    });
-  }
 
     eventSettings: MbscEventcalendarOptions = {
         theme: 'ios',
@@ -137,6 +122,8 @@ export class DailyScheduleComponent  implements OnInit {
           eventList: { type: 'day' }
         }
     };
+
+
 }
 
 @Component({
@@ -148,5 +135,9 @@ export class NewTaskForm {
   constructor(public dialogRef: MatDialogRef<NewTaskForm>,
               private taskService: TaskService,
               @Inject(MAT_DIALOG_DATA) public data){}
+
+  desktopSettings: MbscDatetimeOptions = {
+    touchUi: false
+  };
 
 }

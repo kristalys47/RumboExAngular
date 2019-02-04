@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-mentors',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MentorsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
+  goToForm(role: 'counselor' | 'psychologist') {
+    this.router.navigate([ '/studentmain', { outlets: { content: 'appointment-form' } }],
+      {queryParams: {mentor: role}});
+  }
 }

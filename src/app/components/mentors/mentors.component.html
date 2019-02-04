@@ -21,7 +21,7 @@
       <mat-divider></mat-divider>
 
         <mat-card-actions>
-          <button mat-button><a [routerLink]="[ '/studentmain', { outlets: { content: 'counselor-form' } }]">Sacar cita</a></button>
+          <button mat-button (click)="goToForm('counselor')">Sacar cita</button>
           <button mat-button>Contactar</button>
         </mat-card-actions>
 
@@ -37,7 +37,7 @@
       <mat-divider></mat-divider>
 
         <mat-card-actions>
-          <button mat-button><a [routerLink]="[ '/studentmain', { outlets: { content: 'psychologist-form' } }]">Sacar cita</a></button>
+          <button mat-button (click)="goToForm('psychologist')">Sacar cita</button>
           <button mat-button>Contactar</button>
         </mat-card-actions>
     </mat-card>

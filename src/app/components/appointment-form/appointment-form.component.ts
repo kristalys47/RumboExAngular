@@ -1,8 +1,12 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, Inject, OnInit, ViewChild} from '@angular/core';
 import {FormGroup} from "@angular/forms";
-import {MbscEventcalendar, MbscEventcalendarOptions} from "@mobiscroll/angular";
+import {MbscDatetimeOptions, MbscEventcalendar, MbscEventcalendarOptions} from "@mobiscroll/angular";
+import {ActivatedRoute} from "@angular/router";
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material";
+import {DialogMessageComponent} from "../dialog-message/dialog-message.component";
 
-let preventSet, now = new Date();
+let preventSet;
+let now = new Date();
 
 @Component({
   selector: 'app-appointment-form',
@@ -11,23 +15,46 @@ let preventSet, now = new Date();
 })
 export class AppointmentFormComponent implements OnInit {
 
+  @ViewChild("mbscMonthCal")
+  monthCal: MbscEventcalendar;
+
+  @ViewChild("mbscDayCal")
+  dayCal: MbscEventcalendar;
+
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
 
-  problemasMentales = [
+  problemas: string[];
+
+  problemasPsicologo = [
     'Tristeza', 'Ansiedad', 'Estres', 'Problemas con concentracion', 'Problemas familiares',
-    'Problemas de pareja', 'Problemas de amistades', 'Otros'
+    'Problemas de pareja', 'Problemas de amistades'
   ];
 
-  problemas = [
+  problemasConsejero = [
     'Buscar asesorias', 'Traslados', 'Identificar intereses vocacionales', 'Organizar el tiempo'
   ];
 
+  appointment: {
+    reasons: Array<string>,
+    date: Date,
+    comment: string
+  } = {
+    reasons: [], date: null, comment: null // tiene q estar inicializado
+  };
+
+  mentor: {
+    name: string,
+    role: string
+  } = {
+    name: 'Julio', role: 'counselor'
+  };
+
   timeslots: Array<any> = [
     {
-      start: new Date(now.getFullYear(), now.getMonth(), 28, 8),
-      end: new Date(now.getFullYear(), now.getMonth(), 28, 9)
+      start: new Date(now.getFullYear(), now.getMonth(), 4, 8),
+      end: new Date(now.getFullYear(), now.getMonth(), 4, 9)
     },
     {
       start: new Date(now.getFullYear(), now.getMonth(), 30, 8),
@@ -43,16 +70,43 @@ export class AppointmentFormComponent implements OnInit {
     }
   ];
 
-  constructor() { }
+  constructor(private route: ActivatedRoute, public dialog: MatDialog) {  }
 
   ngOnInit() {
+    this.route
+      .queryParams
+      .subscribe(params => {
+        this.mentor.role = params['mentor'];
+      });
+    if (this.mentor.role == 'psychologist') {
+      this.problemas = this.problemasPsicologo;
+    }
+    else if (this.mentor.role == 'counselor') {
+      this.problemas = this.problemasConsejero;
+    }
   }
 
-  @ViewChild('mbscMonthCal')
-  monthCal: MbscEventcalendar;
+  onChange(problem: string, isChecked: boolean) {
+    if (isChecked) {
+      this.appointment.reasons.push(problem)
+    }
+    else {
+      this.appointment.reasons = this.appointment.reasons.filter(
+        item => item !== problem);
+    }
+  }
 
-  @ViewChild('mbscDayCal')
-  dayCal: MbscEventcalendar;
+  submit() {
+    console.log(this.appointment);
+    this.openDialog();
+  };
+
+  openDialog() {
+    const dialogRef = this.dialog.open(DialogMessageComponent, {
+      data: {msg: 'Su cita ha sido solicitada.'}
+    });
+  };
+
 
   navigate(inst, val) {
     if (inst) {
@@ -60,16 +114,17 @@ export class AppointmentFormComponent implements OnInit {
     }
   };
 
-  eventSettings: MbscEventcalendarOptions = {
+  monthSettings: MbscEventcalendarOptions = {
+        theme: 'ios',
         display: 'inline',
         view: {
             calendar: { type: 'month' }
         },
-        onEventSelect: (event, inst) => {
-          if (!preventSet) {
-            this.navigate(this.dayCal.instance, event.date)
-          }
-          preventSet = false;
+        onPageChange: (event, inst) => {
+            if (!preventSet) {
+                // this.navigate(this.dayCal.instance, event.date);
+            }
+            preventSet = false;
         }
     };
 
@@ -82,7 +137,9 @@ export class AppointmentFormComponent implements OnInit {
       preventSet = true;
       this.navigate(this.monthCal.instance, event.firstDay);
 
+    },
+    onEventSelect: (event, inst) => {
+      console.log(event);
     }
   };
-
 }

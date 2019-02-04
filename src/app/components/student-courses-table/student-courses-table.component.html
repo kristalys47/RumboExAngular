@@ -1,0 +1,25 @@
+<div class="table-responsive">
+
+  <table class="table table-hover ">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Grade</th>
+      <th>Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!--<div *ngFor="let c of courses">-->
+    <tr *ngFor="let c of courses">
+      <th scope="row">
+        <a [routerLink]="[ '/main', { outlets: { content: 'course' } }]" [queryParams]="{ course: c.codification }" >{{c.name}}</a>
+      </th>
+      <td>{{c.grade}}</td>
+      <td><span *ngIf="c.status=='PASSING'" class="badge badge-success">PASSING</span>
+        <span *ngIf="c.status=='NOT PASSING'" class="badge badge-danger">NOT PASSING</span>
+        <span *ngIf="c.status=='SURVIVING'" class="badge badge-warning">SURVIVING</span>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

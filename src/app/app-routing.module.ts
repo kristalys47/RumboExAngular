@@ -41,11 +41,12 @@ import {PopoverComponent} from "./components/popover/popover.component";
 import {MentormainComponent} from "./components/mains/mentormain/mentormain.component";
 import {MentorsComponent} from "./components/mentors/mentors.component";
 import {AppointmentFormComponent} from "./components/appointment-form/appointment-form.component";
-import {PsychologistFormComponent} from "./components/appointment-form/psychologist-form";
 import {ChatComponent} from "./components/chat/chat.component";
 import {StudentDetailComponent} from "./components/student-detail/student-detail.component";
 import {StudentListComponent} from "./components/student-list/student-list.component";
 import {GoalFormComponent} from "./components/goal-form/goal-form.component";
+import {MentorCalendarComponent} from "./components/mentor-calendar/mentor-calendar.component";
+import {NotificationsComponent} from "./components/notifications/notifications.component";
 
 
 const routes: Routes = [
@@ -80,10 +81,11 @@ const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent, outlet: 'content'},
       { path: 'profile', component: ProfileComponent, outlet: 'content'},
       { path: 'mentors', component: MentorsComponent, outlet: 'content' },
-      { path: 'counselor-form', component: AppointmentFormComponent, outlet: 'content' },
-      { path: 'psychologist-form', component: PsychologistFormComponent, outlet: 'content' },
+      { path: 'appointment-form', component: AppointmentFormComponent, outlet: 'content' },
       { path: 'chat', component: ChatComponent, outlet: 'content' },
-      { path: 'goal-form', component: GoalFormComponent, outlet: 'content' }
+      { path: 'goal-form', component: GoalFormComponent, outlet: 'content' },
+      // { path: 'notifications', component: NotificationsComponent, outlet: 'content' }
+
 
     ]
   },
@@ -92,7 +94,9 @@ const routes: Routes = [
   { path: 'mentormain', component: MentormainComponent, canActivate: [AuthGuard], children: [
       { path: 'profile', component: ProfileComponent, outlet: 'content'},
       { path: 'student-detail', component: StudentDetailComponent, outlet: 'content' },
-      { path: 'student-list', component: StudentListComponent, outlet: 'content' }
+      { path: 'student-list', component: StudentListComponent, outlet: 'content' },
+      { path: 'home', component: MentorCalendarComponent, outlet: 'content' },
+      // { path: 'notifications', component: NotificationsComponent, outlet: 'content' }
     ]
   },
 

@@ -32,59 +32,62 @@
             <!--</div>-->
 
           <div class="col-sm-4">
-    <div class="table-responsive">
-      <h2>My Courses</h2>
-      <table class="table table-hover ">
-        <thead>
-        <tr>
-          <th>Name</th>
-          <th>Grade</th>
-          <th>Status</th>
-        </tr>
-        </thead>
-        <tbody>
-        <!--<div *ngFor="let c of courses">-->
-          <tr *ngFor="let c of courses">
-            <th scope="row"><a [routerLink]="[ '/main', { outlets: { content: 'course' } }]" [queryParams]="{ course: c.codification }" >{{c.name}}</a></th>
-            <td>{{c.grade}}</td>
-            <td><span *ngIf="c.status=='PASSING'" class="badge badge-success">PASSING</span>
-                <span *ngIf="c.status=='NOT PASSING'" class="badge badge-danger">NOT PASSING</span>
-                <span *ngIf="c.status=='SURVIVING'" class="badge badge-warning">SURVIVING</span>
-            </td>
-          </tr>
-        <!--</div>-->
+            <h2>My Courses</h2>
+            <app-student-courses-table></app-student-courses-table>
+    <!--<div class="table-responsive">-->
+      <!--<h2>My Courses</h2>-->
+      <!--<table class="table table-hover ">-->
+        <!--<thead>-->
         <!--<tr>-->
-          <!--<th scope="row">1</th>-->
-          <!--<td>Cálculo I</td>-->
-          <!--<td><span class="badge badge-primary">Inhabilitado</span></td>-->
-          <!--<td>January 22</td>-->
+          <!--<th>Name</th>-->
+          <!--<th>Grade</th>-->
+          <!--<th>Status</th>-->
         <!--</tr>-->
-        <!--<tr>-->
-          <!--<th scope="row">2</th>-->
-          <!--<td>Física</td>-->
-          <!--<td><span class="badge badge-success">Activo</span></td>-->
-          <!--<td>January 30</td>-->
-        <!--</tr>-->
-        <!--<tr>-->
-          <!--<th scope="row">3</th>-->
-          <!--<td>Ingles</td>-->
-          <!--<td><span class="badge badge-danger">Desaprobado</span></td>-->
-          <!--<td>January 25</td>-->
-        <!--</tr>-->
-        </tbody>
-      </table>
-    </div>
+        <!--</thead>-->
+        <!--<tbody>-->
+        <!--&lt;!&ndash;<div *ngFor="let c of courses">&ndash;&gt;-->
+          <!--<tr *ngFor="let c of courses">-->
+            <!--<th scope="row"><a [routerLink]="[ '/main', { outlets: { content: 'course' } }]" [queryParams]="{ course: c.codification }" >{{c.name}}</a></th>-->
+            <!--<td>{{c.grade}}</td>-->
+            <!--<td><span *ngIf="c.status=='PASSING'" class="badge badge-success">PASSING</span>-->
+                <!--<span *ngIf="c.status=='NOT PASSING'" class="badge badge-danger">NOT PASSING</span>-->
+                <!--<span *ngIf="c.status=='SURVIVING'" class="badge badge-warning">SURVIVING</span>-->
+            <!--</td>-->
+          <!--</tr>-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;<tr>&ndash;&gt;-->
+          <!--&lt;!&ndash;<th scope="row">1</th>&ndash;&gt;-->
+          <!--&lt;!&ndash;<td>Cálculo I</td>&ndash;&gt;-->
+          <!--&lt;!&ndash;<td><span class="badge badge-primary">Inhabilitado</span></td>&ndash;&gt;-->
+          <!--&lt;!&ndash;<td>January 22</td>&ndash;&gt;-->
+        <!--&lt;!&ndash;</tr>&ndash;&gt;-->
+        <!--&lt;!&ndash;<tr>&ndash;&gt;-->
+          <!--&lt;!&ndash;<th scope="row">2</th>&ndash;&gt;-->
+          <!--&lt;!&ndash;<td>Física</td>&ndash;&gt;-->
+          <!--&lt;!&ndash;<td><span class="badge badge-success">Activo</span></td>&ndash;&gt;-->
+          <!--&lt;!&ndash;<td>January 30</td>&ndash;&gt;-->
+        <!--&lt;!&ndash;</tr>&ndash;&gt;-->
+        <!--&lt;!&ndash;<tr>&ndash;&gt;-->
+          <!--&lt;!&ndash;<th scope="row">3</th>&ndash;&gt;-->
+          <!--&lt;!&ndash;<td>Ingles</td>&ndash;&gt;-->
+          <!--&lt;!&ndash;<td><span class="badge badge-danger">Desaprobado</span></td>&ndash;&gt;-->
+          <!--&lt;!&ndash;<td>January 25</td>&ndash;&gt;-->
+        <!--&lt;!&ndash;</tr>&ndash;&gt;-->
+        <!--</tbody>-->
+      <!--</table>-->
+    <!--</div>-->
   </div>
             <!-- Column -->
             <!-- column -->
             <div class="col-lg-8">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title">Time spent per task</h4>
-                        <!--<div id="extra-area-chart"></div>          -->
-                        <div id="donutchart" style="width: 540px; height: 300px;"></div>
-                    </div>
-                </div>
+              <app-time-management-pie-chart></app-time-management-pie-chart>
+                <!--<div class="card">-->
+                    <!--<div class="card-body">-->
+                        <!--<h4 class="card-title">Time spent per task</h4>-->
+                        <!--&lt;!&ndash;<div id="extra-area-chart"></div>          &ndash;&gt;-->
+                        <!--<div id="donutchart" style="width: 540px; height: 300px;"></div>-->
+                    <!--</div>-->
+                <!--</div>-->
             </div>
 
 

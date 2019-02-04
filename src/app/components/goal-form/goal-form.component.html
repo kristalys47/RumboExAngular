@@ -1,9 +1,9 @@
 <mat-card >
   <h1>Establish a Goal</h1>
 
-  <div class="step-container">
-  <p class="prompt">What type of goal is it?</p>
-  <mat-radio-group class="input">
+  <div class="step-container row">
+  <p class="prompt col-sm-4">What type of goal is it?</p>
+  <mat-radio-group class="input col-sm-7 offset-sm-1">
     <mat-radio-button>Personal</mat-radio-button>&nbsp;&nbsp;&nbsp;
     <mat-radio-button>Academic</mat-radio-button>&nbsp;&nbsp;&nbsp;
     <mat-radio-button>Professional</mat-radio-button>&nbsp;&nbsp;&nbsp;
@@ -12,17 +12,17 @@
   <mat-divider></mat-divider>
   </div>
 
-  <div class="step-container">
-  <p class="prompt">Goal Name</p>
-  <mat-form-field class="input">
+  <div class="step-container row">
+  <p class="prompt col-sm-6">Goal Name</p>
+  <mat-form-field class="input col-sm-6">
     <input matInput placeholder="Give a name to your goal">
   </mat-form-field>
   <mat-divider></mat-divider>
   </div>
 
-  <div class="step-container">
-  <p class="prompt">End Date</p>
-  <mat-form-field class="input">
+  <div class="step-container row">
+  <p class="prompt col-sm-6">End Date</p>
+  <mat-form-field class="input col-sm-6">
     <input matInput [matDatepicker]="picker" placeholder="When do you want your goal finished?">
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
@@ -30,10 +30,10 @@
   <mat-divider></mat-divider>
   </div>
 
-  <div class="step-container">
-  <p class="prompt">Add Tasks</p>
+  <div class="step-container row">
+  <p class="promp col-sm-6t">Add Tasks</p>
   <!--<div class="input">-->
-    <div *ngFor="let task of tasks; let i = index" class="input">
+    <div *ngFor="let task of tasks; let i = index" class="input col-sm-6">
       <mat-checkbox disabled="true" name="{{task}}"></mat-checkbox>
       <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="removeTask()">X</button>
     </div>
