@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {CourseService} from "../../services/course/course.service";
 
 @Component({
   selector: 'app-student-courses-table',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StudentCoursesTableComponent implements OnInit {
 
-  constructor() { }
+  courses;
+
+  constructor(private courseService: CourseService) { }
 
   ngOnInit() {
+    this.courseService.get_courses(0).subscribe(data => {
+      this.courses = data;
+    });
   }
 
 }

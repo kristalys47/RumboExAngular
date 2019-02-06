@@ -1,20 +1,19 @@
-<h3 mat-dialog-title="">New Task</h3>
-
 <div mat-dialog-content class="form-container">
+  <h3 mat-dialog-title>New Task</h3>
   <ul>
     <!-- Task type -->
     <li>
-      Type:&nbsp;
-      <mat-radio-group [(ngModel)]="data.type">
-        <mat-radio-button [value]="'study'">Study</mat-radio-button>
+
+      <mat-radio-group [(ngModel)]="data.type">Type:&nbsp;
+        <mat-radio-button [value]="'study'">Study</mat-radio-button>&nbsp;
         <mat-radio-button [value]="'personal'">Personal</mat-radio-button>&nbsp;
       </mat-radio-group>
     </li>
 
-    <!-- Course, only if it is a study task -->
+    <!-- Course, only shown if it is a study task -->
     <li *ngIf="data.type == 'study'">
       <!--Course:&nbsp;-->
-      <mat-form-field>
+      <mat-form-field class="form-field">
         <mat-select placeholder="Course" [(ngModel)]="data.course">
           <mat-option *ngFor="let course of courses" [value]="course.name">
           </mat-option>
@@ -24,33 +23,61 @@
 
     <!-- Task title input -->
     <li>
-      <mat-form-field appearance="outline">
+      <mat-form-field class="form-field" appearance="outline">
         <input matInput placeholder="Title" [(ngModel)]="data.title">
       </mat-form-field>
     </li>
 
     <!-- Task description input -->
     <li>
-      <mat-form-field appearance="outline">
+      <mat-form-field class="form-field" appearance="outline">
         <textarea matInput placeholder="Description" [(ngModel)]="data.description"></textarea>
       </mat-form-field>
     </li>
 
     <!-- Task starting date and time -->
     <li>
-      <mat-form-field appearance="outline">
-        <input matInput [matDatepicker]="start_picker" placeholder="Starts" [(ngModel)]="data.start" disabled>
-          <mat-datepicker-toggle matSuffix [for]="start_picker"></mat-datepicker-toggle>
-          <mat-datepicker #start_picker disabled="false"></mat-datepicker>
-        <div>
-          <mbsc-time [(ngModel)]="data.start_time" [options]="desktopSettings">Desktop</mbsc-time>
-        </div>
-      </mat-form-field>
+      <table class="form-field" cellspacing="0">
+        <tr>
+        <!--<div class="col-sm-4">-->
+          <td>
+            <mat-form-field class="form-field" appearance="outline">
+              <input matInput placeholder="Starts" [(ngModel)]="data.start" disabled>
+                <mat-datepicker-toggle matSuffix [for]="start_picker"></mat-datepicker-toggle>
+                <mat-datepicker #start_picker disabled="false"></mat-datepicker>
+            </mat-form-field>
+          </td>
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+            <!--&lt;!&ndash;<div class="col-sm-4">&ndash;&gt;-->
+          <td>
+            <!--<mat-form-field class="form-field" appearance="outline">-->
+              <!--<input matInput [matDatepicker]="start_picker" placeholder="Starts" [(ngModel)]="data.start" disabled>-->
+                <!--<mat-datepicker-toggle matSuffix [for]="start_picker"></mat-datepicker-toggle>-->
+                <!--<mat-datepicker #start_picker disabled="false"></mat-datepicker>-->
+            <!--</mat-form-field>-->
+            <!--<mat-form-field class="form-field" appearance="outline">-->
+              <!--<mbsc-time [(ngModel)]="data.start_time" [options]="desktopSettings">Desktop</mbsc-time>-->
+              <!--<input matInput placeholder="First name">-->
+            <!--</mat-form-field>-->
+          </td>
+
+        <!--</div>-->
+        </tr>
+      </table>
     </li>
+
+    <!--<table class="form-field" cellspacing="0"><tr>-->
+    <!--<td><mat-form-field class="form-field" appearance="outline">-->
+
+    <!--</mat-form-field></td>-->
+    <!--<td><mat-form-field class="form-field" appearance="outline">-->
+      <!--<input matInput placeholder="Long Last Name That Will Be Truncated">-->
+    <!--</mat-form-field></td>-->
+  <!--</tr></table>-->
 
     <!-- Task ending date and time -->
     <li>
-      <mat-form-field appearance="outline">
+      <mat-form-field class="form-field" appearance="outline">
         <input matInput [matDatepicker]="end_picker" placeholder="Ends" [(ngModel)]="data.end" disabled>
           <mat-datepicker-toggle matSuffix [for]="end_picker"></mat-datepicker-toggle>
           <mat-datepicker #end_picker disabled="false"></mat-datepicker>

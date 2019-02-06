@@ -1,73 +1,55 @@
-<h1 margin-top="10px" margin-bottom="10px">{{student.student.name}} {{student.student.lastname}}</h1>
-<!--<div>-->
-  <!--<mat-card>-->
+<!-- Student name -->
+<h1 class="name">{{student.name}} {{student.lastname}}</h1>
 
-  <!--</mat-card>-->
-<!--</div>-->
-
-
-  <mat-card >
-    <div class="row">
+<!-- Student's personal information -->
+<mat-card>
+  <div class="row">
     <div class="col-sm-12">
       <h5>Department</h5>
-      <div>{{student.student.department_name}}</div><br/>
+      <div>{{student.department_name}}</div><br/>
       <h5>Email Address</h5>
-      <div>{{student.student.email}}</div><br/>
+      <div>{{student.email}}</div><br/>
     </div>
-      <!--<app-comment-button></app-comment-button>-->
+  </div>
+</mat-card>
 
-    <!--<div class="col-sm-4" >-->
-    <!--<div class="table-responsive">-->
-      <!--<h2>Courses</h2>-->
-      <!--<table  class="table table-hover">-->
-        <!--<thead>-->
-        <!--<tr>-->
-          <!--<th>Name</th>-->
-          <!--<th>Grade</th>-->
-          <!--<th>Status</th>-->
-        <!--</tr>-->
-        <!--</thead>-->
-        <!--<tbody>-->
-          <!--<tr *ngFor="let c of student.courses">-->
-            <!--<th scope="row">{{c.course_name}}</th>-->
-            <!--<td>{{c.general_average}}</td>-->
-            <!--<td><span *ngIf="c.status==1" class="badge badge-success">PASSING</span>-->
-                <!--<span *ngIf="c.status==3" class="badge badge-danger">NOT PASSING</span>-->
-                <!--<span *ngIf="c.status==2" class="badge badge-warning">SURVIVING</span>-->
-            <!--</td>-->
-          <!--</tr>-->
-        <!--</tbody>-->
-      <!--</table>-->
-    <!--</div>-->
-      <!--<app-student-courses-table></app-student-courses-table>-->
-    <!--</div>-->
-      <!--<app-comment-button></app-comment-button>-->
-</div>
-
-  </mat-card>
-
+<!--<div class="row">-->
+<!-- Student courses table -->
 <mat-card>
+  <div class="row">
+  <div class="col-sm-4">
   <h2>Courses</h2>
   <app-student-courses-table></app-student-courses-table>
   <app-comment-button></app-comment-button>
-</mat-card>
+  </div>
+<!--</mat-card>-->
 
-<mat-card>
+  <!-- Pie chart showing time spent per task of student -->
+<!--<mat-card class="col-sm-5 offset-1">-->
+  <div class="col-sm-4">
   <app-time-management-pie-chart></app-time-management-pie-chart>
   <app-comment-button></app-comment-button>
+  </div>
+  </div>
+</mat-card>
+<!--</div>-->
+
+<!-- Gauges showing student's grade -->
+<mat-card class="col-sm-4">
+  <h2>GPA</h2>
+  <app-grade-gauge></app-grade-gauge>
+  <app-comment-button></app-comment-button>
 </mat-card>
 
-  <mat-card class="col-sm-8">
-    <h2>Schedule</h2>
-    <mbsc-eventcalendar showOnFocus="true"></mbsc-eventcalendar>
-  </mat-card>
+<!-- Calendar with student's schedule -->
+<mat-card class="col-sm-8">
+  <h2>Schedule</h2>
+  <mbsc-eventcalendar showOnFocus="true"></mbsc-eventcalendar>
   <app-comment-button></app-comment-button>
+</mat-card>
 
-
-  <mat-card>
-    <h2>Goals</h2>
-  </mat-card>
-<app-comment-button></app-comment-button>
-
-
-
+<!-- Goals -->
+<mat-card>
+  <h2>Goals</h2>
+  <app-comment-button></app-comment-button>
+</mat-card>

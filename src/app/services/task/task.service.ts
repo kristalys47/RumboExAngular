@@ -1,10 +1,12 @@
 import {Inject, Injectable} from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Task } from "../models/task";
+import { Task } from "../../models/task";
 import {Observable} from 'rxjs/internal/Observable';
 import {HttpResponse} from '@angular/common/http';
 import {catchError} from 'rxjs/operators';
 import {Cacheable} from 'ngx-cacheable';
+import {tasks} from "../../dummy_data/dummy_data";
+import {of} from "rxjs/internal/observable/of";
 
 @Injectable({
   providedIn: 'root'
@@ -33,8 +35,9 @@ export class TaskService {
 
   @Cacheable()
   get_study_tasks(user_id): Observable<Task[]> {
-    let url: string = `${this.BASE_URL}/study/${user_id}`;
-    return this.http.get<Task[]>(url);
+    // let url: string = `${this.BASE_URL}/study/${user_id}`;
+    // return this.http.get<Task[]>(url);
+    return of(tasks);
   }
 
   @Cacheable()

@@ -5,7 +5,7 @@ import {HttpClient} from "@angular/common/http";
 import {map, switchMap} from "rxjs/operators";
 import {Action} from "@ngrx/store";
 import * as taskActions from "../actions/task.actions";
-import {TaskService} from "../../services/task.service";
+import {TaskService} from "../../services/task/task.service";
 import {Task} from '../../models/task';
 
 

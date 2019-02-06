@@ -1,12 +1,13 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {NewTaskForm} from "../daily-schedule/daily-schedule.component";
-import {TaskService} from "../../services/task.service";
+// import {NewTaskForm} from "../daily-schedule/daily-schedule.component";
+import {TaskService} from "../../services/task/task.service";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material";
 import {MbscDatetimeOptions} from "@mobiscroll/angular";
 
 @Component({
   selector: 'app-task-form',
   templateUrl: './task-form.component.html',
+  // templateUrl: './../modal/modal.component.html',
   styleUrls: ['./task-form.component.css']
 })
 export class TaskFormComponent implements OnInit {
@@ -21,7 +22,8 @@ export class TaskFormComponent implements OnInit {
 
   openForm() {
     console.log('opened');
-    const dialogRef = this.dialog.open(NewTaskForm, {
+    const dialogRef = this.dialog.open(FormModal, {
+      width: '500px',
       data: {}
     });
 
@@ -59,7 +61,8 @@ export class TaskFormComponent implements OnInit {
 
 @Component({
   selector: 'form-modal',
-  templateUrl: 'form-modal.html'
+  templateUrl: 'form-modal.html',
+  styleUrls: ['./task-form.component.css']
 })
 export class FormModal {
 

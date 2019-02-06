@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import {CourseService} from "../../../services/course.service";
+import {CourseService} from "../../../services/course/course.service";
 
 import {Store} from "@ngrx/store";
 import * as fromRoot from '../../../store/reducers';
+import {StudentService} from "../../../services/student/student.service";
 
 @Component({
   selector: 'app-studentmain',
@@ -15,27 +16,34 @@ export class StudentmainComponent {
   courses: Array<any>;
   tasks: any;
 
-  constructor(private courseService: CourseService,
+  constructor(private studentService: StudentService,
+              private courseService: CourseService,
               private store: Store<fromRoot.State>) {
 
   }
 
   ngOnInit() {
 
-    // this.courseService.get_courses(this.user.id).subscribe(data => {
-    //   this.courses = data;
-    //   console.log('courses:', this.courses);
-    // });
+    // using services traditional way
+    this.studentService.getStudent(0).subscribe(data => {
+      this.student = data;
+    });
 
-    this.store.select('student').subscribe(data => {
-      this.student = data.user;
+    this.courseService.get_courses(this.student.id).subscribe(data => {
+      this.courses = data;
     });
-    this.store.select('course').subscribe(data => {
-      this.courses = data.courses;
-    });
-    this.store.select('task').subscribe(data => {
-      this.tasks = data.tasks;
-    });
+
+    // using the store
+
+    // this.store.select('student').subscribe(data => {
+    //   this.student = data.user;
+    // });
+    // this.store.select('course').subscribe(data => {
+    //   this.courses = data.courses;
+    // });
+    // this.store.select('task').subscribe(data => {
+    //   this.tasks = data.tasks;
+    // });
   }
 
 }

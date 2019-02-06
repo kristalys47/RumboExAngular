@@ -1,9 +1,11 @@
 import {Inject, Injectable} from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Task } from "../models/task";
+import { Task } from "../../models/task";
 import {Observable} from "rxjs/internal/Observable";
 import {HttpResponse} from "@angular/common/http";
 import {Cacheable} from "ngx-cacheable";
+import {courses} from "../../dummy_data/dummy_data";
+import {of} from "rxjs/internal/observable/of";
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +20,9 @@ export class CourseService {
 
   @Cacheable()
   get_courses(user_id): Observable<any> {
-    let url: string = `${this.BASE_URL}s/${user_id}`;
-    return this.http.get(url);
+    // let url: string = `${this.BASE_URL}s/${user_id}`;
+    // return this.http.get(url);
+    return of(courses);
   }
 
   @Cacheable()
@@ -30,8 +33,9 @@ export class CourseService {
 
   @Cacheable()
   get_course(course_id): Observable<any> {
-    let url: string = `${this.BASE_URL}/${course_id}`;
-    return this.http.get(url);
+    // let url: string = `${this.BASE_URL}/${course_id}`;
+    // return this.http.get(url);
+    return of(courses[course_id]);
   }
 
   @Cacheable()

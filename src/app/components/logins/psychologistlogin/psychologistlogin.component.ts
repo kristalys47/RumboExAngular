@@ -35,7 +35,7 @@ export class PsychologistloginComponent implements OnInit {
       console.log(sessionStorage.getItem('username'));
       console.log(sessionStorage.getItem('email'));
       console.log(sessionStorage.getItem('role'));
-      this.router.navigate(['/psychologistmain']);
+      this.router.navigate([ '/mentormain', { outlets: { content: 'home' } }]);
     })
     .catch((err) => {
       console.log(err);

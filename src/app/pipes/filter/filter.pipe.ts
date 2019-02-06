@@ -31,16 +31,21 @@ export class FilterPipe implements PipeTransform {
                 return student;
               }
             case('department'):
-              var dpt_num;
-              this.departments.filter(d => {
-                if (d.name == filterValue[key]) {
-                  dpt_num = d.num;
-                }
-              });
-
-              if (student.department_num == dpt_num) {
+              if (student.department_name == filterValue[key]) {
                 return student;
               }
+
+              // var dpt_num;
+              // this.departments.filter(d => {
+              //   if (d.name == filterValue[key]) {
+              //     dpt_num = d.num;
+              //   }
+              // });
+              //
+              // if (student.department_num == dpt_num) {
+              //   return student;
+              // }
+
               // // check if
               // if (this.departments.some(d => {
               //   if (d.name == filterValue[key] && d.num == student.department_num) {

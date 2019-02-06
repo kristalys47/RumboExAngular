@@ -2,7 +2,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect } from '@ngrx/effects';
 import {HttpClient} from "@angular/common/http";
-import {CourseService} from "../../services/course.service";
+import {CourseService} from "../../services/course/course.service";
 import {Observable} from "rxjs/Observable";
 import {map} from "rxjs/operators";
 import {Action} from "@ngrx/store";

@@ -1,0 +1,15 @@
+h5 {
+  text-align: center;
+}
+
+/* trying to make charts responsive*/
+.chart {
+  /*width: 100%;*/
+  /*min-height: 450px;*/
+}
+
+#gauge1 {
+  display: inline-block;
+  width: auto;
+  margin: 0 auto !important;
+}

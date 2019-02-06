@@ -2,8 +2,13 @@ mat-card {
   margin-bottom: 15px;
 }
 
+.name {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
 app-comment-button {
   position: absolute;
   right: 15px;
-  bottom: 30px;
+  bottom: 15px;
 }

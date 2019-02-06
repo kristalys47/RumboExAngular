@@ -1,10 +1,11 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Task} from '../../models/task';
-import {TaskService} from '../../services/task.service';
-import {CourseService} from '../../services/course.service';
-import {GooglechartService} from '../../services/googlechart.service';
+import {TaskService} from '../../services/task/task.service';
+import {CourseService} from '../../services/course/course.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+
 
 import {AuthService} from "../../services/auth.service";
 
@@ -26,15 +27,18 @@ export class IndividualCourseComponent implements OnInit {
   undoneTasks = [];
   doneTasks = [];
 
-  grades: Array<any>;
+  grades: Array<any> = [];
   progress;
 
   sub;
 
+  newGrade: {
+    name: any, date: any, weight: any, grade: any
+  } = {name: null, date: null, weight: null, grade: null}; // need to be initialized o si no tira error
+
   constructor(private route: ActivatedRoute,
               private taskService: TaskService,
               private courseService: CourseService,
-              private chartService: GooglechartService,
               public dialog: MatDialog,
               private authService: AuthService) { }
 
@@ -46,52 +50,43 @@ export class IndividualCourseComponent implements OnInit {
       });
 
     this.courseService.get_course(this.curr_course_id).subscribe(data => {
-      this.course = data;
-      console.log('course:', this.course);
+      if(data) {
+        this.course = data;
+        this.grades = this.course.grades;
+        this.doneTasks = this.course.tasks;
+        console.log('course:', this.course);
+      }
     });
 
-    this.courseService.get_grades_by_course_id(this.curr_course_id).subscribe(data => {
-      this.grades = data;
-      console.log('grades:', this.grades);
-      this.get_total_grade();
-      this.buildGauge();
-    });
+    // this.courseService.get_grades_by_course_id(this.curr_course_id).subscribe(data => {
+    //   this.grades = data;
+    //   console.log('grades:', this.grades);
+    //   this.get_total_grade();
+    // });
+    //
+    // this.taskService.get_study_tasks_by_course(this.curr_student_id, this.curr_course_id).subscribe(data => {
+    //   data.map(task => {
+    //       if (task['finished'] == false) {
+    //         this.undoneTasks.push(task);
+    //       }
+    //       else {
+    //         this.doneTasks.push(task);
+    //       }
+    //     }
+    //   );
+    //   console.log('tasks:', this.undoneTasks, this.doneTasks);
+    // });
+  }
 
-    this.taskService.get_study_tasks_by_course(this.curr_student_id, this.curr_course_id).subscribe(data => {
-      data.map(task => {
-          if (task['finished'] == false) {
-            this.undoneTasks.push(task);
-          }
-          else {
-            this.doneTasks.push(task);
-          }
-        }
-      );
-      console.log('tasks:', this.undoneTasks, this.doneTasks);
-    });
+  addGrade() {
+    console.log(this.newGrade, this.grades);
+    this.grades.push(this.newGrade);
+    this.newGrade = {name: null, date: null, weight: null, grade: null};
+    console.log(this.newGrade);
   }
 
   ngOnDestroy() {
     this.sub.unsubscribe();
-  }
-
-  buildGauge() {
-    let data = [
-      ['Label', 'Value'],
-      ['Current Grade', this.progress],
-      // this is hardcoded
-      ['Projected Grade', 80]
-    ];
-    let options = {
-      // width: 400, height: 120,
-      // animation.duration: 1000,
-      redFrom: 0, redTo: 50,
-      yellowFrom: 50, yellowTo: 70,
-      greenFrom: 70, greenTo: 100,
-      majorTicks: ['10', '20', '30', '40', '50', '60', '70', '80', '90'],
-      minorTicks: 2
-    };
-    this.chartService.buildGauge('gauge', data, options);
   }
 
   get_total_grade() {
@@ -125,6 +120,17 @@ export class IndividualCourseComponent implements OnInit {
     // console.log(task);
     // this.taskService.insert_study_task(data, this.curr_student_id, this.curr_course_id);
     this.authService.insert_study_task(data, this.curr_student_id, this.curr_course_id);
+  }
+
+  drop(event: CdkDragDrop<string[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(event.previousContainer.data,
+                        event.container.data,
+                        event.previousIndex,
+                        event.currentIndex);
+    }
   }
 
 }

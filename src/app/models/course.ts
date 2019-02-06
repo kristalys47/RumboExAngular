@@ -1,10 +1,11 @@
 import {Task} from "./task";
 
 export interface Course {
-  codification: number,
+  id: number,
+  codification: string,
   name: string,
   professor_id: number,
-  section: number,
+  section: string,
   grades: Grade[],
   cumulative_average: number,
   general_average,
@@ -20,8 +21,8 @@ export interface Grade {
 }
 
 export enum Status {
-  Excellent,
-  Passing,
-  Surviving,
-  NotPassing
+  Excellent=4,
+  Passing=3,
+  Surviving=2,
+  NotPassing=1
 }

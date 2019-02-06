@@ -20,7 +20,7 @@ import { ScheduleComponent } from './components/schedule/schedule.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { AuthGuard} from './guards/auth.guard';
 
-import { TaskService } from './services/task.service';
+import { TaskService } from './services/task/task.service';
 import { AdminloginComponent } from './components/logins/adminlogin/adminlogin.component';
 import { StudentloginComponent } from './components/logins/studentlogin/studentlogin.component';
 import { CounselorloginComponent } from './components/logins/counselorlogin/counselorlogin.component';
@@ -32,7 +32,7 @@ import { StudentGuard } from './guards/student.guard';
 import { AdvisorloginComponent } from './components/logins/advisorlogin/advisorlogin.component';
 import { CounselormainComponent } from './components/mains/counselormain/counselormain.component';
 import { AdminmainComponent } from './components/mains/adminmain/adminmain.component';
-import {StudentService} from './services/student.service';
+import {StudentService} from './services/student/student.service';
 import {ErroralertService} from './services/erroralert.service';
 import { ErroralertComponent } from './components/erroralert/erroralert.component';
 import { SidebarComponent } from './components/sharedComponents/sidebar/sidebar.component';
@@ -42,9 +42,7 @@ import { CalendarComponent } from './components/calendar/calendar.component';
 import { DailyScheduleComponent } from './components/daily-schedule/daily-schedule.component';
 import { WeeklyScheduleComponent } from './components/weekly-schedule/weekly-schedule.component';
 
-import { NewTaskFormComponent } from './components/new-task-form/new-task-form.component';
 import { NewCourseTaskForm } from './components/individual-course/individual-course.component';
-import {NewTaskForm} from './components/daily-schedule/daily-schedule.component';
 
 import { WidgetComponent } from './components/widget/widget.component';
 import { IndividualCourseComponent } from './components/individual-course/individual-course.component';
@@ -53,7 +51,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import {MaterialsModule} from './materials/materials.module';
 import {PopoverComponent} from './components/popover/popover.component';
 import {ModalComponent} from './components/modal/modal.component';
-import {CourseService} from './services/course.service';
+import {CourseService} from './services/course/course.service';
 import {GooglechartService} from './services/googlechart.service';
 import { ProfileComponent } from './components/profile/profile.component';
 
@@ -91,7 +89,7 @@ import { StudentCoursesTableComponent } from './components/student-courses-table
 import { MentorCalendarComponent } from './components/mentor-calendar/mentor-calendar.component';
 import { TimeManagementPieChartComponent } from './components/time-management-pie-chart/time-management-pie-chart.component';
 import {DialogMessageComponent} from "./components/dialog-message/dialog-message.component";
-import { GradeGaugeComponent } from './grade-gauge/grade-gauge.component';
+import { GradeGaugeComponent } from './components/grade-gauge/grade-gauge.component';
 
 @NgModule({
   declarations: [
@@ -121,9 +119,7 @@ import { GradeGaugeComponent } from './grade-gauge/grade-gauge.component';
     WeeklyScheduleComponent,
     WidgetComponent,
     IndividualCourseComponent,
-    NewTaskFormComponent,
     NewCourseTaskForm,
-    NewTaskForm,
     MsgInputForm,
     LoginmenuComponent,
     PopoverComponent,
@@ -163,6 +159,7 @@ import { GradeGaugeComponent } from './grade-gauge/grade-gauge.component';
     BrowserAnimationsModule,
     AppStoreModule
   ],
+  // Need to write Components which are dialogs here
   entryComponents: [
     MsgInputForm,
     FormModal,

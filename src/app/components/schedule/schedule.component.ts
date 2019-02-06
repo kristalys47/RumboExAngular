@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Task } from '../../models/task';
-import { TaskService} from '../../services/task.service';
+import { TaskService} from '../../services/task/task.service';
 import {PopoverService} from '../../services/popover.service';
 import {ModalService} from '../../services/modal.service';
 import {PopoverComponent} from '../popover/popover.component';

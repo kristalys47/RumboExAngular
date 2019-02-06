@@ -1,10 +1,10 @@
 import {Component, Inject, OnInit, ViewChild} from '@angular/core';
 import {MbscEventcalendarOptions, MbscDatetimeOptions, mobiscroll, MbscEventcalendar} from '@mobiscroll/angular';
-import {TaskService} from "../../services/task.service";
+import {TaskService} from "../../services/task/task.service";
 // import {NewCourseTaskForm} from "../individual-course/individual-course.component";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material";
 import {Task} from "../../models/task";
-import {NewCourseTaskForm} from "../individual-course/individual-course.component";
+// import {NewCourseTaskForm} from "../individual-course/individual-course.component";
 import {Store} from "@ngrx/store";
 import {AppState} from "../../app.state";
 
@@ -58,9 +58,9 @@ export class DailyScheduleComponent  implements OnInit {
 
   ngOnInit() {
 
-    // this.loadTasks();
+    this.loadTasks();
     console.log(now.getDate(), tomorrow);
-    this.navigate(this.list.instance, tomorrow);
+    // this.navigate(this.list.instance, tomorrow);
 
   }
 
@@ -87,8 +87,13 @@ export class DailyScheduleComponent  implements OnInit {
   }
 
   mapTasksToCalendar(task) {
+    // convert dates from string format to Date object
+    let start = new Date(task.start);
+    let end = new Date(task.end);
     this.events.push({
-      d: now,
+      // d: date.now,
+      start: start,
+      end: end,
       text: task.title,
       color: '#00aabb',
       description: task.description
@@ -123,21 +128,5 @@ export class DailyScheduleComponent  implements OnInit {
         }
     };
 
-
-}
-
-@Component({
-  selector: 'new-task-form',
-  templateUrl: 'new-task-form.component.html'
-})
-export class NewTaskForm {
-
-  constructor(public dialogRef: MatDialogRef<NewTaskForm>,
-              private taskService: TaskService,
-              @Inject(MAT_DIALOG_DATA) public data){}
-
-  desktopSettings: MbscDatetimeOptions = {
-    touchUi: false
-  };
 
 }

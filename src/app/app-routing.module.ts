@@ -19,7 +19,7 @@ import {StatusComponent} from './components/status/status.component';
 import {AdminGuard} from './guards/admin.guard';
 
 import {WeeklyScheduleComponent} from './components/weekly-schedule/weekly-schedule.component';
-import {DailyScheduleComponent, NewTaskForm} from './components/daily-schedule/daily-schedule.component';
+import {DailyScheduleComponent} from './components/daily-schedule/daily-schedule.component';
 import {CalendarComponent} from './components/calendar/calendar.component';
 
 import {IndividualCourseComponent, NewCourseTaskForm} from './components/individual-course/individual-course.component';
@@ -30,7 +30,6 @@ import {CounselormainComponent} from "./components/mains/counselormain/counselor
 import {WidgetComponent} from "./components/widget/widget.component";
 import {AppComponent} from "./app.component";
 import {ModalComponent} from "./components/modal/modal.component";
-import {NewTaskFormComponent} from "./components/new-task-form/new-task-form.component";
 import {PsychologistmainComponent} from "./components/mains/psychologistmain/psychologistmain.component";
 import {ErroralertComponent} from "./components/erroralert/erroralert.component";
 import {MessagesComponent} from "./components/messages/messages.component";
@@ -159,7 +158,7 @@ const routes: Routes = [
     // Uncomment this for testing purposes
     // ,{enableTracing: true}
     ) ],
-  entryComponents: [NewCourseTaskForm, NewTaskForm],
+  // entryComponents: [NewCourseTaskForm, NewTaskForm],
   exports: [ RouterModule ]
 })
 

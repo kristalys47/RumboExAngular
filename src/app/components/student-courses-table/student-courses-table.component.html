@@ -14,10 +14,10 @@
       <th scope="row">
         <a [routerLink]="[ '/main', { outlets: { content: 'course' } }]" [queryParams]="{ course: c.codification }" >{{c.name}}</a>
       </th>
-      <td>{{c.grade}}</td>
-      <td><span *ngIf="c.status=='PASSING'" class="badge badge-success">PASSING</span>
-        <span *ngIf="c.status=='NOT PASSING'" class="badge badge-danger">NOT PASSING</span>
-        <span *ngIf="c.status=='SURVIVING'" class="badge badge-warning">SURVIVING</span>
+      <td>{{c.general_average}}</td>
+      <td><span *ngIf="c.status==3" class="badge badge-success">PASSING</span>
+        <span *ngIf="c.status==1" class="badge badge-danger">NOT PASSING</span>
+        <span *ngIf="c.status==2" class="badge badge-warning">SURVIVING</span>
       </td>
     </tr>
     </tbody>

@@ -1,5 +1,5 @@
 import {Component, OnInit, ɵstringify} from '@angular/core';
-import {StudentService} from "../../services/student.service";
+import {StudentService} from "../../services/student/student.service";
 import {Student} from "../../models/student";
 import {MatTableDataSource, MatSort, Sort} from "@angular/material";
 
@@ -34,7 +34,7 @@ export class StudentListComponent implements OnInit {
   // hardcoded for demo
   goalData = [
     {name:'Lila Carrion', goal:'Aprobar examenes'},
-    {name:'fer fer',goal:'Identificar area de estudio de interes'}
+    {name:'Juan Alvarado',goal:'Identificar area de estudio de interes'}
   ];
 
   alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
@@ -54,7 +54,8 @@ export class StudentListComponent implements OnInit {
 
   ngOnInit() {
     this.studentService.getstudentlist().subscribe(data => {
-      this.studentsList = data.Users;
+      this.studentsList = data;
+      // this.studentsList = data.Users;
       this.selected = 'all';
       this.sort = {direction: 'asc', active: 'name'};
       // this.dataSource = new MatTableDataSource(this.students);

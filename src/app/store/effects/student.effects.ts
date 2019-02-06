@@ -6,7 +6,7 @@ import {map, switchMap} from "rxjs/operators";
 import {Observable} from "rxjs/Observable";
 import {Student} from "../../models/student";
 import {Action} from "@ngrx/store";
-import {StudentService} from "../../services/student.service";
+import {StudentService} from "../../services/student/student.service";
 
 
 @Injectable()

@@ -7,12 +7,16 @@
       <nav class="sidebar-nav">
           <ul id="sidebarnav">
               <li class="nav-devider"></li>
-            <li><a [routerLink]="[ '/mentormain', { outlets: { content: 'home' } }]">Dashboard</a></li>
-            <li><a [routerLink]="[ '/mentormain', { outlets: { content: 'student-list' } }]">Students List</a></li>
+            <!--<li><a [routerLink]="[ '/mentormain', { outlets: { content: 'home' } }]">Dashboard</a></li>-->
+            <!--<li><a [routerLink]="[ '/mentormain', { outlets: { content: 'student-list' } }]">Students List</a></li>-->
             <!--<li><a [routerLink]="[ '/main', { outlets: { content: 'today' } }]">Today</a></li>-->
-              <!--<li class="nav-label">Home</li>-->
-              <!--<li class="nav-item"> <a class="has-arrow  " [routerLink]="[ '/main', { outlets: { content: 'dashboard' } }]"-->
-                                       <!--aria-expanded="false"><i class="fa fa-tachometer"></i><span class="hide-menu">Dashboard</span></a>-->
+              <li class="nav-label">Home</li>
+              <li class="nav-item"> <a [routerLink]="[ '/mentormain', { outlets: { content: 'home' } }]"
+                                       aria-expanded="false"><i class="fa fa-tachometer"></i><span class="hide-menu">Dashboard</span></a>
+
+              <li class="nav-label">My Students</li>
+              <li class="nav-item"> <a [routerLink]="[ '/mentormain', { outlets: { content: 'student-list' } }]"
+                                       aria-expanded="false"><i class="fa fa-tachometer"></i><span class="hide-menu">Students List</span></a>
               <!--</li>-->
               <!--&lt;!&ndash;<li class="nav-label">Courses</li>&ndash;&gt;-->
               <!--&lt;!&ndash;<li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-columns"></i><span class="hide-menu">Courses</span></a>&ndash;&gt;-->

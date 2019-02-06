@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MbscEventcalendarOptions } from '@mobiscroll/angular';
-import {TaskService} from "../../services/task.service";
+import {TaskService} from "../../services/task/task.service";
 
 let now = new Date();
 
@@ -51,8 +51,13 @@ export class WeeklyScheduleComponent implements OnInit {
   }
 
   mapTasksToCalendar(task) {
+    // convert dates from string format to Date object
+    let start = new Date(task.start);
+    let end = new Date(task.end);
     this.events.push({
-      d: now,
+      // d: date.now,
+      start: start,
+      end: end,
       text: task.title,
       color: '#00aabb',
       description: task.description

@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
-import { Student } from '../models/student';
+import { Student } from '../../models/student';
 import {Cacheable} from "ngx-cacheable";
+import {students} from "../../dummy_data/dummy_data";
+import {of} from "rxjs/internal/observable/of";
 
 @Injectable({providedIn: 'root'})
 export class StudentService {
@@ -14,14 +16,16 @@ export class StudentService {
 
   @Cacheable()
   getStudent(usr_id) : Observable<Student> {
-    let url: string = `${this.BASE_URL}/student/${usr_id}`;
-    return this.http.get<Student>(url);
+    // let url: string = `${this.BASE_URL}/student/${usr_id}`;
+    // return this.http.get<Student>(url);
+    return of(students[0]);
   }
 
   @Cacheable()
   getstudentlist(): Observable<any> {
-    let url: string = `${this.BASE_URL}/student`;
-    return this.http.get<any>(url);
+    // let url: string = `${this.BASE_URL}/student`;
+    // return this.http.get<any>(url);
+    return of(students);
   }
 
   getstudentpromise(): Observable<Student[]> {

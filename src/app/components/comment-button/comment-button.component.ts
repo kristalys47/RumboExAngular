@@ -1,8 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material";
 import {MbscDatetimeOptions} from "@mobiscroll/angular";
-import {TaskService} from "../../services/task.service";
-import {NewTaskForm} from "../daily-schedule/daily-schedule.component";
+import {TaskService} from "../../services/task/task.service";
 import {DialogMessageComponent} from "../dialog-message/dialog-message.component";
 
 @Component({
