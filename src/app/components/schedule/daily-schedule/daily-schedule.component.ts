@@ -1,10 +1,10 @@
 import {Component, Inject, OnInit, ViewChild} from '@angular/core';
 import {MbscEventcalendarOptions, MbscDatetimeOptions, mobiscroll, MbscEventcalendar} from '@mobiscroll/angular';
 import {TaskService} from "../../../services/task/task.service";
-// import {NewCourseTaskForm} from "../individual-course/individual-course.component";
+// import {NewCourseTaskForm} from "../course-detail/course-detail.component";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material";
 import {Task} from "../../../models/task";
-// import {NewCourseTaskForm} from "../individual-course/individual-course.component";
+// import {NewCourseTaskForm} from "../course-detail/course-detail.component";
 
 import {Observable} from "rxjs";
 import {Student} from "../../../models/student";

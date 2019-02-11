@@ -22,7 +22,7 @@ import {WeeklyScheduleComponent} from './components/schedule/weekly-schedule/wee
 import {DailyScheduleComponent} from './components/schedule/daily-schedule/daily-schedule.component';
 import {CalendarComponent} from './components/schedule/calendar/calendar.component';
 
-import {IndividualCourseComponent, NewCourseTaskForm} from './components/studentPages/individual-course/individual-course.component';
+import {CourseDetailComponent, NewCourseTaskForm} from './components/studentPages/course-detail/course-detail.component';
 import {DashboardComponent} from './components/studentPages/dashboard/dashboard.component';
 import {LoginmenuComponent} from './components/loginmenu/loginmenu.component';
 import {ProfileComponent} from "./components/profile/profile.component";
@@ -76,7 +76,7 @@ const routes: Routes = [
       { path: 'today', component: DailyScheduleComponent, outlet: 'content' },
       { path: 'this-week', component: WeeklyScheduleComponent, outlet: 'content' },
 
-      { path: 'course', component: IndividualCourseComponent, outlet: 'content' },
+      { path: 'course', component: CourseDetailComponent, outlet: 'content' },
       { path: 'dashboard', component: DashboardComponent, outlet: 'content'},
       { path: 'profile', component: ProfileComponent, outlet: 'content'},
       { path: 'mentors', component: MentorsComponent, outlet: 'content' },
@@ -143,7 +143,7 @@ const routes: Routes = [
   //   DailyScheduleComponent,
   //   WeeklyScheduleComponent,
   //   WidgetComponent,
-  //   IndividualCourseComponent,
+  //   CourseDetailComponent,
   //   NewTaskFormComponent,
   //   NewCourseTaskForm,
   //   NewTaskForm,

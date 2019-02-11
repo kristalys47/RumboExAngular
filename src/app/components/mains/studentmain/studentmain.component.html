@@ -3,40 +3,42 @@
 <div class="left-sidebar">
   <!-- Sidebar scroll-->
   <div class="scroll-sidebar">
-      <!-- Sidebar navigation-->
-      <nav class="sidebar-nav">
-          <ul id="sidebarnav">
-              <li class="nav-devider"></li>
-              <li class="nav-label">Home</li>
-              <li class="nav-item"> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-columns"></i><span class="hide-menu">Resources</span></a>
-                <ul aria-expanded="false" class="collapse">
-                  <li><a [routerLink]="[ '/studentmain', { outlets: { content: 'dashboard' } }]">Dashboard</a></li>
-                  <li><a [routerLink]="[ '/studentmain', { outlets: { content: 'mentors' } }]">Mentoria</a></li>
-                  <!--<li><a [routerLink]="[ '/studentmain', { outlets: { content: 'goal-form'} }]">Goals</a></li>-->
-                </ul>
-              </li>
-              <li class="nav-label">Courses</li>
-              <li class="nav-item"> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-columns"></i><span class="hide-menu">Courses</span></a>
-                  <ul aria-expanded="false" class="collapse">
-                    <div *ngFor="let c of courses">
-                      <li><a [routerLink]="[ '/studentmain', { outlets: { content: 'course' } }]" [queryParams]="{ course: c.id }">{{c.name}}</a></li>
-                    </div>
-                  </ul>
-              </li>
-              <li class="nav-label">Schedule</li>
-              <li class="nav-item"> <a class="has-arrow  " href aria-expanded="false"><i class="fa fa-envelope"></i><span class="hide-menu">Schedule</span></a>
-                  <ul aria-expanded="false" class="collapse">
-                      <li><a [routerLink]="[ '/studentmain', { outlets: { content: 'today' } }]">Today</a></li>
-                      <li><a [routerLink]="[ '/studentmain', { outlets: { content: 'today' } }]">Tomorrow</a></li>
-                      <li><a [routerLink]="[ '/studentmain', { outlets: { content: 'this-week' } }]">This Week</a></li>
-                      <li><a [routerLink]="[ '/studentmain', { outlets: { content: 'this-week' } }]">Next Week</a></li>
-                      <li><a [routerLink]="[ '/studentmain', { outlets: { content: 'calendar' } }]">Calendar</a></li>
-                  </ul>
-              </li>
+    <!-- Sidebar navigation-->
+    <nav class="sidebar-nav">
+      <ul id="sidebarnav">
+        <li class="nav-divider"></li>
+        <!-- Home items -->
+        <li class="nav-label">Home</li>
+        <li class="nav-item"> <a class="has-arrow  " href="#home" data-toggle="collapse" aria-expanded="false"><i class="fa fa-columns"></i><span class="hide-menu">Resources</span></a>
+          <ul id="home" aria-expanded="false" class="collapse">
+            <li><a [routerLink]="[ '/studentmain', { outlets: { content: 'dashboard' } }]">Dashboard</a></li>
+            <li><a [routerLink]="[ '/studentmain', { outlets: { content: 'mentors' } }]">Mentoria</a></li>
+            <!--<li><a [routerLink]="[ '/studentmain', { outlets: { content: 'goal-form'} }]">Goals</a></li>-->
           </ul>
-
-      </nav>
-      <!-- End Sidebar navigation -->
+        </li>
+        <!-- Courses items -->
+        <li class="nav-label">Courses</li>
+        <li class="nav-item"> <a class="has-arrow  " href="#courses" data-toggle="collapse" aria-expanded="false"><i class="fa fa-columns"></i><span class="hide-menu">Courses</span></a>
+          <ul id="courses" aria-expanded="false" class="collapse">
+            <div *ngFor="let c of courses">
+              <li><a [routerLink]="[ '/studentmain', { outlets: { content: 'course' } }]" [queryParams]="{ course: c.id }">{{c.name}}</a></li>
+            </div>
+          </ul>
+        </li>
+        <!-- Schedule items -->
+        <li class="nav-label">Schedule</li>
+        <li class="nav-item"> <a class="has-arrow  " href="#schedule" data-toggle="collapse" aria-expanded="false"><i class="fa fa-envelope"></i><span class="hide-menu">Schedule</span></a>
+          <ul id="schedule" aria-expanded="false" class="collapse">
+            <li><a [routerLink]="[ '/studentmain', { outlets: { content: 'today' } }]">Today</a></li>
+            <li><a [routerLink]="[ '/studentmain', { outlets: { content: 'today' } }]">Tomorrow</a></li>
+            <li><a [routerLink]="[ '/studentmain', { outlets: { content: 'this-week' } }]">This Week</a></li>
+            <li><a [routerLink]="[ '/studentmain', { outlets: { content: 'this-week' } }]">Next Week</a></li>
+            <li><a [routerLink]="[ '/studentmain', { outlets: { content: 'calendar' } }]">Calendar</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+    <!-- End Sidebar navigation -->
   </div>
   <!-- End Sidebar scroll-->
 </div>
@@ -45,13 +47,12 @@
 <!-- Page wrapper  -->
 <div class="page-wrapper">
 
-    <!-- Container fluid  -->
-    <div class="container-fluid">
+  <!-- Container fluid  -->
+  <div class="container-fluid">
 
-      <router-outlet name="content"></router-outlet>
+    <router-outlet name="content"></router-outlet>
 
-    </div>
-
-    <!-- End Container fluid  -->
+  </div>
+  <!-- End Container fluid  -->
 </div>
 <!-- End Page wrapper  -->

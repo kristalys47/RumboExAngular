@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Task} from "../models/task";
+import {FLASK_URL} from "./services";
 
 @Injectable({
   providedIn: 'root'

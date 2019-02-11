@@ -42,10 +42,10 @@ import { CalendarComponent } from './components/schedule/calendar/calendar.compo
 import { DailyScheduleComponent } from './components/schedule/daily-schedule/daily-schedule.component';
 import { WeeklyScheduleComponent } from './components/schedule/weekly-schedule/weekly-schedule.component';
 
-import { NewCourseTaskForm } from './components/studentPages/individual-course/individual-course.component';
+import { NewCourseTaskForm } from './components/studentPages/course-detail/course-detail.component';
 
 import { WidgetComponent } from './components/widget/widget.component';
-import { IndividualCourseComponent } from './components/studentPages/individual-course/individual-course.component';
+import { CourseDetailComponent } from './components/studentPages/course-detail/course-detail.component';
 import { LoginmenuComponent } from './components/loginmenu/loginmenu.component';
 import { DashboardComponent } from './components/studentPages/dashboard/dashboard.component';
 import {MaterialsModule} from './materials/materials.module';
@@ -69,7 +69,6 @@ import {CourseEffects} from "./store/effects/course.effects";
 import { PsychologistmainComponent } from './components/mains/psychologistmain/psychologistmain.component';
 import { MessagesComponent } from './components/messages/messages.component';
 import {TaskEffects} from "./store/effects/task.effects";
-import {AppStoreModule} from './app-store.module';
 import { MentormainComponent } from './components/mains/mentormain/mentormain.component';
 import { StudentListComponent } from './components/mentorsPage/student-list/student-list.component';
 import { NotificationsComponent } from './components/sharedComponents/notifications/notifications.component';
@@ -118,7 +117,7 @@ import { GradeGaugeComponent } from './components/grade-gauge/grade-gauge.compon
     DailyScheduleComponent,
     WeeklyScheduleComponent,
     WidgetComponent,
-    IndividualCourseComponent,
+    CourseDetailComponent,
     NewCourseTaskForm,
     MsgInputForm,
     LoginmenuComponent,
@@ -157,8 +156,7 @@ import { GradeGaugeComponent } from './components/grade-gauge/grade-gauge.compon
     HttpClientModule,
     AppRoutingModule,
     AngularMaterialModule,
-    BrowserAnimationsModule,
-    AppStoreModule
+    BrowserAnimationsModule
   ],
   // Need to write Components which are dialogs here
   entryComponents: [

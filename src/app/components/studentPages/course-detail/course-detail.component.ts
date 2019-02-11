@@ -12,12 +12,12 @@ import {Student} from "../../../models/student";
 
 @Component({
   selector: 'app-individual-course',
-  templateUrl: './individual-course.component.html',
-  styleUrls: ['./individual-course.component.css']
+  templateUrl: './course-detail.component.html',
+  styleUrls: ['./course-detail.component.css']
 })
 // this whole code is so messy and ugly
 // i will find the time to clean it... i promise :)
-export class IndividualCourseComponent implements OnInit {
+export class CourseDetailComponent implements OnInit {
 
   @Input() student: Student;
 

@@ -3,43 +3,21 @@
 <div class="left-sidebar">
   <!-- Sidebar scroll-->
   <div class="scroll-sidebar">
-      <!-- Sidebar navigation-->
-      <nav class="sidebar-nav">
-          <ul id="sidebarnav">
-              <li class="nav-devider"></li>
-            <!--<li><a [routerLink]="[ '/mentormain', { outlets: { content: 'home' } }]">Dashboard</a></li>-->
-            <!--<li><a [routerLink]="[ '/mentormain', { outlets: { content: 'student-list' } }]">Students List</a></li>-->
-            <!--<li><a [routerLink]="[ '/main', { outlets: { content: 'today' } }]">Today</a></li>-->
-              <li class="nav-label">Home</li>
-              <li class="nav-item"> <a [routerLink]="[ '/mentormain', { outlets: { content: 'home' } }]"
-                                       aria-expanded="false"><i class="fa fa-tachometer"></i><span class="hide-menu">Dashboard</span></a>
-
-              <li class="nav-label">My Students</li>
-              <li class="nav-item"> <a [routerLink]="[ '/mentormain', { outlets: { content: 'student-list' } }]"
+    <!-- Sidebar navigation-->
+    <nav class="sidebar-nav">
+      <ul id="sidebarnav">
+        <li class="nav-devider"></li>
+        <!-- Home page, dashboard -->
+        <li class="nav-label">Home</li>
+        <li class="nav-item"> <a [routerLink]="[ '/mentormain', { outlets: { content: 'home' } }]"
+                                 aria-expanded="false"><i class="fa fa-tachometer"></i><span class="hide-menu">Dashboard</span></a>
+        <!-- Students list page -->
+        <li class="nav-label">My Students</li>
+        <li class="nav-item"> <a [routerLink]="[ '/mentormain', { outlets: { content: 'student-list' } }]"
                                        aria-expanded="false"><i class="fa fa-tachometer"></i><span class="hide-menu">Students List</span></a>
-              <!--</li>-->
-              <!--&lt;!&ndash;<li class="nav-label">Courses</li>&ndash;&gt;-->
-              <!--&lt;!&ndash;<li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-columns"></i><span class="hide-menu">Courses</span></a>&ndash;&gt;-->
-                  <!--&lt;!&ndash;<ul aria-expanded="false" class="collapse">&ndash;&gt;-->
-                    <!--&lt;!&ndash;<div *ngFor="let c of courses">&ndash;&gt;-->
-                      <!--&lt;!&ndash;<li><a [routerLink]="[ '/studentmain', { outlets: { content: 'course' } }]" [queryParams]="{ course: c.codification }" >{{c.course_name}}</a></li>&ndash;&gt;-->
-                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                  <!--&lt;!&ndash;</ul>&ndash;&gt;-->
-              <!--&lt;!&ndash;</li>&ndash;&gt;-->
-              <!--<li class="nav-label">Schedule</li>-->
-              <!--<li> <a class="has-arrow  " href aria-expanded="false"><i class="fa fa-envelope"></i><span class="hide-menu">Schedule</span></a>-->
-                  <!--<ul aria-expanded="false" class="collapse">-->
-                      <!--<li><a [routerLink]="[ '/main', { outlets: { content: 'today' } }]">Today</a></li>-->
-                      <!--<li><a [routerLink]="[ '/main', { outlets: { content: 'today' } }]">Tomorrow</a></li>-->
-                      <!--<li><a [routerLink]="[ '/main', { outlets: { content: 'this-week' } }]">This Week</a></li>-->
-                      <!--<li><a [routerLink]="[ '/main', { outlets: { content: 'this-week' } }]">Next Week</a></li>-->
-                      <!--<li><a [routerLink]="[ '/main', { outlets: { content: 'calendar' } }]">Calendar</a></li>-->
-                  <!--</ul>-->
-              <!--</li>-->
-          </ul>
-
-      </nav>
-      <!-- End Sidebar navigation -->
+      </ul>
+    </nav>
+    <!-- End Sidebar navigation -->
   </div>
   <!-- End Sidebar scroll-->
 </div>
@@ -48,13 +26,12 @@
 <!-- Page wrapper  -->
 <div class="page-wrapper">
 
-    <!-- Container fluid  -->
-    <div class="container-fluid">
+  <!-- Container fluid  -->
+  <div class="container-fluid">
 
-      <router-outlet name="content"></router-outlet>
+    <router-outlet name="content"></router-outlet>
 
-    </div>
-
-    <!-- End Container fluid  -->
+  </div>
+  <!-- End Container fluid  -->
 </div>
 <!-- End Page wrapper  -->

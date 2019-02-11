@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Cacheable} from 'ngx-cacheable';
 import {Observable} from 'rxjs';
 import {Task} from '../models/task';
+import {FLASK_URL} from "./services";
 
 @Injectable({
   providedIn: 'root'

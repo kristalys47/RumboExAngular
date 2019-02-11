@@ -21,7 +21,6 @@ export class StudentmainComponent {
 
   ngOnInit() {
 
-    // using services traditional way
     this.studentService.getStudent(0).subscribe(data => {
       this.student = data;
     });
@@ -29,18 +28,11 @@ export class StudentmainComponent {
     this.courseService.get_courses(this.student.id).subscribe(data => {
       this.courses = data;
     });
+  }
 
-    // using the store
-
-    // this.store.select('student').subscribe(data => {
-    //   this.student = data.user;
-    // });
-    // this.store.select('course').subscribe(data => {
-    //   this.courses = data.courses;
-    // });
-    // this.store.select('task').subscribe(data => {
-    //   this.tasks = data.tasks;
-    // });
+  doNothing($event) {
+    console.log(event);
+    $event.preventDefault();
   }
 
 }

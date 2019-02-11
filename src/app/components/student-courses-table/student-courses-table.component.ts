@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {CourseService} from "../../services/course/course.service";
 
 @Component({
@@ -7,6 +7,8 @@ import {CourseService} from "../../services/course/course.service";
   styleUrls: ['./student-courses-table.component.css']
 })
 export class StudentCoursesTableComponent implements OnInit {
+
+  @Input() courseSelectDisabled: boolean;
 
   courses;
 

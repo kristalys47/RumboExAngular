@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs/internal/Observable";
 import {Cacheable} from "ngx-cacheable";
+import {FLASK_URL} from "./services";
 
 @Injectable({
   providedIn: 'root'
