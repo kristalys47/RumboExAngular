@@ -5,8 +5,6 @@ import {TaskService} from "../../../services/task/task.service";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material";
 import {Task} from "../../../models/task";
 // import {NewCourseTaskForm} from "../individual-course/individual-course.component";
-import {Store} from "@ngrx/store";
-import {AppState} from "../../../app.state";
 
 import {Observable} from "rxjs";
 import {Student} from "../../../models/student";
@@ -44,8 +42,7 @@ export class DailyScheduleComponent  implements OnInit {
     };
 
   constructor(private taskService: TaskService,
-              public dialog: MatDialog,
-              private store: Store<AppState>) {
+              public dialog: MatDialog) {
 
     // this.student = store2.select('student');
     // this.student.subscribe(data => {

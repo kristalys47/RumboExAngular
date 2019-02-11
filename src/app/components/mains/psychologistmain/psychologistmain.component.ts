@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 //import {StudentService} from "../../../services/student.service";
-import { Store } from '@ngrx/store';
 import {Student} from '../../../models/student';
 import { Observable } from 'rxjs/Observable';
-import * as fromStoreReducers from '../../../store/reducers';
 
 @Component({
   selector: 'app-psychologistmain',
@@ -12,7 +10,7 @@ import * as fromStoreReducers from '../../../store/reducers';
 })
 export class PsychologistmainComponent implements OnInit {
 
-  constructor(private store: Store<fromStoreReducers.State> ) { }
+  constructor() { }
 
   ngOnInit() {
 

@@ -3,9 +3,6 @@ import {Router} from '@angular/router';
 import {User} from '../../../models/user';
 import {AuthService} from '../../../services/auth.service';
 import {ErroralertService} from '../../../services/erroralert.service';
-import {Store} from '@ngrx/store';
-// import {AppState} from 'src/app/app.state';
-import * as fromRoot from '../../../store/reducers';
 import * as studentActions from '../../../store/actions/student.actions';
 import * as courseActions from '../../../store/actions/course.actions';
 
@@ -18,7 +15,7 @@ import * as courseActions from '../../../store/actions/course.actions';
 export class StudentloginComponent implements OnInit {
   user: User = new User();
 
-  constructor(private auth: AuthService, private router: Router, private error: ErroralertService, private store: Store<fromRoot.State>) { }
+  constructor(private auth: AuthService, private router: Router, private error: ErroralertService) { }
 
   ngOnInit() {
   }

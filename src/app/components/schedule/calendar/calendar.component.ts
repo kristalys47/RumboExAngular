@@ -3,9 +3,7 @@ import {MbscEventcalendarOptions, mobiscroll} from '@mobiscroll/angular';
 import { TaskService } from "../../../services/task/task.service";
 
 import {Observable} from "rxjs";
-import {Store, State} from '@ngrx/store';
 import {Student} from "../../../models/student";
-import {AppState} from "../../../app.state";
 
 // mobiscroll.settings = {
 //     theme: 'web'
@@ -33,8 +31,7 @@ export class CalendarComponent {
 
   showModal: Boolean = false;
 
-  constructor(private taskService: TaskService,
-              private store: Store<AppState>) {
+  constructor(private taskService: TaskService) {
     // this.student = store.select('student');
     // this.student.subscribe(data => {
     //   this.studyTasks = data.tasks.study;

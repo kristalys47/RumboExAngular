@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import {CourseService} from "../../../services/course/course.service";
 
-import {Store} from "@ngrx/store";
-import * as fromRoot from '../../../store/reducers';
 import {StudentService} from "../../../services/student/student.service";
 
 @Component({
@@ -17,8 +15,7 @@ export class StudentmainComponent {
   tasks: any;
 
   constructor(private studentService: StudentService,
-              private courseService: CourseService,
-              private store: Store<fromRoot.State>) {
+              private courseService: CourseService) {
 
   }
 

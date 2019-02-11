@@ -1,12 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 
-import { Store } from '@ngrx/store';
-// import {AppState} from "../../app.state";
 import {Student} from "../../models/student";
-// import * as Actions from '../../store2/actions/student.action';
 import { Observable } from 'rxjs/Observable';
-// import {StudentState} from "../../store2/reducers/student.reducer";
-import * as fromRoot from '../../store/reducers';
 import {StudentService} from "../../services/student/student.service";
 
 @Component({
@@ -22,8 +17,7 @@ export class ProfileComponent implements OnInit {
   courses: any;
   tasks: any;
 
-  constructor(private store: Store<fromRoot.State>,
-              private studentService: StudentService) {
+  constructor(private studentService: StudentService) {
     // store.select('student').subscribe(data => {
     //   this.user = data.user;
     //   console.log('wtf');
