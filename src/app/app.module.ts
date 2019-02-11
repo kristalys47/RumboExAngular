@@ -16,7 +16,7 @@ import { LoginComponent } from './components/logins/login/login.component';
 import { AuthService } from './services/auth.service';
 import { StatusComponent } from './components/status/status.component';
 import { StudentmainComponent } from './components/mains/studentmain/studentmain.component';
-import { ScheduleComponent } from './components/schedule/schedule.component';
+import { ScheduleComponent } from './components/schedule-viejo/schedule.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { AuthGuard} from './guards/auth.guard';
 
@@ -38,16 +38,16 @@ import { ErroralertComponent } from './components/erroralert/erroralert.componen
 import { SidebarComponent } from './components/sharedComponents/sidebar/sidebar.component';
 import { TopnavbarComponent } from './components/sharedComponents/topnavbar/topnavbar.component';
 import { BreadcrumbComponent } from './components/sharedComponents/breadcrumb/breadcrumb.component';
-import { CalendarComponent } from './components/calendar/calendar.component';
-import { DailyScheduleComponent } from './components/daily-schedule/daily-schedule.component';
-import { WeeklyScheduleComponent } from './components/weekly-schedule/weekly-schedule.component';
+import { CalendarComponent } from './components/schedule/calendar/calendar.component';
+import { DailyScheduleComponent } from './components/schedule/daily-schedule/daily-schedule.component';
+import { WeeklyScheduleComponent } from './components/schedule/weekly-schedule/weekly-schedule.component';
 
-import { NewCourseTaskForm } from './components/individual-course/individual-course.component';
+import { NewCourseTaskForm } from './components/studentPages/individual-course/individual-course.component';
 
 import { WidgetComponent } from './components/widget/widget.component';
-import { IndividualCourseComponent } from './components/individual-course/individual-course.component';
+import { IndividualCourseComponent } from './components/studentPages/individual-course/individual-course.component';
 import { LoginmenuComponent } from './components/loginmenu/loginmenu.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { DashboardComponent } from './components/studentPages/dashboard/dashboard.component';
 import {MaterialsModule} from './materials/materials.module';
 import {PopoverComponent} from './components/popover/popover.component';
 import {ModalComponent} from './components/modal/modal.component';
@@ -71,22 +71,22 @@ import { MessagesComponent } from './components/messages/messages.component';
 import {TaskEffects} from "./store/effects/task.effects";
 import {AppStoreModule} from './app-store.module';
 import { MentormainComponent } from './components/mains/mentormain/mentormain.component';
-import { StudentListComponent } from './components/student-list/student-list.component';
+import { StudentListComponent } from './components/mentorsPage/student-list/student-list.component';
 import { NotificationsComponent } from './components/sharedComponents/notifications/notifications.component';
 import {MessagesMenuComponent} from './components/sharedComponents/messages/messages-menu.component';
 import { PsychologistloginComponent } from './components/logins/psychologistlogin/psychologistlogin.component';
-import { StudentTableComponent } from './components/student-table/student-table.component';
+import { StudentTableComponent } from './components/mentorsPage/student-table/student-table.component';
 import { ChatComponent } from './components/chat/chat.component';
-import { AppointmentFormComponent } from './components/appointment-form/appointment-form.component';
-import { MentorsComponent } from './components/mentors/mentors.component';
-import { StudentDetailComponent } from './components/student-detail/student-detail.component';
-import { GoalFormComponent } from './components/goal-form/goal-form.component';
+import { AppointmentFormComponent } from './components/studentPages/appointment-form/appointment-form.component';
+import { MentorsComponent } from './components/studentPages/mentors/mentors.component';
+import { StudentDetailComponent } from './components/mentorsPage/student-detail/student-detail.component';
+import { GoalFormComponent } from './components/studentPages/goal-form/goal-form.component';
 import { SortPipe } from './pipes/sort/sort.pipe';
 import { FilterPipe } from './pipes/filter/filter.pipe';
 import { CommentButtonComponent } from './components/comment-button/comment-button.component';
-import {FormModal, TaskFormComponent} from './components/task-form/task-form.component';
+import {FormModal, TaskFormComponent} from './components/studentPages/task-form/task-form.component';
 import { StudentCoursesTableComponent } from './components/student-courses-table/student-courses-table.component';
-import { MentorCalendarComponent } from './components/mentor-calendar/mentor-calendar.component';
+import { MentorCalendarComponent } from './components/mentorsPage/mentor-calendar/mentor-calendar.component';
 import { TimeManagementPieChartComponent } from './components/time-management-pie-chart/time-management-pie-chart.component';
 import {DialogMessageComponent} from "./components/dialog-message/dialog-message.component";
 import { GradeGaugeComponent } from './components/grade-gauge/grade-gauge.component';
@@ -146,7 +146,8 @@ import { GradeGaugeComponent } from './components/grade-gauge/grade-gauge.compon
     MentorCalendarComponent,
     DialogMessageComponent,
     TimeManagementPieChartComponent,
-    GradeGaugeComponent
+    GradeGaugeComponent,
+    // NotificationsComponent
   ],
   imports: [
     MbscModule,

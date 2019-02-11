@@ -9,7 +9,7 @@ import {ProfessorloginComponent} from './components/logins/professorlogin/profes
 import {AdvisorloginComponent} from './components/logins/advisorlogin/advisorlogin.component';
 import {StudentloginComponent} from './components/logins/studentlogin/studentlogin.component';
 
-import {ScheduleComponent} from './components/schedule/schedule.component';
+import {ScheduleComponent} from './components/schedule-viejo/schedule.component';
 import {StudentmainComponent} from './components/mains/studentmain/studentmain.component';
 import {RegisterComponent} from './components/register/register.component';
 import {AdminmainComponent} from './components/mains/adminmain/adminmain.component';
@@ -18,12 +18,12 @@ import {AuthGuard} from './guards/auth.guard';
 import {StatusComponent} from './components/status/status.component';
 import {AdminGuard} from './guards/admin.guard';
 
-import {WeeklyScheduleComponent} from './components/weekly-schedule/weekly-schedule.component';
-import {DailyScheduleComponent} from './components/daily-schedule/daily-schedule.component';
-import {CalendarComponent} from './components/calendar/calendar.component';
+import {WeeklyScheduleComponent} from './components/schedule/weekly-schedule/weekly-schedule.component';
+import {DailyScheduleComponent} from './components/schedule/daily-schedule/daily-schedule.component';
+import {CalendarComponent} from './components/schedule/calendar/calendar.component';
 
-import {IndividualCourseComponent, NewCourseTaskForm} from './components/individual-course/individual-course.component';
-import {DashboardComponent} from './components/dashboard/dashboard.component';
+import {IndividualCourseComponent, NewCourseTaskForm} from './components/studentPages/individual-course/individual-course.component';
+import {DashboardComponent} from './components/studentPages/dashboard/dashboard.component';
 import {LoginmenuComponent} from './components/loginmenu/loginmenu.component';
 import {ProfileComponent} from "./components/profile/profile.component";
 import {CounselormainComponent} from "./components/mains/counselormain/counselormain.component";
@@ -38,14 +38,14 @@ import {BreadcrumbComponent} from "./components/sharedComponents/breadcrumb/brea
 import {TopnavbarComponent} from "./components/sharedComponents/topnavbar/topnavbar.component";
 import {PopoverComponent} from "./components/popover/popover.component";
 import {MentormainComponent} from "./components/mains/mentormain/mentormain.component";
-import {MentorsComponent} from "./components/mentors/mentors.component";
-import {AppointmentFormComponent} from "./components/appointment-form/appointment-form.component";
+import {MentorsComponent} from "./components/studentPages/mentors/mentors.component";
+import {AppointmentFormComponent} from "./components/studentPages/appointment-form/appointment-form.component";
 import {ChatComponent} from "./components/chat/chat.component";
-import {StudentDetailComponent} from "./components/student-detail/student-detail.component";
-import {StudentListComponent} from "./components/student-list/student-list.component";
-import {GoalFormComponent} from "./components/goal-form/goal-form.component";
-import {MentorCalendarComponent} from "./components/mentor-calendar/mentor-calendar.component";
-import {NotificationsComponent} from "./components/notifications/notifications.component";
+import {StudentDetailComponent} from "./components/mentorsPage/student-detail/student-detail.component";
+import {StudentListComponent} from "./components/mentorsPage/student-list/student-list.component";
+import {GoalFormComponent} from "./components/studentPages/goal-form/goal-form.component";
+import {MentorCalendarComponent} from "./components/mentorsPage/mentor-calendar/mentor-calendar.component";
+import {NotificationsComponent} from "./components/sharedComponents/notifications/notifications.component";
 
 
 const routes: Routes = [
@@ -64,7 +64,7 @@ const routes: Routes = [
   { path: 'logout', component: LogoutComponent, canActivate: [AuthGuard] },
   { path: 'register', component: RegisterComponent, canActivate: [AdminGuard]},
   { path: 'status', component: StatusComponent},
-  // { path: 'schedule', component: ScheduleComponent, canActivate: [AuthGuard] },
+  // { path: 'schedule-viejo', component: ScheduleComponent, canActivate: [AuthGuard] },
   { path: 'adminmain', component: AdminmainComponent, canActivate: [AdminGuard]},
 
   // Student app routes
@@ -76,7 +76,7 @@ const routes: Routes = [
       { path: 'today', component: DailyScheduleComponent, outlet: 'content' },
       { path: 'this-week', component: WeeklyScheduleComponent, outlet: 'content' },
 
-      { path: 'course', component: IndividualCourseComponent, outlet: 'content'},
+      { path: 'course', component: IndividualCourseComponent, outlet: 'content' },
       { path: 'dashboard', component: DashboardComponent, outlet: 'content'},
       { path: 'profile', component: ProfileComponent, outlet: 'content'},
       { path: 'mentors', component: MentorsComponent, outlet: 'content' },

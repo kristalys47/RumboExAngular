@@ -1,8 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Student} from "../../models/student";
-import {Course} from "../../models/course";
-import {Task} from '../../models/task';
-import {StudentService} from "../../services/student/student.service";
+import {Student} from "../../../models/student";
+import {Course} from "../../../models/course";
+import {Task} from '../../../models/task';
+import {StudentService} from "../../../services/student/student.service";
 
 interface StudentDetail {
   student: Student,

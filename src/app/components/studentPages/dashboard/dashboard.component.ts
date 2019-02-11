@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {CourseService} from '../../services/course/course.service';
-import {GooglechartService} from '../../services/googlechart.service';
+import {CourseService} from '../../../services/course/course.service';
+import {GooglechartService} from '../../../services/googlechart.service';
 // import {TaskCountService} from '../../services/task-count.service';
 import {config} from 'rxjs';
 import {nextMonthDisabled} from '@ng-bootstrap/ng-bootstrap/datepicker/datepicker-tools';

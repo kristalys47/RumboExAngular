@@ -36,19 +36,19 @@ function handleCourse(c: any[]): Action {
     let course_id: number = c[i].codification;
     var avg: number = getCumAvg(c[i].grades);
     var status: Status = setStatus(avg);
-    var course: Course = {
-      codification: c[i].codification,
-      name: c[i].course_name,
-      professor_id: c[i].professor_id,
-      section: c[i].section,
-      grades: c[i].grades,
-      cumulative_average: avg,
-      general_average: avg,
-      status: status,
-      tasks: []
-    };
-    courses.push(course);
-    console.log(course);
+    // var course: an = {
+    //   codification: c[i].codification,
+    //   name: c[i].course_name,
+    //   professor_id: c[i].professor_id,
+    //   section: c[i].section,
+    //   grades: c[i].grades,
+    //   cumulative_average: avg,
+    //   general_average: avg,
+    //   status: status,
+    //   tasks: []
+    // };
+    // courses.push(course);
+    // console.log(course);
   }
   console.log(courses);
   return new courseActions.SetCourses(courses);

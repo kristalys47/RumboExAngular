@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {GooglechartService} from "../../services/googlechart.service";
+import {Student} from "../../models/student";
 
 @Component({
   selector: 'app-grade-gauge',
@@ -8,7 +9,9 @@ import {GooglechartService} from "../../services/googlechart.service";
 })
 export class GradeGaugeComponent implements OnInit {
 
-  progress: number;
+  @Input() student: Student;
+
+  progress: number = 80;
 
   constructor(private chartService: GooglechartService) { }
 

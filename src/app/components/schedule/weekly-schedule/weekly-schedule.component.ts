@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MbscEventcalendarOptions } from '@mobiscroll/angular';
-import {TaskService} from "../../services/task/task.service";
+import {TaskService} from "../../../services/task/task.service";
 
 let now = new Date();
 

@@ -1,6 +1,6 @@
 import {Component, OnInit, ɵstringify} from '@angular/core';
-import {StudentService} from "../../services/student/student.service";
-import {Student} from "../../models/student";
+import {StudentService} from "../../../services/student/student.service";
+import {Student} from "../../../models/student";
 import {MatTableDataSource, MatSort, Sort} from "@angular/material";
 
 @Component({

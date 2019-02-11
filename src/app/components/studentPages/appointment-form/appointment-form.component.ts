@@ -3,7 +3,7 @@ import {FormGroup} from "@angular/forms";
 import {MbscDatetimeOptions, MbscEventcalendar, MbscEventcalendarOptions} from "@mobiscroll/angular";
 import {ActivatedRoute} from "@angular/router";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material";
-import {DialogMessageComponent} from "../dialog-message/dialog-message.component";
+import {DialogMessageComponent} from "../../dialog-message/dialog-message.component";
 
 let preventSet;
 let now = new Date();

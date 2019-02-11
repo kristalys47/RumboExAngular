@@ -15,8 +15,8 @@
       <!--Course:&nbsp;-->
       <mat-form-field class="form-field">
         <mat-select placeholder="Course" [(ngModel)]="data.course">
-          <mat-option *ngFor="let course of courses" [value]="course.name">
-          </mat-option>
+          <!--<mat-option *ngFor="let course of courses" [value]="course.name">-->
+          <!--</mat-option>-->
         </mat-select>
       </mat-form-field>
     </li>
@@ -88,5 +88,5 @@
 
 <!-- Create Task button -->
 <div mat-dialog-actions>
-  <button mat-button [mat-dialog-close]="data" (onclick)="insertTask()">Create Task</button>
+  <!--<button mat-button [mat-dialog-close]="data" (onclick)="insertTask()">Create Task</button>-->
 </div>

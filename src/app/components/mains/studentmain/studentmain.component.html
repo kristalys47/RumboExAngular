@@ -12,14 +12,14 @@
                 <ul aria-expanded="false" class="collapse">
                   <li><a [routerLink]="[ '/studentmain', { outlets: { content: 'dashboard' } }]">Dashboard</a></li>
                   <li><a [routerLink]="[ '/studentmain', { outlets: { content: 'mentors' } }]">Mentoria</a></li>
-                  <li><a [routerLink]="[ '/studentmain', { outlets: { content: 'goal-form'} }]">Goals</a></li>
+                  <!--<li><a [routerLink]="[ '/studentmain', { outlets: { content: 'goal-form'} }]">Goals</a></li>-->
                 </ul>
               </li>
               <li class="nav-label">Courses</li>
               <li class="nav-item"> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-columns"></i><span class="hide-menu">Courses</span></a>
                   <ul aria-expanded="false" class="collapse">
                     <div *ngFor="let c of courses">
-                      <li><a [routerLink]="[ '/studentmain', { outlets: { content: 'course' } }]" [queryParams]="{ course: c.id }" >{{c.name}}</a></li>
+                      <li><a [routerLink]="[ '/studentmain', { outlets: { content: 'course' } }]" [queryParams]="{ course: c.id }">{{c.name}}</a></li>
                     </div>
                   </ul>
               </li>

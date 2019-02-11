@@ -1,11 +1,11 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MbscEventcalendarOptions, mobiscroll} from '@mobiscroll/angular';
-import { TaskService } from "../../services/task/task.service";
+import { TaskService } from "../../../services/task/task.service";
 
 import {Observable} from "rxjs";
 import {Store, State} from '@ngrx/store';
-import {Student} from "../../models/student";
-import {AppState} from "../../app.state";
+import {Student} from "../../../models/student";
+import {AppState} from "../../../app.state";
 
 // mobiscroll.settings = {
 //     theme: 'web'
@@ -157,7 +157,9 @@ export class CalendarComponent {
         // buttons: ['set'], // ?
         showEventCount: true,
         view: {
-          calendar: { labels: true },
+          calendar: {
+            // labels: true
+          },
           // eventList: { type: 'week', size: 2 }
         }
     };

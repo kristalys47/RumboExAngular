@@ -1,13 +1,14 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import {Component, OnInit, Inject, Input} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {Task} from '../../models/task';
-import {TaskService} from '../../services/task/task.service';
-import {CourseService} from '../../services/course/course.service';
+import {Task} from '../../../models/task';
+import {TaskService} from '../../../services/task/task.service';
+import {CourseService} from '../../../services/course/course.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 
 
-import {AuthService} from "../../services/auth.service";
+import {AuthService} from "../../../services/auth.service";
+import {Student} from "../../../models/student";
 
 @Component({
   selector: 'app-individual-course',
@@ -17,6 +18,8 @@ import {AuthService} from "../../services/auth.service";
 // this whole code is so messy and ugly
 // i will find the time to clean it... i promise :)
 export class IndividualCourseComponent implements OnInit {
+
+  @Input() student: Student;
 
   curr_student_id: any = sessionStorage.getItem('userid');
 
