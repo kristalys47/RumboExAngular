@@ -8,7 +8,7 @@ import {Task} from '../models/task';
   providedIn: 'root'
 })
 export class TaskCountService {
-  private BASE_URL: string = 'http://localhost:5000/task';
+  private BASE_URL: string = FLASK_URL + 'task';
   private httpheaders: HttpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
 
   constructor(private http: HttpClient) { }

@@ -8,7 +8,7 @@ import {Cacheable} from "ngx-cacheable";
 })
 export class MessagesService {
 
-  private BASE_URL: string = 'http://localhost:5000/messages';
+  private BASE_URL: string = FLASK_URL + 'messages';
   private httpheaders: HttpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
 
   constructor(private http: HttpClient) { }

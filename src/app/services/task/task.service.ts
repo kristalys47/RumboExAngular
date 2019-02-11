@@ -14,7 +14,7 @@ import {of} from "rxjs/internal/observable/of";
 @Injectable()
 export class TaskService {
 
-  private BASE_URL: string = 'http://localhost:5000/task';
+  private BASE_URL: string = FLASK_URL + 'task';
   private httpheaders: HttpHeaders = new HttpHeaders({'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'});
 
   constructor(private http: HttpClient) { }

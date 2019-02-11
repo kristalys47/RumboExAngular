@@ -6,7 +6,7 @@ import {Task} from "../models/task";
   providedIn: 'root'
 })
 export class AuthService {
-  private BASE_URL: string = 'http://127.0.0.1:5000';
+  private BASE_URL: string = FLASK_URL;
   private httpheaders: HttpHeaders = new HttpHeaders({'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'});
   constructor(private http: HttpClient) { }
 

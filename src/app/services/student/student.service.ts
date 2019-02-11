@@ -8,7 +8,7 @@ import {of} from "rxjs/internal/observable/of";
 
 @Injectable({providedIn: 'root'})
 export class StudentService {
-  private BASE_URL: string = 'http://localhost:5000';
+  private BASE_URL: string = FLASK_URL;
   private httpheaders: HttpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
 
   constructor(private http: HttpClient) {

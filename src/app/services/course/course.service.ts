@@ -6,6 +6,7 @@ import {HttpResponse} from "@angular/common/http";
 import {Cacheable} from "ngx-cacheable";
 import {courses} from "../../dummy_data/dummy_data";
 import {of} from "rxjs/internal/observable/of";
+import {FLASK_URL} from "../services";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ import {of} from "rxjs/internal/observable/of";
 @Injectable()
 export class CourseService {
 
-  private BASE_URL: string = 'http://localhost:5000/course';
+  private BASE_URL: string = FLASK_URL + 'course';
   private httpheaders: HttpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
 
   constructor(private http: HttpClient) { }
