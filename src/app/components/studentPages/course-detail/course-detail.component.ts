@@ -49,10 +49,10 @@ export class CourseDetailComponent implements OnInit {
     this.sub = this.route
       .queryParams
       .subscribe(params => {
-        this.curr_course_id = params['course'];
+        this.course = JSON.parse(params['course']);
       });
 
-    this.courseService.get_course(this.curr_course_id).subscribe(data => {
+    this.courseService.get_course(this.course.id).subscribe(data => {
       if(data) {
         this.course = data;
         this.grades = this.course.grades;

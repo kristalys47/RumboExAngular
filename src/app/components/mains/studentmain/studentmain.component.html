@@ -21,7 +21,7 @@
         <li class="nav-item"> <a class="has-arrow  " href="#courses" data-toggle="collapse" aria-expanded="false"><i class="fa fa-columns"></i><span class="hide-menu">Courses</span></a>
           <ul id="courses" aria-expanded="false" class="collapse">
             <div *ngFor="let c of courses">
-              <li><a [routerLink]="[ '/studentmain', { outlets: { content: 'course' } }]" [queryParams]="{ course: c.id }">{{c.name}}</a></li>
+              <li><a [routerLink]="[ '/studentmain', { outlets: { content: 'course' } }]" [queryParams]="{ course: c | json }">{{c.name}}</a></li>
             </div>
           </ul>
         </li>

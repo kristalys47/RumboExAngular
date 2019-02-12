@@ -3,27 +3,34 @@
         <div class="row justify-content-center">
             <div class="col-lg-4">
                 <div class="login-content card">
+                  <!-- Logo -->
+                  <img src="src/assets/logo-big.png" class="logo"/>
                     <div class="login-form">
-                        <h4>Student Login</h4>
+                      <h4>Student Login</h4>
+                      <!-- Error alert, appears if user tried to login with wrong credentials -->
                       <app-erroralert></app-erroralert>
                         <form  (ngSubmit)="onLogin()" novalidate #loginForm="ngForm">
-                            <div class="form-group">
-                                <label>Username</label>
-                                <input type="text" class="form-control" placeholder="username" [(ngModel)]="user.username" name="username">
+                          <!-- Username input -->
+                          <div class="form-group">
+                            <label>Username</label>
+                            <input type="text" class="form-control" placeholder="username" [(ngModel)]="user.username" name="username">
                             </div>
-                            <div class="form-group">
-                                <label>Password</label>
-                                <input type="password" class="form-control" placeholder="password" [(ngModel)]="user.password" [ngModelOptions]="{standalone: true}">
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                        <input name="remember" type="checkbox" [(ngModel)]="user.remember"> Remember Me
-                                </label>
-                                <label class="pull-right">
-                                        <a href="#">Forgotten Password?</a>
-                                </label>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Sign in</button>
+                          <!-- Password input -->
+                          <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" class="form-control" placeholder="password" [(ngModel)]="user.password" [ngModelOptions]="{standalone: true}">
+                          </div>
+                          <!-- Remember user checkbox -->
+                          <div class="checkbox">
+                            <label>
+                              <input name="remember" type="checkbox" [(ngModel)]="user.remember"> Remember Me
+                            </label>
+                            <label class="pull-right">
+                              <a href="#">Forgotten Password?</a>
+                            </label>
+                          </div>
+                          <!-- Submit button -->
+                          <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Sign in</button>
                         </form>
                     </div>
                 </div>

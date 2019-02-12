@@ -9,19 +9,21 @@
     </tr>
     </thead>
     <tbody>
-    <!--<div *ngFor="let c of courses">-->
     <tr *ngFor="let c of courses">
+      <!-- Course name -->
       <th scope="row">
         <!-- Students can select a course to view its details -->
-        <div *ngIf="courseSelectDisabled==false">
+        <div *ngIf="!courseSelectDisabled; else disabled">
           <a [routerLink]="[ '/studentmain', { outlets: { content: 'course' } }]" [queryParams]="{ course: c.id }" >{{c.name}}</a>
         </div>
-        <!-- Mentors are not allowed to click courses -->
-        <div *ngIf="courseSelectDisabled==true">
+        <!-- Mentors are not allowed to click on courses -->
+        <ng-template #disabled>
           <a>{{c.name}}</a>
-        </div>
+        </ng-template>
       </th>
+      <!-- Course grade -->
       <td>{{c.general_average}}</td>
+      <!-- Course status -->
       <td><span *ngIf="c.status==3" class="badge badge-success">PASSING</span>
         <span *ngIf="c.status==1" class="badge badge-danger">NOT PASSING</span>
         <span *ngIf="c.status==2" class="badge badge-warning">SURVIVING</span>

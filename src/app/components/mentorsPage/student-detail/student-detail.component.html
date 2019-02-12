@@ -19,12 +19,12 @@
   <div class="row">
   <div class="col-sm-4">
   <h2>Courses</h2>
-  <app-student-courses-table></app-student-courses-table>
+  <app-student-courses-table [courseSelectDisabled]="true"></app-student-courses-table>
   <app-comment-button></app-comment-button>
   </div>
 <!--</mat-card>-->
 
-  <!-- Pie chart showing time spent per task of student -->
+    <!-- Pie chart showing time spent per task of student -->
 <!--<mat-card class="col-sm-5 offset-1">-->
   <div class="col-sm-4">
   <app-time-management-pie-chart></app-time-management-pie-chart>
