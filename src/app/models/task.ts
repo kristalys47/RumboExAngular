@@ -9,7 +9,7 @@ export interface Task {
     course?: number;
 }
 
-enum Type {
+export enum Type {
   Study,
   Course,
   Personal,

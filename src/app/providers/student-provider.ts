@@ -1,7 +1,10 @@
 import {Injectable} from "@angular/core";
 import {Student} from "../models/student";
-import {Course} from "../models/course";
-import {Task} from "../models/task";
+import {Course, Grade, Status} from "../models/course";
+import {Task, Type} from "../models/task";
+import {StudentService} from "../services/student/student.service";
+import {CourseService} from "../services/course/course.service";
+import {TaskService} from "../services/task/task.service";
 
 @Injectable()
 export class StudentProvider {
@@ -10,6 +13,88 @@ export class StudentProvider {
   public courses: Course[];
   public tasks: Task[];
 
-  public constructor() {}
+  public constructor(private studentService: StudentService,
+                     private courseService: CourseService,
+                     private taskService: TaskService) {}
+
+  loadStudent(id: any) {
+    this.studentService.getStudent(id).subscribe(data => {
+      this.student = data;
+    });
+
+    this.courseService.get_courses(id).subscribe(data => {
+      this.courses = data.forEach(course => {
+        course.cummulative_average = this.calculateCummulativeAverage(course.grades);
+        course.general_average = this.calculateAverage(course.grades);
+        course.status = this.getCourseStatus(course.general_average);
+      });
+    });
+
+    this.taskService.get_course_tasks(id).subscribe(data => {
+      data.forEach(task => {
+        task.type = Type.Course;
+        this.tasks.push(task);
+      })
+    });
+
+    this.taskService.get_study_tasks(id).subscribe(data => {
+      data.forEach(task => {
+        task.type = Type.Study;
+        this.tasks.push(task);
+      })
+    });
+
+    this.taskService.get_personal_tasks(id).subscribe(data => {
+      data.forEach(task => {
+        task.type = Type.Personal;
+        this.tasks.push(task);
+      })
+    });
+  }
+
+  addTask(task: Task) {
+    this.tasks.push(task);
+  }
+
+  addGrade(grade: Grade, course_id: number) {
+    this.courses.filter(course => {
+      if(course.id==course_id) {
+        course.grades.push(grade);
+      }
+    })
+  }
+
+  calculateAverage(grades: Grade[]) {
+    let avg: number = 0;
+    let cummulative_weight: number = 0;
+    grades.forEach(grade => {
+      avg = avg + ((grade.grade / grade.total) * grade.weight);
+      cummulative_weight = cummulative_weight + grade.weight;
+    });
+    return (avg/cummulative_weight * 100);
+  }
+
+  calculateCummulativeAverage(grades: Grade[]) {
+    let avg: number = 0;
+    grades.forEach(grade => {
+      avg = avg + ((grade.grade / grade.total) * grade.weight);
+    });
+    return (avg * 100);
+  }
+
+  getCourseStatus(avg: number) {
+    if(avg >= 90) {
+      return Status.Excellent;
+    }
+    else if(avg >=80) {
+      return Status.Passing;
+    }
+    else if(avg >=75) {
+      return Status.Surviving;
+    }
+    else {
+      return Status.NotPassing;
+    }
+  }
 
 }

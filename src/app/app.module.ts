@@ -89,6 +89,7 @@ import { MentorCalendarComponent } from './components/mentorsPage/mentor-calenda
 import { TimeManagementPieChartComponent } from './components/time-management-pie-chart/time-management-pie-chart.component';
 import {DialogMessageComponent} from "./components/dialog-message/dialog-message.component";
 import { GradeGaugeComponent } from './components/grade-gauge/grade-gauge.component';
+import {StudentProvider} from "./providers/student-provider";
 
 @NgModule({
   declarations: [
@@ -167,7 +168,7 @@ import { GradeGaugeComponent } from './components/grade-gauge/grade-gauge.compon
   // entryComponents: [NewCourseTaskForm, NewTaskForm],
   // Each guard just check that the user have an specific characteristic to authorize the navegation. In this case it checks that the user
   // have the role to enter the respective pages. It is like and RBAC but for Angular.
-  providers: [AuthService, TaskService, AuthGuard, AdminGuard, StudentGuard, StudentService, ErroralertService, CourseService, GooglechartService],
+  providers: [AuthService, TaskService, AuthGuard, AdminGuard, StudentGuard, StudentService, ErroralertService, CourseService, GooglechartService, StudentProvider],
   bootstrap: [AppComponent]
 })
 

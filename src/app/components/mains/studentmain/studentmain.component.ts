@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {CourseService} from "../../../services/course/course.service";
 
 import {StudentService} from "../../../services/student/student.service";
+import {StudentProvider} from "../../../providers/student-provider";
 
 @Component({
   selector: 'app-studentmain',
@@ -10,24 +11,29 @@ import {StudentService} from "../../../services/student/student.service";
 })
 export class StudentmainComponent {
 
+  curr_student_id = sessionStorage.getItem('userid');
+
   student: any;
   courses: Array<any>;
   tasks: any;
 
   constructor(private studentService: StudentService,
-              private courseService: CourseService) {
+              private courseService: CourseService,
+              private data: StudentProvider) {
 
   }
 
   ngOnInit() {
 
-    this.studentService.getStudent(0).subscribe(data => {
-      this.student = data;
-    });
+    this.data.loadStudent(this.curr_student_id);
 
-    this.courseService.get_courses(this.student.id).subscribe(data => {
-      this.courses = data;
-    });
+    // this.studentService.getStudent(0).subscribe(data => {
+    //   this.student = data;
+    // });
+    //
+    // this.courseService.get_courses(this.student.id).subscribe(data => {
+    //   this.courses = data;
+    // });
   }
 
   doNothing($event) {
