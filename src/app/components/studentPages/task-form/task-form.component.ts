@@ -74,4 +74,8 @@ export class FormModal {
     touchUi: false
   };
 
+  insertTask() {
+
+  }
+
 }

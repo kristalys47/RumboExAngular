@@ -5,23 +5,26 @@ import {Task, Type} from "../models/task";
 import {StudentService} from "../services/student/student.service";
 import {CourseService} from "../services/course/course.service";
 import {TaskService} from "../services/task/task.service";
+import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export class StudentProvider {
 
-  public student: Student;
-  public courses: Course[];
-  public tasks: Task[];
+  public student: Student = null;
+  public courses: Course[] = [];
+  public tasks: Task[] = [];
 
   public constructor(private studentService: StudentService,
                      private courseService: CourseService,
                      private taskService: TaskService) {}
 
-  loadStudent(id: any) {
+  loadStudent(id: any): Promise<any> {
+    // fetch student information
     this.studentService.getStudent(id).subscribe(data => {
       this.student = data;
     });
 
+    // fetch student's courses
     this.courseService.get_courses(id).subscribe(data => {
       this.courses = data.forEach(course => {
         course.cummulative_average = this.calculateCummulativeAverage(course.grades);
@@ -30,6 +33,7 @@ export class StudentProvider {
       });
     });
 
+    // fetch student's tasks
     this.taskService.get_course_tasks(id).subscribe(data => {
       data.forEach(task => {
         task.type = Type.Course;
@@ -49,6 +53,11 @@ export class StudentProvider {
         task.type = Type.Personal;
         this.tasks.push(task);
       })
+    });
+
+    return new Promise((resolve, reject) => {
+      if(this.student) resolve();
+      else reject(Error);
     });
   }
 

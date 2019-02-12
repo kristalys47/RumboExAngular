@@ -1,9 +1,10 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {AfterViewInit, Component, Inject, OnInit, ViewChild} from '@angular/core';
 import {MbscEventcalendarOptions, mobiscroll} from '@mobiscroll/angular';
 import { TaskService } from "../../../services/task/task.service";
 
 import {Observable} from "rxjs";
 import {Student} from "../../../models/student";
+import {TaskFormComponent} from "../../studentPages/task-form/task-form.component";
 
 // mobiscroll.settings = {
 //     theme: 'web'
@@ -17,7 +18,10 @@ var date = new Date();
   styleUrls: ['./calendar.component.css']
 })
 
-export class CalendarComponent {
+export class CalendarComponent implements AfterViewInit {
+
+  @ViewChild(TaskFormComponent)
+  newTask: TaskFormComponent;
 
   current_user_id = sessionStorage.getItem('userid');
 
@@ -52,6 +56,10 @@ export class CalendarComponent {
     //   console.log(this.showModal);
     // })
 
+  }
+
+  ngAfterViewInit() {
+    console.log(this.newTask);
   }
 
   loadTasks() {

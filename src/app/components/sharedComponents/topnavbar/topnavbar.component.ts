@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {StudentService} from "../../../services/student/student.service";
+import {StudentProvider} from "../../../providers/student-provider";
 
 @Component({
   selector: 'app-topnavbar',
@@ -13,12 +13,11 @@ export class TopnavbarComponent implements OnInit {
   // user = sessionStorage.getItem('token');
   user;
 
-  constructor(private studentService: StudentService) { }
+  constructor(private data: StudentProvider) { }
 
   ngOnInit() {
-    this.studentService.getStudent(0).subscribe(data => {
-      this.user = data;
-    })
+
+    this.user = this.data.student;
   }
 
 }

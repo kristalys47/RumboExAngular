@@ -5,6 +5,7 @@ import {AuthService} from '../../../services/auth.service';
 import {ErroralertService} from '../../../services/erroralert.service';
 import * as studentActions from '../../../store/actions/student.actions';
 import * as courseActions from '../../../store/actions/course.actions';
+import {StudentProvider} from "../../../providers/student-provider";
 
 
 @Component({
@@ -15,7 +16,7 @@ import * as courseActions from '../../../store/actions/course.actions';
 export class StudentloginComponent implements OnInit {
   user: User = new User();
 
-  constructor(private auth: AuthService, private router: Router, private error: ErroralertService) { }
+  constructor(private auth: AuthService, private router: Router, private error: ErroralertService, private studentProvider: StudentProvider) { }
 
   ngOnInit() {
   }
@@ -39,13 +40,10 @@ export class StudentloginComponent implements OnInit {
       console.log(sessionStorage.getItem('role'));
 
       // Load user data
-      // this.store.dispatch(new studentActions.LoadStudent());
-      // Load student's courses
-      // this.store.dispatch(new courseActions.LoadCourses());
-      // Load student's tasks
-      // this.store.dispatch(new );
-
-      this.router.navigate([ '/studentmain', { outlets: { content: 'dashboard' } }]);
+      this.studentProvider.loadStudent(user.result.userid).then( (data) => {
+          this.router.navigate(['/studentmain', {outlets: {content: 'dashboard'}}]);
+        }
+      );
     })
     .catch((err) => {
       console.log(err);

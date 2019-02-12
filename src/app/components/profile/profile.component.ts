@@ -1,8 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
-
-import {Student} from "../../models/student";
-import { Observable } from 'rxjs/Observable';
-import {StudentService} from "../../services/student/student.service";
+import {Component, OnInit} from '@angular/core';
+import {StudentProvider} from "../../providers/student-provider";
 
 @Component({
   selector: 'app-profile',
@@ -17,32 +14,11 @@ export class ProfileComponent implements OnInit {
   courses: any;
   tasks: any;
 
-  constructor(private studentService: StudentService) {
-    // store.select('student').subscribe(data => {
-    //   this.user = data.user;
-    //   console.log('wtf');
-    //   console.log(data);
-    //   console.log(data.user);
-    //   console.log(this.user);
-    //   console.log('hello pr');
-    //   console.log(JSON.stringify(data));
-    // });
-  }
+  constructor(private data: StudentProvider) { }
 
   ngOnInit() {
-    this.studentService.getStudent(0).subscribe(data => {
-      this.user = data;
-    });
 
-    //using store
-   // this.store.select('student').subscribe(data => {
-   //    this.student = data.user;
-   //  });
-   //  this.store.select('course').subscribe(data => {
-   //    this.courses = data.courses;
-   //  });
-   //  this.store.select('task').subscribe(data => {
-   //    this.tasks = data.tasks;
-   //  });
+    this.user = this.data.student;
+
   }
 }

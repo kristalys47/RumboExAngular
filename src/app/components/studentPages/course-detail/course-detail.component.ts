@@ -36,8 +36,8 @@ export class CourseDetailComponent implements OnInit {
   sub;
 
   newGrade: {
-    name: any, date: any, weight: any, grade: any
-  } = {name: null, date: null, weight: null, grade: null}; // need to be initialized o si no tira error
+    evaluation: any, date: any, weight: any, grade: any
+  } = {evaluation: null, date: null, weight: null, grade: null}; // need to be initialized o si no tira error
 
   constructor(private route: ActivatedRoute,
               private taskService: TaskService,
@@ -84,7 +84,7 @@ export class CourseDetailComponent implements OnInit {
   addGrade() {
     console.log(this.newGrade, this.grades);
     this.grades.push(this.newGrade);
-    this.newGrade = {name: null, date: null, weight: null, grade: null};
+    this.newGrade = {evaluation: null, date: null, weight: null, grade: null};
     console.log(this.newGrade);
   }
 

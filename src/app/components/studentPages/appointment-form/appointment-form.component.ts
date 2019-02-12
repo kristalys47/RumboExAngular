@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit, ViewChild} from '@angular/core';
 import {FormGroup} from "@angular/forms";
 import {MbscDatetimeOptions, MbscEventcalendar, MbscEventcalendarOptions} from "@mobiscroll/angular";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material";
 import {DialogMessageComponent} from "../../dialog-message/dialog-message.component";
 
@@ -70,7 +70,7 @@ export class AppointmentFormComponent implements OnInit {
     }
   ];
 
-  constructor(private route: ActivatedRoute, public dialog: MatDialog) {  }
+  constructor(private route: ActivatedRoute, public dialog: MatDialog, private router: Router) {  }
 
   ngOnInit() {
     this.route
@@ -105,6 +105,9 @@ export class AppointmentFormComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogMessageComponent, {
       data: {msg: 'Su cita ha sido solicitada.'}
     });
+    // dialogRef.afterClosed().subscribe(result => {
+    //   this.router.navigate([ '/studentmain', { outlets: { content: 'mentors' } }]);
+    // });
   };
 
 
