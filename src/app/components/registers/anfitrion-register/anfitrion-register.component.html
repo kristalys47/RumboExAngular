@@ -1,0 +1,52 @@
+<div class="unix-login" *ngIf="user">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-lg-4">
+                <div class="registration-content card">
+                    <div class="registration-form">
+                        <h2 align="center">Anfitrion Registration</h2>
+                      <app-erroralert></app-erroralert>
+                        <form  (ngSubmit)="register()" novalidate #registrationForm="ngForm">
+                          <!-- Name -->
+                          <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" class="form-control" placeholder="" [(ngModel)]="user.name" name="name">
+                          </div>
+                          <!-- Last name -->
+                          <div class="form-group">
+                            <label>Lastname</label>
+                            <input type="text" class="form-control" placeholder="" [(ngModel)]="user.lastname" name="lastname">
+                          </div>
+                          <!-- Username -->
+                          <div class="form-group">
+                            <label>Username</label>
+                            <input type="text" class="form-control" placeholder="" [(ngModel)]="user.username" name="username">
+                          </div>
+                          <!-- Email -->
+                          <div class="form-group">
+                            <label>E-Mail</label>
+                            <input type="text" class="form-control" placeholder="" [(ngModel)]="user.email" name="email">
+                          </div>
+                          <!-- Password -->
+                          <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" class="form-control" placeholder="" [(ngModel)]="user.password" [ngModelOptions]="{standalone: true}">
+                          </div>
+                          <!-- Password again -->
+                          <div class="form-group">
+                            <label>Password again</label>
+                            <input type="password" class="form-control" placeholder="" [(ngModel)]="passwordAgain" [ngModelOptions]="{standalone: true}">
+                          </div>
+                          <!-- Phone number -->
+                          <div class="form-group">
+                            <label>Phone Number (optional)</label>
+                            <input type="text" class="form-control" placeholder="no dash lines (eg. 7871234567)" [(ngModel)]="user.phone_num" name="phone_num">
+                          </div>
+                            <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Register</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -11,7 +11,7 @@ import {StudentloginComponent} from './components/logins/studentlogin/studentlog
 
 import {ScheduleComponent} from './components/schedule-viejo/schedule.component';
 import {StudentmainComponent} from './components/mains/studentmain/studentmain.component';
-import {RegisterComponent} from './components/register/register.component';
+import {RegisterComponent} from './components/registers/register/register.component';
 import {AdminmainComponent} from './components/mains/adminmain/adminmain.component';
 import {LogoutComponent} from './components/logout/logout.component';
 import {AuthGuard} from './guards/auth.guard';

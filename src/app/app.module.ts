@@ -26,7 +26,7 @@ import { StudentloginComponent } from './components/logins/studentlogin/studentl
 import { CounselorloginComponent } from './components/logins/counselorlogin/counselorlogin.component';
 import { MentorloginComponent } from './components/logins/mentorlogin/mentorlogin.component';
 import { ProfessorloginComponent } from './components/logins/professorlogin/professorlogin.component';
-import { RegisterComponent } from './components/register/register.component';
+import { RegisterComponent } from './components/registers/register/register.component';
 import {AdminGuard} from './guards/admin.guard';
 import { StudentGuard } from './guards/student.guard';
 import { AdvisorloginComponent } from './components/logins/advisorlogin/advisorlogin.component';
@@ -90,6 +90,9 @@ import { TimeManagementPieChartComponent } from './components/time-management-pi
 import {DialogMessageComponent} from "./components/dialog-message/dialog-message.component";
 import { GradeGaugeComponent } from './components/grade-gauge/grade-gauge.component';
 import {StudentProvider} from "./providers/student-provider";
+import { CounselorRegisterComponent } from './components/registers/counselor-register/counselor-register.component';
+import { PsychologistRegisterComponent } from './components/registers/psychologist-register/psychologist-register.component';
+import { AnfitrionRegisterComponent } from './components/registers/anfitrion-register/anfitrion-register.component';
 
 @NgModule({
   declarations: [
@@ -147,6 +150,9 @@ import {StudentProvider} from "./providers/student-provider";
     DialogMessageComponent,
     TimeManagementPieChartComponent,
     GradeGaugeComponent,
+    CounselorRegisterComponent,
+    PsychologistRegisterComponent,
+    AnfitrionRegisterComponent,
     // NotificationsComponent
   ],
   imports: [

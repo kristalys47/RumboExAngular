@@ -1,19 +1,21 @@
-import {UserI} from "./user";
-import {Course} from "./course";
-import {Task} from "./task";
+import {User, User} from "./user";
 
-export interface Student extends UserI {
-  // this are user attributes
-  // id: number,
-  // username: string,
-  // password: string,
-  // email: string,
-  // name: string,
-  // lastname: string,
-  // user attributes end
-  department_name: string,
-  department_num: number,
-  enrolled_program: number,
+export interface Student extends User {
+  faculty_name: string,
+  faculty_num: number,
   program_name: string,
+  program_num: number,
   student_num: number,
+}
+
+export class Student extends User {
+  constructor(
+    faculty_name?: string,
+    faculty_num?: number,
+    program_name?: string,
+    program_num?: number,
+    student_num?: number)
+    {
+      super();
+    }
 }
