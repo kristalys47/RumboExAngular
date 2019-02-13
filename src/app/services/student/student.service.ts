@@ -35,4 +35,9 @@ export class StudentService {
     let url: string = `${this.BASE_URL}/student`;
     return this.http.get<Student[]>(url);
   }
+
+  getFaculties() : Observable<any> {
+    let url: string = `${this.BASE_URL}/faculties`;
+    return this.http.get(url);
+  }
 }

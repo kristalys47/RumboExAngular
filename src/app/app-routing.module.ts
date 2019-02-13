@@ -46,6 +46,9 @@ import {StudentListComponent} from "./components/mentorsPage/student-list/studen
 import {GoalFormComponent} from "./components/studentPages/goal-form/goal-form.component";
 import {MentorCalendarComponent} from "./components/mentorsPage/mentor-calendar/mentor-calendar.component";
 import {NotificationsComponent} from "./components/sharedComponents/notifications/notifications.component";
+import {CounselorRegisterComponent} from "./components/registers/counselor-register/counselor-register.component";
+import {PsychologistRegisterComponent} from "./components/registers/psychologist-register/psychologist-register.component";
+import {AnfitrionRegisterComponent} from "./components/registers/anfitrion-register/anfitrion-register.component";
 
 
 const routes: Routes = [
@@ -62,7 +65,12 @@ const routes: Routes = [
 
   // This things haves to be guarded and classified
   { path: 'logout', component: LogoutComponent, canActivate: [AuthGuard] },
-  { path: 'register', component: RegisterComponent, canActivate: [AdminGuard]},
+  
+  { path: 'register', component: RegisterComponent },
+  { path: 'counselorRegister', component: CounselorRegisterComponent },
+  { path: 'psychologistRegister', component: PsychologistRegisterComponent },
+  { path: 'anfitrionRegister', component: AnfitrionRegisterComponent },
+
   { path: 'status', component: StatusComponent},
   // { path: 'schedule-viejo', component: ScheduleComponent, canActivate: [AuthGuard] },
   { path: 'adminmain', component: AdminmainComponent, canActivate: [AdminGuard]},

@@ -26,8 +26,11 @@
                               <input name="remember" type="checkbox" [(ngModel)]="user.remember"> Remember Me
                             </label>
                             <label class="pull-right">
-                              <a href="#">Forgotten Password?</a>
+                              <a [routerLink]="['/register']">Register</a>
                             </label>
+                            <!--<label class="pull-right">-->
+                              <!--<a href="#">Forgotten Password?</a>-->
+                            <!--</label>-->
                           </div>
                           <!-- Submit button -->
                           <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Sign in</button>

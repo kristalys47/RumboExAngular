@@ -4,6 +4,7 @@ import {AuthService} from '../../../services/auth.service';
 import {User} from '../../../models/user';
 import {Student} from "../../../models/student";
 import {ErroralertService} from "../../../services/erroralert.service";
+import {StudentService} from "../../../services/student/student.service";
 
 @Component({
   selector: 'app-register',
@@ -14,16 +15,14 @@ export class RegisterComponent implements OnInit {
 
   user: Student = new Student();
   passwordAgain;
-  faculty = [
-    {name: 'Ingenieria', num: 1, programs: [
-        {name: 'Ingenieria Mecanica', num: 1}
-        ]
-    }
-  ];
+  faculty;
 
-  constructor(private auth: AuthService, private router: Router, private error: ErroralertService) { }
+  constructor(private auth: AuthService, private router: Router, private error: ErroralertService, private studentService: StudentService) { }
 
   ngOnInit() {
+    this.studentService.getFaculties().subscribe(data => {
+      this.faculty = data;
+    })
   }
 
   registration(): void {

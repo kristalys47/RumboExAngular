@@ -4,7 +4,7 @@
             <div class="col-lg-4">
                 <div class="login-content card">
                     <div class="login-form">
-                        <h4>Advisor Login</h4>
+                        <h4>Anfitrion Login</h4>
                       <app-erroralert></app-erroralert>
                         <form  (ngSubmit)="onLogin()" novalidate #loginForm="ngForm">
                             <div class="form-group">
@@ -19,9 +19,12 @@
                                 <label>
                                         <input name="remember" type="checkbox" [(ngModel)]="user.remember"> Remember Me
                                 </label>
-                                <label class="pull-right">
-                                        <a href="#">Forgotten Password?</a>
-                                </label>
+                              <label class="pull-right">
+                              <a [routerLink]="['/anfitrionRegister']">Register</a>
+                            </label>
+                                <!--<label class="pull-right">-->
+                                        <!--<a href="#">Forgotten Password?</a>-->
+                                <!--</label>-->
                             </div>
                             <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Sign in</button>
                         </form>
