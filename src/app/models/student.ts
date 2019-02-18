@@ -1,4 +1,4 @@
-import {User, User} from "./user";
+import {User} from "./user";
 
 export interface Student extends User {
   faculty_name: string,

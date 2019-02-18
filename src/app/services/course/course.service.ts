@@ -7,6 +7,7 @@ import {Cacheable} from "ngx-cacheable";
 import {courses} from "../../dummy_data/dummy_data";
 import {of} from "rxjs/internal/observable/of";
 import {FLASK_URL} from "../services";
+import {Course} from "../../models/course";
 
 @Injectable({
   providedIn: 'root'
@@ -14,16 +15,17 @@ import {FLASK_URL} from "../services";
 @Injectable()
 export class CourseService {
 
-  private BASE_URL: string = FLASK_URL + 'course';
+  private BASE_URL: string = FLASK_URL + '/course';
   private httpheaders: HttpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
 
   constructor(private http: HttpClient) { }
 
   @Cacheable()
-  get_courses(user_id): Observable<any> {
-    // let url: string = `${this.BASE_URL}s/${user_id}`;
-    // return this.http.get(url);
-    return of(courses);
+  get_courses(user_id): Observable<Course[]> {
+    let url: string = `${this.BASE_URL}s/${user_id}`;
+    console.log(url);
+    return this.http.get<Course[]>(url);
+    // return of(courses);
   }
 
   @Cacheable()

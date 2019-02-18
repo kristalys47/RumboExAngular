@@ -18,10 +18,10 @@ export class TimeManagementPieChartComponent implements OnInit {
       // ['Courses' , this.courseTask[0][0]],
       // ['Appointments', this.appointmentTask[0][0]],
       // ['Study', this.studyTask[0][0]],
-      ['Personal', 2],
-      ['Courses', 4],
-      ['Appointments', 1],
-      ['Study', 3]
+      ['Personal', 0],
+      ['Courses', 0],
+      ['Appointments', 0],
+      ['Study', 0]
     ];
 
     let config1 = {'pieHole': 0.4};

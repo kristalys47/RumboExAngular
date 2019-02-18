@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MbscEventcalendarOptions } from '@mobiscroll/angular';
 import {TaskService} from "../../../services/task/task.service";
+import {StudentProvider} from "../../../providers/student-provider";
 
 let now = new Date();
 
@@ -20,12 +21,13 @@ export class WeeklyScheduleComponent implements OnInit {
 
   events: Array<any> = [];
 
-  constructor(private taskService: TaskService) { }
+  constructor(private taskService: TaskService, private data: StudentProvider) { }
 
   ngOnInit() {
 
-    this.loadTasks();
+    // this.loadTasks();
 
+    this.events = this.data.tasks;
   }
 
   loadTasks() {

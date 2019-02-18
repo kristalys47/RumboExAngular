@@ -4,20 +4,20 @@ import {Student} from "../models/student";
 
 export const courses: Course[] = [
   {
-    id: 0,
+    course_id: 0,
     codification: 'MATE3001',
     name: 'Precalculo 1',
     professor_id: 802899000,
-    section: '010',
+    section_num: '010',
     grades: [
       {
-        evaluation: 'Examen 1',
+        name: 'Examen 1',
         grade: 75,
         weight: 15,
         total: 100
       },
       {
-        evaluation: 'Quiz',
+        name: 'Quiz',
         grade: 5,
         weight: 5,
         total: 5
@@ -41,14 +41,15 @@ export const courses: Course[] = [
         end: 'Mon, 4 Feb 2018 08:00:00 GMT',
         finished: true,
       }
-    ]
+    ],
+    time: []
   },
   {
-    id: 1,
+    course_id: 1,
     codification: 'HUMA3001',
     name: 'Humanidades',
     professor_id: 802889000,
-    section: '020',
+    section_num: '020',
     grades: null,
     cumulative_average: 40,
     general_average: 80,
@@ -61,7 +62,8 @@ export const courses: Course[] = [
         end: 'Sun, 10 Feb 2018 08:00:00 GMT',
         finished: false,
       }
-    ]
+    ],
+    time: []
   }
 ];
 
@@ -73,9 +75,9 @@ export const students: Student[] = [
     email: 'lila@upr.edu',
     name: 'Lila',
     lastname: "Carrion",
-    department_name: 'Artes y Ciencias',
-    department_num: 10,
-    enrolled_program: 10,
+    faculty_name: 'Artes y Ciencias',
+    faculty_num: 10,
+    program_num: 10,
     program_name: 'Psicologia',
     student_num: 8020000000,
     role_id: 1,
@@ -88,9 +90,9 @@ export const students: Student[] = [
     email: 'juan@upr.edu',
     name: 'Juan',
     lastname: "Alvarado",
-    department_name: 'Ingenieria',
-    department_num: 12,
-    enrolled_program: 12,
+    faculty_name: 'Ingenieria',
+    faculty_num: 12,
+    program_num: 12,
     program_name: 'Ingenieria Electrica',
     student_num: 8021111111,
     role_id: 1,

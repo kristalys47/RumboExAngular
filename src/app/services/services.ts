@@ -1,7 +1,7 @@
-// url where http requests will be made
+// global variable for the url where http requests will be made
 
-// when backend is running locally, use for development purposes
+// development: when backend is running locally
 export const FLASK_URL = 'http://localhost:5000';
 
-// when backend is running on server, use for production purposes
+// production: when backend is running on server
 // export const FLASK_URL = 'http://mystudycoach.uprm.edu:8080';

@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {StudentProvider} from "../../providers/student-provider";
+import {StudentService} from "../../services/student/student.service";
 
 @Component({
   selector: 'app-profile',
@@ -8,17 +9,20 @@ import {StudentProvider} from "../../providers/student-provider";
 })
 export class ProfileComponent implements OnInit {
 
-  // user = sessionStorage.getItem('token');
+  userid = sessionStorage.getItem('token');
   user;
   student: any;
   courses: any;
   tasks: any;
 
-  constructor(private data: StudentProvider) { }
+  constructor(private data: StudentProvider, private studentService: StudentService) { }
 
   ngOnInit() {
 
-    this.user = this.data.student;
+    // this.user = this.data.student;
+    this.studentService.getStudent(this.userid).subscribe(data => {
+      this.user = data;
+    });
 
   }
 }

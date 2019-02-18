@@ -50,7 +50,7 @@ export class DashboardComponent implements OnInit {
     this.courseService.get_courses(this.curr_student_id).subscribe(data => {
       data.map(course => {
         this.courses.push({
-          'name': course.course_name,
+          'name': course.name,
           'grade': this.getGrade(course.codification),
           'status': this.getStatus(this.getGrade(course.codification))
         });

@@ -2,7 +2,7 @@
   <div class="col-sm-6">
     <mat-card>
       <mat-card-title><h1>{{course.name}}</h1></mat-card-title>
-      <mat-card-subtitle>{{course.codification}} - {{course.section}}</mat-card-subtitle>
+      <mat-card-subtitle>{{course.codification}} - {{course.section_num}}</mat-card-subtitle>
     </mat-card>
 
     <!-- Gauges showing progress in course, of cummulative avg and expected avg -->
@@ -15,10 +15,10 @@
 
     <!-- Grades -->
     <mat-card>
-      <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>Grades</mat-panel-title>
-      </mat-expansion-panel-header>
+      <!--<mat-expansion-panel>-->
+      <!--<mat-expansion-panel-header>-->
+        <h2>Grades</h2>
+      <!--</mat-expansion-panel-header>-->
       <mat-card-content>
         <div class="table-responsive">
           <table class="table table-hover ">
@@ -31,11 +31,11 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let g of grades">
-              <th scope="row">{{g.evaluation}}</th>
+            <tr *ngFor="let g of course.grades">
+              <th scope="row">{{g.name}}</th>
               <td>Sep. 2</td>
               <td>{{g.weight}} %</td>
-              <td>{{g.grade}}/{{g.total}}</td>
+              <td>{{g.grade}} / {{g.total}}</td>
             </tr>
 
             <!-- New grade form -->
@@ -92,7 +92,7 @@
           <!--<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>-->
         <!--</table>-->
       </mat-card-content>
-      </mat-expansion-panel>
+      <!--</mat-expansion-panel>-->
     </mat-card>
 
     <!-- Help buttons -->
@@ -118,8 +118,8 @@
             <!--[cdkDropListData]="todo"-->
             <!--[cdkDropListConnectedTo]="[doneList]"-->
             <!--(cdkDropListDropped)="drop($event)">-->
-            <mat-list *ngFor="let t of undoneTasks">
-              <div cdkDrag><mat-list-item><mat-checkbox>{{t.title}}</mat-checkbox></mat-list-item></div>
+            <mat-list *ngFor="let t of course.tasks | finishedTask: {args: false}">
+              <div cdkDrag><mat-list-item><mat-checkbox (change)="checkTask(t)">{{t.title}}</mat-checkbox></mat-list-item></div>
             </mat-list>
           <!--</div>-->
           <button mat-mini-fab (click)="openForm()"><mat-icon>add</mat-icon></button>
@@ -135,8 +135,8 @@
             <!--[cdkDropListData]="done"-->
             <!--[cdkDropListConnectedTo]="[todoList]"-->
             <!--(cdkDropListDropped)="drop($event)">-->
-            <mat-list *ngFor="let t of doneTasks">
-              <mat-list-item><mat-checkbox [checked]="true" [color]="" matTooltip="{{t.description}}">{{t.title}}</mat-checkbox></mat-list-item>
+            <mat-list *ngFor="let t of course.tasks | finishedTask: {args: true}">
+              <mat-list-item><mat-checkbox [checked]="true" [color]="" (change)="checkTask(t)">{{t.title}}</mat-checkbox></mat-list-item>
             </mat-list>
           <!--</div>-->
         </div>

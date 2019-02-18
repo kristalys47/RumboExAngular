@@ -8,6 +8,7 @@ import {Task} from "../../../models/task";
 
 import {Observable} from "rxjs";
 import {Student} from "../../../models/student";
+import {StudentProvider} from "../../../providers/student-provider";
 // import {StudentState} from "../../store2/reducers/student.reducer";
 
 
@@ -42,7 +43,9 @@ export class DailyScheduleComponent  implements OnInit {
     };
 
   constructor(private taskService: TaskService,
-              public dialog: MatDialog) {
+              public dialog: MatDialog,
+              private data: StudentProvider) {
+
 
     // this.student = store2.select('student');
     // this.student.subscribe(data => {
@@ -54,8 +57,9 @@ export class DailyScheduleComponent  implements OnInit {
 }
 
   ngOnInit() {
+    this.events = this.data.tasks;
 
-    this.loadTasks();
+    // this.loadTasks();
     console.log(now.getDate(), tomorrow);
     // this.navigate(this.list.instance, tomorrow);
 

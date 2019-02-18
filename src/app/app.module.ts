@@ -93,6 +93,7 @@ import {StudentProvider} from "./providers/student-provider";
 import { CounselorRegisterComponent } from './components/registers/counselor-register/counselor-register.component';
 import { PsychologistRegisterComponent } from './components/registers/psychologist-register/psychologist-register.component';
 import { AnfitrionRegisterComponent } from './components/registers/anfitrion-register/anfitrion-register.component';
+import { FinishedTaskPipe } from './pipes/finishedTask/finished-task.pipe';
 
 @NgModule({
   declarations: [
@@ -153,6 +154,7 @@ import { AnfitrionRegisterComponent } from './components/registers/anfitrion-reg
     CounselorRegisterComponent,
     PsychologistRegisterComponent,
     AnfitrionRegisterComponent,
+    FinishedTaskPipe,
     // NotificationsComponent
   ],
   imports: [

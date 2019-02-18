@@ -1,23 +1,30 @@
 import {Task} from "./task";
 
 export interface Course {
-  id: number,
+  course_id: number,
   codification: string,
   name: string,
-  professor_id: number,
-  section: string,
+  professor_id?: number,
+  section_num: string,
+  time: Time[],
   grades: Grade[],
-  cumulative_average: number,
-  general_average,
+  cumulative_average?: number,
+  general_average?: number,
   status: Status,
   tasks: Task[]
 }
 
 export interface Grade {
-  evaluation: string,
+  name: string,
   grade: number,
-  weight: number,
-  total: number
+  total: number,
+  weight: number
+}
+
+interface Time {
+  day: string,
+  start: number,
+  end: number
 }
 
 export enum Status {

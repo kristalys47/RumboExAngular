@@ -3,8 +3,6 @@ import {Router} from '@angular/router';
 import {User} from '../../../models/user';
 import {AuthService} from '../../../services/auth.service';
 import {ErroralertService} from '../../../services/erroralert.service';
-import * as studentActions from '../../../store/actions/student.actions';
-import * as courseActions from '../../../store/actions/course.actions';
 import {StudentProvider} from "../../../providers/student-provider";
 
 
@@ -40,10 +38,10 @@ export class StudentloginComponent implements OnInit {
       console.log(sessionStorage.getItem('role'));
 
       // Load user data
-      this.studentProvider.loadStudent(user.result.userid).then( (data) => {
+      // this.studentProvider.loadStudent(user.result.userid).then( (data) => {
           this.router.navigate(['/studentmain', {outlets: {content: 'dashboard'}}]);
-        }
-      );
+      //   }
+      // );
     })
     .catch((err) => {
       console.log(err);

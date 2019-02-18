@@ -5,6 +5,7 @@ import { TaskService } from "../../../services/task/task.service";
 import {Observable} from "rxjs";
 import {Student} from "../../../models/student";
 import {TaskFormComponent} from "../../studentPages/task-form/task-form.component";
+import {StudentProvider} from "../../../providers/student-provider";
 
 // mobiscroll.settings = {
 //     theme: 'web'
@@ -35,7 +36,7 @@ export class CalendarComponent implements AfterViewInit {
 
   showModal: Boolean = false;
 
-  constructor(private taskService: TaskService) {
+  constructor(private taskService: TaskService, private data: StudentProvider) {
     // this.student = store.select('student');
     // this.student.subscribe(data => {
     //   this.studyTasks = data.tasks.study;
@@ -48,7 +49,8 @@ export class CalendarComponent implements AfterViewInit {
 
   ngOnInit() {
 
-    this.loadTasks();
+    this.labelDays = this.data.tasks;
+    // this.loadTasks();
     // this.addPersonalTask();
 
     // $("button").click(function(){

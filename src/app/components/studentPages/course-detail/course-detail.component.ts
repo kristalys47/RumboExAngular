@@ -27,9 +27,6 @@ export class CourseDetailComponent implements OnInit {
 
   course;
 
-  undoneTasks = [];
-  doneTasks = [];
-
   grades: Array<any> = [];
   progress;
 
@@ -56,7 +53,6 @@ export class CourseDetailComponent implements OnInit {
       if(data) {
         this.course = data;
         this.grades = this.course.grades;
-        this.doneTasks = this.course.tasks;
         console.log('course:', this.course);
       }
     });
@@ -86,6 +82,13 @@ export class CourseDetailComponent implements OnInit {
     this.grades.push(this.newGrade);
     this.newGrade = {evaluation: null, date: null, weight: null, grade: null};
     console.log(this.newGrade);
+  }
+
+  checkTask(task: Task) {
+    console.log(task.finished);
+    task.finished = !task.finished;
+    console.log(task.finished);
+    console.log(this.course.tasks);
   }
 
   ngOnDestroy() {

@@ -1,4 +1,4 @@
-import {Injectable} from "@angular/core";
+import {Injectable, OnInit} from "@angular/core";
 import {Student} from "../models/student";
 import {Course, Grade, Status} from "../models/course";
 import {Task, Type} from "../models/task";
@@ -8,7 +8,7 @@ import {TaskService} from "../services/task/task.service";
 import {Observable} from "rxjs/Observable";
 
 @Injectable()
-export class StudentProvider {
+export class StudentProvider implements OnInit {
 
   public student: Student = null;
   public courses: Course[] = [];
@@ -16,50 +16,71 @@ export class StudentProvider {
 
   public constructor(private studentService: StudentService,
                      private courseService: CourseService,
-                     private taskService: TaskService) {}
+                     private taskService: TaskService) {
 
-  loadStudent(id: any): Promise<any> {
+  }
+
+  ngOnInit () {
+    // let student_id = sessionStorage.getItem('userid');
+    // // this.loadStudent(student_id);
+    // console.log('entra');
+    // this.studentService.getStudent(student_id).subscribe(data => {
+    //   this.student = data;
+    // });
+    // console.log(this.student);
+  }
+
+
+  loadStudent(id: any): Observable<any> {
     // fetch student information
-    this.studentService.getStudent(id).subscribe(data => {
-      this.student = data;
-    });
+
 
     // fetch student's courses
-    this.courseService.get_courses(id).subscribe(data => {
-      this.courses = data.forEach(course => {
-        course.cummulative_average = this.calculateCummulativeAverage(course.grades);
-        course.general_average = this.calculateAverage(course.grades);
-        course.status = this.getCourseStatus(course.general_average);
-      });
-    });
+    // this.courseService.get_courses(id).subscribe(data => {
+    //   this.courses = data.forEach(course => {
+    //     course.cummulative_average = this.calculateCummulativeAverage(course.grades);
+    //     course.general_average = this.calculateAverage(course.grades);
+    //     course.status = this.getCourseStatus(course.general_average);
+    //   });
+    // });
 
     // fetch student's tasks
-    this.taskService.get_course_tasks(id).subscribe(data => {
-      data.forEach(task => {
-        task.type = Type.Course;
-        this.tasks.push(task);
-      })
+    // this.taskService.get_course_tasks(id).subscribe(data => {
+    //   data.forEach(task => {
+    //     task.type = Type.Course;
+    //     this.tasks.push(task);
+    //   })
+    // });
+    //
+    // this.taskService.get_study_tasks(id).subscribe(data => {
+    //   data.forEach(task => {
+    //     task.type = Type.Study;
+    //     this.tasks.push(task);
+    //   })
+    // });
+    //
+    // this.taskService.get_personal_tasks(id).subscribe(data => {
+    //   data.forEach(task => {
+    //     task.type = Type.Personal;
+    //     this.tasks.push(task);
+    //   })
+    // });
+    return new Observable(() => {
+      this.studentService.getStudent(id).subscribe(data => {
+        this.student = data;
+        console.log(this.student);
+      });
+
+      console.log(this.student);
+
     });
 
-    this.taskService.get_study_tasks(id).subscribe(data => {
-      data.forEach(task => {
-        task.type = Type.Study;
-        this.tasks.push(task);
-      })
-    });
-
-    this.taskService.get_personal_tasks(id).subscribe(data => {
-      data.forEach(task => {
-        task.type = Type.Personal;
-        this.tasks.push(task);
-      })
-    });
-
-    return new Promise((resolve, reject) => {
-      if(this.student) resolve();
-      else reject(Error);
-    });
   }
+
+  loadUser(id: any) {
+    this.studentService.getStudent(id)
+  }
+
 
   addTask(task: Task) {
     this.tasks.push(task);
@@ -67,7 +88,7 @@ export class StudentProvider {
 
   addGrade(grade: Grade, course_id: number) {
     this.courses.filter(course => {
-      if(course.id==course_id) {
+      if(course.course_id==course_id) {
         course.grades.push(grade);
       }
     })
