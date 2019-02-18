@@ -29,11 +29,11 @@
         <li class="nav-label">Schedule</li>
         <li class="nav-item"> <a class="has-arrow  " href="#schedule" data-toggle="collapse" aria-expanded="false"><i class="fa fa-envelope"></i><span class="hide-menu">Schedule</span></a>
           <ul id="schedule" aria-expanded="false" class="collapse">
-            <li><a [routerLink]="[ '/studentmain', { outlets: { content: 'today' } }]">Today</a></li>
+            <li><a [routerLink]="[ '/studentmain', { outlets: { content: 'schedule' } }]" [queryParams]="{ view: 'day' | json }">Today</a></li>
             <!--<li><a [routerLink]="[ '/studentmain', { outlets: { content: 'today' } }]">Tomorrow</a></li>-->
-            <li><a [routerLink]="[ '/studentmain', { outlets: { content: 'this-week' } }]">This Week</a></li>
+            <li><a [routerLink]="[ '/studentmain', { outlets: { content: 'schedule' } }]" [queryParams]="{ view: 'week' | json }">This Week</a></li>
             <!--<li><a [routerLink]="[ '/studentmain', { outlets: { content: 'this-week' } }]">Next Week</a></li>-->
-            <li><a [routerLink]="[ '/studentmain', { outlets: { content: 'calendar' } }]">Calendar</a></li>
+            <li><a [routerLink]="[ '/studentmain', { outlets: { content: 'schedule' } }]" [queryParams]="{ view: 'month' | json }">Calendar</a></li>
           </ul>
         </li>
       </ul>

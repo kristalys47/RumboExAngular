@@ -12,18 +12,20 @@ export const courses: Course[] = [
     grades: [
       {
         name: 'Examen 1',
+        date: '2019-02-18',
         grade: 75,
         weight: 15,
         total: 100
       },
       {
         name: 'Quiz',
+        date: '2019-02-18',
         grade: 5,
         weight: 5,
         total: 5
       }
     ],
-    cumulative_average: 20,
+    cummulative_average: 20,
     general_average: 75,
     status: Status.Surviving,
     tasks: [
@@ -51,7 +53,7 @@ export const courses: Course[] = [
     professor_id: 802889000,
     section_num: '020',
     grades: null,
-    cumulative_average: 40,
+    cummulative_average: 40,
     general_average: 80,
     status: Status.Passing,
     tasks: [

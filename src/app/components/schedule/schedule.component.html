@@ -1,0 +1,13 @@
+<div *ngIf="view == 'day'">
+  <mbsc-eventcalendar [data]="events" [options]="daySettings" #mbscList="mobiscroll"></mbsc-eventcalendar>
+</div>
+
+<div *ngIf="view == 'week'">
+  <mbsc-eventcalendar [data]="events" [options]="weekSettings"></mbsc-eventcalendar>
+</div>
+
+<div *ngIf="view == 'month'">
+  <mbsc-eventcalendar [data]="events" [options]="monthSettings"></mbsc-eventcalendar>
+</div>
+
+<app-task-form></app-task-form>

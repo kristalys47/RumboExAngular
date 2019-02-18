@@ -16,7 +16,7 @@ import { LoginComponent } from './components/logins/login/login.component';
 import { AuthService } from './services/auth.service';
 import { StatusComponent } from './components/status/status.component';
 import { StudentmainComponent } from './components/mains/studentmain/studentmain.component';
-import { ScheduleComponent } from './components/schedule-viejo/schedule.component';
+import { ScheduleComponent } from './components/schedule/schedule.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { AuthGuard} from './guards/auth.guard';
 
@@ -38,9 +38,9 @@ import { ErroralertComponent } from './components/erroralert/erroralert.componen
 import { SidebarComponent } from './components/sharedComponents/sidebar/sidebar.component';
 import { TopnavbarComponent } from './components/sharedComponents/topnavbar/topnavbar.component';
 import { BreadcrumbComponent } from './components/sharedComponents/breadcrumb/breadcrumb.component';
-import { CalendarComponent } from './components/schedule/calendar/calendar.component';
-import { DailyScheduleComponent } from './components/schedule/daily-schedule/daily-schedule.component';
-import { WeeklyScheduleComponent } from './components/schedule/weekly-schedule/weekly-schedule.component';
+import { CalendarComponent } from './components/schedule-mbsc/calendar/calendar.component';
+import { DailyScheduleComponent } from './components/schedule-mbsc/daily-schedule/daily-schedule.component';
+import { WeeklyScheduleComponent } from './components/schedule-mbsc/weekly-schedule/weekly-schedule.component';
 
 import { NewCourseTaskForm } from './components/studentPages/course-detail/course-detail.component';
 

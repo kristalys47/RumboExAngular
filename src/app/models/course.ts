@@ -8,7 +8,7 @@ export interface Course {
   section_num: string,
   time: Time[],
   grades: Grade[],
-  cumulative_average?: number,
+  cummulative_average?: number,
   general_average?: number,
   status: Status,
   tasks: Task[]
@@ -16,9 +16,20 @@ export interface Course {
 
 export interface Grade {
   name: string,
+  date: string,
   grade: number,
   total: number,
   weight: number
+}
+
+export class Grade implements Grade {
+  constructor(
+    name?: string,
+    date?: string,
+    grade?: number,
+    total?:number,
+    weight?: number
+  ) {}
 }
 
 interface Time {

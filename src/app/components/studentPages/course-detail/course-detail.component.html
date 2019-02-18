@@ -9,7 +9,7 @@
     <mat-card>
       <mat-card-title>Progress</mat-card-title>
       <mat-card-content>
-        <app-grade-gauge [student]=""></app-grade-gauge>
+        <app-grade-gauge [grades]="{ general: course.general_average | json, cummulative: course.cummulative_average | json }"></app-grade-gauge>
       </mat-card-content>
     </mat-card>
 
@@ -40,7 +40,7 @@
 
             <!-- New grade form -->
             <tr>
-              <td scope="row"><mat-form-field><input matInput placeholder="New Grade Name" [(ngModel)]="newGrade.evaluation"></mat-form-field></td>
+              <td scope="row"><mat-form-field><input matInput placeholder="New Grade Name" [(ngModel)]="newGrade.name"></mat-form-field></td>
               <td><mat-form-field>
                 <input matInput disabled [matDatepicker]="picker" placeholder="Date" [(ngModel)]="newGrade.date">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>

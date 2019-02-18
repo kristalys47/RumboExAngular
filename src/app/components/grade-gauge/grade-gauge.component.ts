@@ -9,9 +9,9 @@ import {Student} from "../../models/student";
 })
 export class GradeGaugeComponent implements OnInit {
 
-  @Input() student: Student;
+  @Input() grades: { general: any, cummulative: any, status: any };
 
-  progress: number = 80;
+  // progress: number = 80;
 
   constructor(private chartService: GooglechartService) { }
 

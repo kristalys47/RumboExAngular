@@ -9,7 +9,7 @@ import {ProfessorloginComponent} from './components/logins/professorlogin/profes
 import {AdvisorloginComponent} from './components/logins/advisorlogin/advisorlogin.component';
 import {StudentloginComponent} from './components/logins/studentlogin/studentlogin.component';
 
-import {ScheduleComponent} from './components/schedule-viejo/schedule.component';
+import {ScheduleComponent} from './components/schedule/schedule.component';
 import {StudentmainComponent} from './components/mains/studentmain/studentmain.component';
 import {RegisterComponent} from './components/registers/register/register.component';
 import {AdminmainComponent} from './components/mains/adminmain/adminmain.component';
@@ -18,9 +18,9 @@ import {AuthGuard} from './guards/auth.guard';
 import {StatusComponent} from './components/status/status.component';
 import {AdminGuard} from './guards/admin.guard';
 
-import {WeeklyScheduleComponent} from './components/schedule/weekly-schedule/weekly-schedule.component';
-import {DailyScheduleComponent} from './components/schedule/daily-schedule/daily-schedule.component';
-import {CalendarComponent} from './components/schedule/calendar/calendar.component';
+import {WeeklyScheduleComponent} from './components/schedule-mbsc/weekly-schedule/weekly-schedule.component';
+import {DailyScheduleComponent} from './components/schedule-mbsc/daily-schedule/daily-schedule.component';
+import {CalendarComponent} from './components/schedule-mbsc/calendar/calendar.component';
 
 import {CourseDetailComponent, NewCourseTaskForm} from './components/studentPages/course-detail/course-detail.component';
 import {DashboardComponent} from './components/studentPages/dashboard/dashboard.component';
@@ -65,14 +65,14 @@ const routes: Routes = [
 
   // This things haves to be guarded and classified
   { path: 'logout', component: LogoutComponent, canActivate: [AuthGuard] },
-  
+
   { path: 'register', component: RegisterComponent },
   { path: 'counselorRegister', component: CounselorRegisterComponent },
   { path: 'psychologistRegister', component: PsychologistRegisterComponent },
   { path: 'anfitrionRegister', component: AnfitrionRegisterComponent },
 
   { path: 'status', component: StatusComponent},
-  // { path: 'schedule-viejo', component: ScheduleComponent, canActivate: [AuthGuard] },
+  // { path: 'schedule-mbsc-viejo', component: ScheduleComponent, canActivate: [AuthGuard] },
   { path: 'adminmain', component: AdminmainComponent, canActivate: [AdminGuard]},
 
   // Student app routes
@@ -83,6 +83,8 @@ const routes: Routes = [
       { path: 'calendar', component: CalendarComponent, outlet: 'content' },
       { path: 'today', component: DailyScheduleComponent, outlet: 'content' },
       { path: 'this-week', component: WeeklyScheduleComponent, outlet: 'content' },
+
+      { path: 'schedule', component: ScheduleComponent, outlet: 'content' },
 
       { path: 'course', component: CourseDetailComponent, outlet: 'content' },
       { path: 'dashboard', component: DashboardComponent, outlet: 'content'},

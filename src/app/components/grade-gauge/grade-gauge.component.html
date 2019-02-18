@@ -1,13 +1,13 @@
 <div class="row">
   <div class="col-sm-4 offset-2" >
     <h5 class="center">Curent Grade</h5>
-    <h1 class="center" style="color: green;">{{progress}} %</h1>
+    <h1 class="center" style="color: green;">{{grades.general}} %</h1>
     <!--<div id="gauge1" class="chart"></div>-->
   </div>
   <div class="col-sm-6">
     <h5 center>Acummulated Grade</h5>
-    <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
-    <p>40 %</p>
+    <mat-progress-bar mode="determinate" value="{{grades.cummulative}}"></mat-progress-bar>
+    <p>{{grades.cummulative}} %</p>
     <!--<div id="gauge2" class="chart"></div>-->
   </div>
 </div>
