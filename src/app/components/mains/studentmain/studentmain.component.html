@@ -11,7 +11,7 @@
         <li class="nav-label">Home</li>
         <li class="nav-item"> <a class="has-arrow  " href="#home" data-toggle="collapse" aria-expanded="false"><i class="fa fa-columns"></i><span class="hide-menu">Resources</span></a>
           <ul id="home" aria-expanded="false" class="collapse">
-            <li><a [routerLink]="[ '/studentmain', { outlets: { content: 'dashboard' } }]">Dashboard</a></li>
+            <li><a [routerLink]="[ '/studentmain', { outlets: { content: 'dashboard' } }]" [queryParams]="{ courses: courses | json }">Dashboard</a></li>
             <li><a [routerLink]="[ '/studentmain', { outlets: { content: 'mentors' } }]">Mentoria</a></li>
             <!--<li><a [routerLink]="[ '/studentmain', { outlets: { content: 'goal-form'} }]">Goals</a></li>-->
           </ul>

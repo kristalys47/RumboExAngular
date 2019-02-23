@@ -1,0 +1,46 @@
+<div class="unix-login" *ngIf="courses">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-lg-4">
+                <div class="registration-content card">
+                    <div class="registration-form">
+                      <h2 align="center">Course Selection</h2>
+                      <p>Enter the codification (eg. MATE3001) and section (eg. 010) of each course.</p>
+                      <div class="table">
+                        <app-erroralert></app-erroralert>
+                        <!-- Courses list -->
+                        <tr *ngFor="let c of courses">
+                          <td>
+                            {{c.codification}}
+                          </td>
+                          <td>-</td>
+                          <td>
+                            {{c.section_num}}
+                          </td>
+                          <td>
+                            <button mat-icon-button (click)="remove(c)">
+                              <mat-icon>clear</mat-icon>
+                            </button>
+                          </td>
+                        </tr>
+                        <!-- Course input -->
+                        <tr>
+                          <td>
+                            <input matInput type="text" value="newCourse.codification" placeholder="codification" [(ngModel)]="newCourse.codification">
+                          </td>
+                          <td>-</td>
+                          <td>
+                            <input matInput type="text" value="newCourse.section" placeholder="section" [(ngModel)]="newCourse.section_num">
+                          </td>
+                          <td>
+                            <button mat-stroked-button color="primary" (click)="addCourse()">Add</button>
+                          </td>
+                        </tr>
+                      </div>
+                      <button (click)="register()" class="btn btn-primary btn-flat m-b-30 m-t-30">Finish</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

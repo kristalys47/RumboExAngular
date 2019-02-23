@@ -6,6 +6,7 @@ export interface Student extends User {
   program_name: string,
   program_num: number,
   student_num: number,
+  gpa: number
 }
 
 export class Student extends User {
@@ -14,7 +15,8 @@ export class Student extends User {
     faculty_num?: number,
     program_name?: string,
     program_num?: number,
-    student_num?: number)
+    student_num?: number,
+    gpa?: number)
     {
       super();
     }

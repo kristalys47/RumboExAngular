@@ -14,9 +14,9 @@ import {StudentmainComponent} from './components/mains/studentmain/studentmain.c
 import {RegisterComponent} from './components/registers/register/register.component';
 import {AdminmainComponent} from './components/mains/adminmain/adminmain.component';
 import {LogoutComponent} from './components/logout/logout.component';
-import {AuthGuard} from './guards/auth.guard';
+import {AuthGuard} from './guards/auth/auth.guard';
 import {StatusComponent} from './components/status/status.component';
-import {AdminGuard} from './guards/admin.guard';
+import {AdminGuard} from './guards/admin/admin.guard';
 
 import {WeeklyScheduleComponent} from './components/schedule-mbsc/weekly-schedule/weekly-schedule.component';
 import {DailyScheduleComponent} from './components/schedule-mbsc/daily-schedule/daily-schedule.component';
@@ -49,6 +49,7 @@ import {NotificationsComponent} from "./components/sharedComponents/notification
 import {CounselorRegisterComponent} from "./components/registers/counselor-register/counselor-register.component";
 import {PsychologistRegisterComponent} from "./components/registers/psychologist-register/psychologist-register.component";
 import {AnfitrionRegisterComponent} from "./components/registers/anfitrion-register/anfitrion-register.component";
+import {CourseSelectionComponent} from "./components/registers/course-selection/course-selection.component";
 
 
 const routes: Routes = [
@@ -67,6 +68,7 @@ const routes: Routes = [
   { path: 'logout', component: LogoutComponent, canActivate: [AuthGuard] },
 
   { path: 'register', component: RegisterComponent },
+  { path: 'course-selection', component: CourseSelectionComponent },
   { path: 'counselorRegister', component: CounselorRegisterComponent },
   { path: 'psychologistRegister', component: PsychologistRegisterComponent },
   { path: 'anfitrionRegister', component: AnfitrionRegisterComponent },

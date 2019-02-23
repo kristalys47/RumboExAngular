@@ -83,7 +83,8 @@ export const students: Student[] = [
     program_name: 'Psicologia',
     student_num: 8020000000,
     role_id: 1,
-    role_name: 'student'
+    role_name: 'student',
+    gpa: 3.41
   },
   {
     user_id: 803,
@@ -98,7 +99,8 @@ export const students: Student[] = [
     program_name: 'Ingenieria Electrica',
     student_num: 8021111111,
     role_id: 1,
-    role_name: 'student'
+    role_name: 'student',
+    gpa: 3.20
   }
 ];
 

@@ -16,7 +16,7 @@ import {Course} from "../../models/course";
 export class CourseService {
 
   private BASE_URL: string = FLASK_URL + '/course';
-  private httpheaders: HttpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
+  private httpheaders: HttpHeaders = new HttpHeaders({'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'});
 
   constructor(private http: HttpClient) { }
 
@@ -45,6 +45,12 @@ export class CourseService {
   get_grades_by_course_id(course_id): Observable<any> {
     let url: string = `${this.BASE_URL}/${course_id}/grades`;
     return this.http.get(url);
+  }
+
+  insert_course(user_id, course): Promise<any> {
+    let url: string = `${this.BASE_URL}/${user_id}`;
+    // let url: string = `${FLASK_URL}/register/${user_id}`;
+    return this.http.post(url, course, {headers: this.httpheaders}).toPromise();
   }
 
 }

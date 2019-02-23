@@ -9,6 +9,9 @@ import {FLASK_URL} from "../services";
 
 @Injectable({providedIn: 'root'})
 export class StudentService {
+
+  // public student: Student;
+
   private BASE_URL: string = FLASK_URL;
   private httpheaders: HttpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
 

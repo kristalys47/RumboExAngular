@@ -4,6 +4,7 @@ import {StudentService} from "../../../services/student/student.service";
 import {CourseService} from "../../../services/course/course.service";
 import {Course, Grade, Status} from "../../../models/course";
 import {Student} from "../../../models/student";
+import {StudentProviderService} from "../../../providers/student-provider/student-provider.service";
 
 @Component({
   selector: 'app-studentmain',
@@ -18,13 +19,17 @@ export class StudentmainComponent implements OnInit {
   courses: Array<Course>;
   tasks: any;
 
-  constructor(private data: StudentProvider, private studentService: StudentService, private courseService: CourseService) {
+  constructor(private studentProvider: StudentProviderService, private data: StudentProvider, private studentService: StudentService, private courseService: CourseService) {
 
   }
 
   ngOnInit() {
 
     console.log(this.curr_user_id);
+
+    // this.studentProvider.loadStudent(this.curr_user_id).then(() => {
+    //   this.student = this.studentProvider.student;
+    // }).catch((err) => {console.log(err);});
 
     // this.student = this.data.student;
 
@@ -42,6 +47,7 @@ export class StudentmainComponent implements OnInit {
     // this.data.loadStudent(this.curr_user_id);
     // this.student = this.data.student;
     this.studentService.getStudent(this.curr_user_id).subscribe(data => {
+      // this.studentService.student = data;
       this.student = data;
     });
     console.log(this.student);
@@ -77,7 +83,10 @@ export class StudentmainComponent implements OnInit {
   }
 
   getCourseStatus(avg: number) {
-    if(avg >= 90) {
+    if(avg == null) {
+      return Status.Undefined;
+    }
+    else if(avg >= 90) {
       return Status.Excellent;
     }
     else if(avg >=80) {

@@ -18,7 +18,7 @@ import { StatusComponent } from './components/status/status.component';
 import { StudentmainComponent } from './components/mains/studentmain/studentmain.component';
 import { ScheduleComponent } from './components/schedule/schedule.component';
 import { LogoutComponent } from './components/logout/logout.component';
-import { AuthGuard} from './guards/auth.guard';
+import { AuthGuard} from './guards/auth/auth.guard';
 
 import { TaskService } from './services/task/task.service';
 import { AdminloginComponent } from './components/logins/adminlogin/adminlogin.component';
@@ -27,8 +27,8 @@ import { CounselorloginComponent } from './components/logins/counselorlogin/coun
 import { MentorloginComponent } from './components/logins/mentorlogin/mentorlogin.component';
 import { ProfessorloginComponent } from './components/logins/professorlogin/professorlogin.component';
 import { RegisterComponent } from './components/registers/register/register.component';
-import {AdminGuard} from './guards/admin.guard';
-import { StudentGuard } from './guards/student.guard';
+import {AdminGuard} from './guards/admin/admin.guard';
+import { StudentGuard } from './guards/student/student.guard';
 import { AdvisorloginComponent } from './components/logins/advisorlogin/advisorlogin.component';
 import { CounselormainComponent } from './components/mains/counselormain/counselormain.component';
 import { AdminmainComponent } from './components/mains/adminmain/adminmain.component';
@@ -94,6 +94,7 @@ import { CounselorRegisterComponent } from './components/registers/counselor-reg
 import { PsychologistRegisterComponent } from './components/registers/psychologist-register/psychologist-register.component';
 import { AnfitrionRegisterComponent } from './components/registers/anfitrion-register/anfitrion-register.component';
 import { FinishedTaskPipe } from './pipes/finishedTask/finished-task.pipe';
+import { CourseSelectionComponent } from './components/registers/course-selection/course-selection.component';
 
 @NgModule({
   declarations: [
@@ -155,6 +156,7 @@ import { FinishedTaskPipe } from './pipes/finishedTask/finished-task.pipe';
     PsychologistRegisterComponent,
     AnfitrionRegisterComponent,
     FinishedTaskPipe,
+    CourseSelectionComponent,
     // NotificationsComponent
   ],
   imports: [

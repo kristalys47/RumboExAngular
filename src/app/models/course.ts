@@ -42,5 +42,6 @@ export enum Status {
   Excellent=4,
   Passing=3,
   Surviving=2,
-  NotPassing=1
+  NotPassing=1,
+  Undefined=0
 }

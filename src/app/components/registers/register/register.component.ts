@@ -32,8 +32,8 @@ export class RegisterComponent implements OnInit {
     this.auth.register(this.user)
     .then((user) => {
       console.log(user);
-      // sessionStorage.setItem('userid', user.result.userid);
-      this.router.navigate(['/studentlogin']);
+      sessionStorage.setItem('userid', user.result);
+      this.router.navigate(['/course-selection']);
     })
     .catch((err) => {
       console.log(err);

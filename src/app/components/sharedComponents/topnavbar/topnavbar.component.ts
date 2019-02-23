@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {StudentProvider} from "../../../providers/student-provider";
 import {StudentService} from "../../../services/student/student.service";
+import {StudentProviderService} from "../../../providers/student-provider/student-provider.service";
 
 @Component({
   selector: 'app-topnavbar',
@@ -15,7 +16,7 @@ export class TopnavbarComponent implements OnInit {
   // user = sessionStorage.getItem('token');
   user;
 
-  constructor(private data: StudentProvider, private studentService: StudentService) { }
+  constructor(private data: StudentProviderService, private studentService: StudentService) { }
 
   ngOnInit() {
 
@@ -31,7 +32,7 @@ export class TopnavbarComponent implements OnInit {
     //   console.log(err);
     // });
 
-    // this.user = this.data.student;
+    // this.user = this.studentService.student;
   }
 
 }

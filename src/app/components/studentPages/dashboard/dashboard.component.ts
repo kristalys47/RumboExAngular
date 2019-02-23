@@ -4,6 +4,7 @@ import {GooglechartService} from '../../../services/googlechart.service';
 // import {TaskCountService} from '../../services/task-count.service';
 import {config} from 'rxjs';
 import {nextMonthDisabled} from '@ng-bootstrap/ng-bootstrap/datepicker/datepicker-tools';
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-dashboard',
@@ -23,7 +24,8 @@ export class DashboardComponent implements OnInit {
   appointmentTask = [];
   studyTask = [];
 
-  constructor(private courseService: CourseService,
+  constructor(private route: ActivatedRoute,
+              private courseService: CourseService,
               private chartService: GooglechartService  ){
               // private taskCountService: TaskCountService) {
   }
@@ -46,17 +48,20 @@ export class DashboardComponent implements OnInit {
 //       });
 //   }
   ngOnInit() {
-    // this.getChartValues();
-    this.courseService.get_courses(this.curr_student_id).subscribe(data => {
-      data.map(course => {
-        this.courses.push({
-          'name': course.name,
-          'grade': this.getGrade(course.codification),
-          'status': this.getStatus(this.getGrade(course.codification))
-        });
-      });
-      console.log('course:', this.courses);
+
+    this.route.queryParams.subscribe(params => {
+      this.courses = JSON.parse(params['courses']);
     });
+
+    // this.getChartValues();
+    // this.courseService.get_courses(this.curr_student_id).subscribe(data => {
+    //   data.map(course => {
+    //     this.courses.push({
+    //
+    //     });
+    //   });
+    //   console.log('course:', this.courses);
+    // });
     let data1 = [
       ['Task', 'Hours per Day'],
       // fix this
@@ -76,38 +81,38 @@ export class DashboardComponent implements OnInit {
 
   }
   // get the current grade of a course
-  getGrade(course_id) {
-    // this code is so ugly... i will clean it later
-    let grades: Array<any>;
-    this.courseService.get_grades_by_course_id(course_id).subscribe(data => {
-      console.log(data);
-      grades = data;
-    });
-    let final_grade = 0;
-    if(grades != null) {
-      console.log(grades, grades.length);
-      for (let i = 0; i < grades.length; i++) {
-        let g = grades[i];
-        final_grade += g['grade'] / g['total'] * g['weight'];
-      }
-      console.log(course_id, grades.length, final_grade);
-    }
-    return final_grade;
-  }
+  // getGrade(course_id) {
+  //   // this code is so ugly... i will clean it later
+  //   let grades: Array<any>;
+  //   this.courseService.get_grades_by_course_id(course_id).subscribe(data => {
+  //     console.log(data);
+  //     grades = data;
+  //   });
+  //   let final_grade = 0;
+  //   if(grades != null) {
+  //     console.log(grades, grades.length);
+  //     for (let i = 0; i < grades.length; i++) {
+  //       let g = grades[i];
+  //       final_grade += g['grade'] / g['total'] * g['weight'];
+  //     }
+  //     console.log(course_id, grades.length, final_grade);
+  //   }
+  //   return final_grade;
+  // }
 
   // get the status of a course by grade
   // the grade range should be determined later by counselors (we need to ask this)
   // this code will be fixed later on
-  getStatus(grade) {
-    if (grade > 85) {
-      return 'PASSING';
-    }
-    else if (grade > 70) {
-      return 'SURVIVING';
-    }
-    else {
-      return 'NOT PASSING';
-    }
-  }
+  // getStatus(grade) {
+  //   if (grade > 85) {
+  //     return 'PASSING';
+  //   }
+  //   else if (grade > 70) {
+  //     return 'SURVIVING';
+  //   }
+  //   else {
+  //     return 'NOT PASSING';
+  //   }
+  // }
 
 }

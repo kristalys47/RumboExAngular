@@ -14,7 +14,7 @@
       <th scope="row">
         <!-- Students can select a course to view its details -->
         <div *ngIf="!courseSelectDisabled; else disabled">
-          <a [routerLink]="[ '/studentmain', { outlets: { content: 'course' } }]" [queryParams]="{ course: c.id }" >{{c.name}}</a>
+          <a [routerLink]="[ '/studentmain', { outlets: { content: 'course' } }]" [queryParams]="{ course: c.course_id }" >{{c.name}}</a>
         </div>
         <!-- Mentors are not allowed to click on courses -->
         <ng-template #disabled>
@@ -24,9 +24,12 @@
       <!-- Course grade -->
       <td>{{c.general_average}}</td>
       <!-- Course status -->
-      <td><span *ngIf="c.status==3" class="badge badge-success">PASSING</span>
+      <td>
+        <span *ngIf="c.status==4" class="badge badge-success">EXCELLENT</span>
+        <span *ngIf="c.status==3" class="badge badge-success">PASSING</span>
         <span *ngIf="c.status==1" class="badge badge-danger">NOT PASSING</span>
         <span *ngIf="c.status==2" class="badge badge-warning">SURVIVING</span>
+        <span *ngIf="c.status==0" class="badge-info">N/A</span>
       </td>
     </tr>
     </tbody>
