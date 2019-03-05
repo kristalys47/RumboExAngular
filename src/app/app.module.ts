@@ -42,7 +42,7 @@ import { CalendarComponent } from './components/schedule-mbsc/calendar/calendar.
 import { DailyScheduleComponent } from './components/schedule-mbsc/daily-schedule/daily-schedule.component';
 import { WeeklyScheduleComponent } from './components/schedule-mbsc/weekly-schedule/weekly-schedule.component';
 
-import { NewCourseTaskForm } from './components/studentPages/course-detail/course-detail.component';
+// import { NewCourseTaskForm } from './components/studentPages/course-detail/course-detail.component';
 
 import { WidgetComponent } from './components/widget/widget.component';
 import { CourseDetailComponent } from './components/studentPages/course-detail/course-detail.component';
@@ -124,7 +124,7 @@ import { CourseSelectionComponent } from './components/registers/course-selectio
     WeeklyScheduleComponent,
     WidgetComponent,
     CourseDetailComponent,
-    NewCourseTaskForm,
+    // NewCourseTaskForm,
     MsgInputForm,
     LoginmenuComponent,
     PopoverComponent,

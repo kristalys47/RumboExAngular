@@ -1,5 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
-// import {NewTaskForm} from "../daily-schedule-mbsc-viejo/daily-schedule-mbsc-viejo.component";
+import {Component, EventEmitter, Inject, Input, OnInit, Output} from '@angular/core';
 import {TaskService} from "../../../services/task/task.service";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material";
 import {MbscDatetimeOptions} from "@mobiscroll/angular";
@@ -10,14 +9,21 @@ import {Task} from "../../../models/task";
 @Component({
   selector: 'app-task-form',
   templateUrl: './task-form.component.html',
-  // templateUrl: './../modal/modal.component.html',
   styleUrls: ['./task-form.component.css']
 })
 export class TaskFormComponent implements OnInit {
 
+  // If modal is opened from course page, this will be the course id
+  // Else this will be null
+  @Input() course: number;
+
+  @Output() taskEvent = new EventEmitter<Task>();
+
   current_user_id = sessionStorage.getItem('userid');
 
   tasks: Task[];
+
+  newTask: Task = new Task();
 
   constructor(private dialog: MatDialog,
               private taskService: TaskService) { }
@@ -29,42 +35,45 @@ export class TaskFormComponent implements OnInit {
     console.log('opened');
     const dialogRef = this.dialog.open(FormModal, {
       width: '500px',
-      data: new Task()
+      data: { task: this.newTask, course: this.course }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('closed');
       console.log(result);
+      this.newTask = new Task(); // cleaning data
       this.createTask(result);
     });
   }
 
   createTask(data) {
     console.log('data:', data);
-    var title = data['title'];
-    var description = data['description'];
-    var start = data['start'];
-    var end = data['end'];
-    // var task = new Task(title, description, start, end, false);
-    // console.log(task);
-    // this.events.push({
-    //   d: start,
-    //   text: title,
-    //   color: '#00aabb',
-    //   description: description
-    // });
+
+    // If modal opened from course page, set type to 'study' and course id to input course id
+    if(this.course) {
+      data.type = 0;
+      data.course = this.course;
+    }
+
+    // check the type of task
+    // 0: study
+    // 1: personal
     if(data.type == 1) {
       this.taskService.insert_personal_task(this.current_user_id, data)
-        .then((task) => {
-          console.log(task);
+        .then(res => {
+          console.log(res);
+          this.taskEvent.emit(data);
           // lo que se hace si registro el task, por ej un snack o modal
         })
-        .catch((err) => {
-          console.log(err);
-        });
+        .catch(err => {console.log(err);});
     }
     else if (data.type == 0) {
-      this.taskService.insert_study_task(this.current_user_id, data.course, data);
+      this.taskService.insert_study_task(this.current_user_id, data.course, data)
+        .then(res => {
+          console.log(res);
+          this.taskEvent.emit(data);
+        })
+        .catch(err => {console.log(err);});
     }
   }
 
@@ -77,9 +86,19 @@ export class TaskFormComponent implements OnInit {
 })
 export class FormModal {
 
-  constructor(public dialogRef: MatDialogRef<FormModal>, private error: ErroralertService,
+  task: Task;
+
+  courses;
+
+  start_time: Date;
+  end_time: Date;
+
+  constructor(public dialogRef: MatDialogRef<FormModal>,
+              private error: ErroralertService,
               private courseService: CourseService,
               @Inject(MAT_DIALOG_DATA) public data) {
+
+    this.task = data.task;
 
     this.courseService.get_courses(sessionStorage.getItem('userid')).subscribe(data => {
       this.courses = data;
@@ -87,40 +106,49 @@ export class FormModal {
       });
     }
 
-
-  courses;
-
-
-  desktopSettings: MbscDatetimeOptions = {
-    touchUi: false
+  timeSettings:MbscDatetimeOptions = {
+    touchUi: false,
+    timeFormat: 'hh:ii A'
   };
 
   insertTask() {
-    console.log(this.data);
-    if(!this.data) {
+    console.log(this.task);
+    if(!this.task) {
       this.error.displaymessage('Enter valid data');
     }
-    else if(this.data.type == null) {
+    else if(!this.data.course && this.task.type == null) {
       this.error.displaymessage('The task needs a type');
     }
-    else if(this.data.type == 0 && this.data.course == null) {
+    else if(!this.data.course && this.task.type == 0 && this.task.course == null) {
       this.error.displaymessage('If it is a study task, it needs to belong to a course');
     }
-    else if(this.data.title == null) {
+    else if(this.task.title == null) {
       this.error.displaymessage('The task needs a name');
     }
-    else if(this.data.start == null) {
+    else if(this.task.start == null || this.start_time == null) {
       this.error.displaymessage('The task needs a starting time');
     }
-    else if(this.data.end == null) {
+    else if(this.task.end == null || this.end_time == null) {
       this.error.displaymessage('The task needs an ending time');
     }
     else {
+      // concatenating starting date and time
+      let start: Date = new Date(this.task.start);
+      start = new Date(start.getFullYear(), start.getMonth(), start.getDate(), this.start_time.getHours(), this.start_time.getMinutes());
+      this.task.start = start.toString();
+
+      // concatenating ending date and time
+      let end: Date = new Date(this.task.end);
+      end = new Date(end.getFullYear(), end.getMonth(), end.getDate(), this.end_time.getHours(), this.end_time.getMinutes());
+      this.task.end = end.toString();
+
       this.error.hidemessage();
-      if(this.data.description == null) {
-        this.data.description = null;
+      if(this.task.description == null) {
+        this.task.description = null;
       }
-      this.dialogRef.close(this.data);
+      
+      // Close dialog and return task
+      this.dialogRef.close(this.task);
     }
   }
 

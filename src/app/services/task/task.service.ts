@@ -15,7 +15,7 @@ import {FLASK_URL} from "../services";
 @Injectable()
 export class TaskService {
 
-  private BASE_URL: string = FLASK_URL + 'task';
+  private BASE_URL: string = FLASK_URL + '/task';
   private httpheaders: HttpHeaders = new HttpHeaders({'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'});
 
   constructor(private http: HttpClient) { }
@@ -24,7 +24,7 @@ export class TaskService {
 
   @Cacheable()
   get_tasks(user_id): Observable<Task[]> {
-    let url: string = `${this.BASE_URL}/tasks/${user_id}`;
+    let url: string = `${this.BASE_URL}s/${user_id}`;
     return this.http.get<Task[]>(url);
   }
 

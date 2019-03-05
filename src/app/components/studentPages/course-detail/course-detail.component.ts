@@ -146,17 +146,17 @@ export class CourseDetailComponent implements OnInit {
     console.log('progress:', this.progress);
   }
 
-  openForm() {
-    console.log('opened');
-    const dialogRef = this.dialog.open(NewCourseTaskForm,{
-      data: {course: this.course.name}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
-      this.createTask(result);
-    });
-  }
+  // openForm() {
+  //   console.log('opened');
+  //   const dialogRef = this.dialog.open(NewCourseTaskForm,{
+  //     data: {course: this.course.name}
+  //   });
+  //
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     console.log(result);
+  //     this.createTask(result);
+  //   });
+  // }
 
   createTask(data) {
     console.log('data:', data);
@@ -183,14 +183,3 @@ export class CourseDetailComponent implements OnInit {
 
 }
 
-@Component({
-  selector: 'new-course-task-form',
-  templateUrl: 'new-course-task-form.component.html'
-})
-export class NewCourseTaskForm {
-
-  constructor(public dialogRef: MatDialogRef<NewCourseTaskForm>,
-              private taskService: TaskService,
-              @Inject(MAT_DIALOG_DATA) public data){}
-
-}

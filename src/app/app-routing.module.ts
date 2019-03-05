@@ -22,7 +22,7 @@ import {WeeklyScheduleComponent} from './components/schedule-mbsc/weekly-schedul
 import {DailyScheduleComponent} from './components/schedule-mbsc/daily-schedule/daily-schedule.component';
 import {CalendarComponent} from './components/schedule-mbsc/calendar/calendar.component';
 
-import {CourseDetailComponent, NewCourseTaskForm} from './components/studentPages/course-detail/course-detail.component';
+// import {CourseDetailComponent, NewCourseTaskForm} from './components/studentPages/course-detail/course-detail.component';
 import {DashboardComponent} from './components/studentPages/dashboard/dashboard.component';
 import {LoginmenuComponent} from './components/loginmenu/loginmenu.component';
 import {ProfileComponent} from "./components/profile/profile.component";
@@ -50,6 +50,7 @@ import {CounselorRegisterComponent} from "./components/registers/counselor-regis
 import {PsychologistRegisterComponent} from "./components/registers/psychologist-register/psychologist-register.component";
 import {AnfitrionRegisterComponent} from "./components/registers/anfitrion-register/anfitrion-register.component";
 import {CourseSelectionComponent} from "./components/registers/course-selection/course-selection.component";
+import {CourseDetailComponent} from "./components/studentPages/course-detail/course-detail.component";
 
 
 const routes: Routes = [

@@ -3,12 +3,13 @@ import {ErroralertService} from "../../../services/erroralert.service";
 import {CourseService} from "../../../services/course/course.service";
 import {Router} from "@angular/router";
 import {AuthService} from "../../../services/auth.service";
-import {User} from "../../../models/user";
+
 
 interface Course {
   codification: string,
   section_num: string
 }
+
 
 @Component({
   selector: 'app-course-selection',

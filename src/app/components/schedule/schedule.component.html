@@ -10,4 +10,4 @@
   <mbsc-eventcalendar [data]="events" [options]="monthSettings"></mbsc-eventcalendar>
 </div>
 
-<!--<app-task-form></app-task-form>-->
+<app-task-form (taskEvent)="addTask($event)"></app-task-form>

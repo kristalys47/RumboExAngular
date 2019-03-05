@@ -122,7 +122,8 @@
               <div cdkDrag><mat-list-item><mat-checkbox (change)="checkTask(t)">{{t.title}}</mat-checkbox></mat-list-item></div>
             </mat-list>
           <!--</div>-->
-          <button mat-mini-fab (click)="openForm()"><mat-icon>add</mat-icon></button>
+          <!--<button mat-mini-fab (click)="openForm()"><mat-icon>add</mat-icon></button>-->
+          <app-task-form [course]="course.course_id"></app-task-form>
         </div>
 
         <mat-divider [vertical]="true"></mat-divider>

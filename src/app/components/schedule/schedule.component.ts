@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {StudentProvider} from "../../providers/student-provider";
 import {TaskService} from "../../services/task/task.service";
 import {MbscEventcalendarOptions} from "@mobiscroll/angular";
 import {ActivatedRoute} from "@angular/router";
+import {TaskFormComponent} from "../studentPages/task-form/task-form.component";
 
 
 let now = new Date();
@@ -25,7 +26,6 @@ export class ScheduleComponent implements OnInit {
               private data: StudentProvider) { }
 
   ngOnInit() {
-    console.log('se jodio');
     this.route.queryParams.subscribe(params => {
       this.view = JSON.parse(params['view']);
     });
@@ -36,6 +36,11 @@ export class ScheduleComponent implements OnInit {
       });
     });
     console.log(this.events);
+  }
+
+  addTask($event) {
+    console.log($event);
+    this.mapTasksToCalendar($event);
   }
 
   mapTasksToCalendar(task) {
