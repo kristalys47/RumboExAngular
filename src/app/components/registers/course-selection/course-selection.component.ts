@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {ErroralertService} from "../../../services/erroralert.service";
 import {CourseService} from "../../../services/course/course.service";
 import {Router} from "@angular/router";
+import {AuthService} from "../../../services/auth.service";
+import {User} from "../../../models/user";
 
 interface Course {
   codification: string,
@@ -18,7 +20,7 @@ export class CourseSelectionComponent implements OnInit {
   courses: Course[] = new Array<Course>();
   newCourse: Course = {codification: '', section_num: ''};
 
-  constructor(private courseService: CourseService, private error: ErroralertService, private router: Router) { }
+  constructor(private courseService: CourseService, private auth: AuthService, private error: ErroralertService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -35,8 +37,14 @@ export class CourseSelectionComponent implements OnInit {
           this.error.displaymessage('An error occurred. Refresh page and try again.');
         });
     });
+    // if success, all post methods were done without errors
     if(success) {
-      this.router.navigate(['/studentmain', {outlets: {content: 'dashboard'}}]);
+      this.router.navigate(['/studentlogin'])
+        .then(result => {
+          console.log(result);
+          alert('Registration successful! You can now login.');
+        })
+        .catch(err => {console.log(err);});
     }
   }
 

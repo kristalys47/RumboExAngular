@@ -81,7 +81,7 @@ export const students: Student[] = [
     faculty_num: 10,
     program_num: 10,
     program_name: 'Psicologia',
-    student_num: 8020000000,
+    student_num: '8020000000',
     role_id: 1,
     role_name: 'student',
     gpa: 3.41
@@ -97,7 +97,7 @@ export const students: Student[] = [
     faculty_num: 12,
     program_num: 12,
     program_name: 'Ingenieria Electrica',
-    student_num: 8021111111,
+    student_num: '8021111111',
     role_id: 1,
     role_name: 'student',
     gpa: 3.20

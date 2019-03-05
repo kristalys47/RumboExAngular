@@ -20,17 +20,20 @@ export class RegisterComponent implements OnInit {
   constructor(private auth: AuthService, private router: Router, private error: ErroralertService, private studentService: StudentService) { }
 
   ngOnInit() {
+    this.error.hidemessage();
     this.studentService.getFaculties().subscribe(data => {
       this.faculty = data.Faculties;
     })
   }
 
   registration(): void {
+    // if no input username, set username same to email
     if(!this.user.username) {
       this.user.username = this.user.email;
     }
     this.auth.register(this.user)
     .then((user) => {
+      this.auth.studentlogin(this.user);
       console.log(user);
       sessionStorage.setItem('userid', user.result);
       this.router.navigate(['/course-selection']);
@@ -68,6 +71,12 @@ export class RegisterComponent implements OnInit {
     }
     else if(!this.user.program_num) {
       this.error.displaymessage("Program required.");
+    }
+    else if(this.user.student_num && this.user.student_num.length != 9) {
+      this.error.displaymessage('Invalid student number length.');
+    }
+    else if(this.user.phone_num && this.user.phone_num.length != 10) {
+      this.error.displaymessage('Invalid phone number length.');
     }
     else {
       this.error.hidemessage();

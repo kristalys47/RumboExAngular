@@ -23,6 +23,12 @@ export class TaskService {
   task: Task;
 
   @Cacheable()
+  get_tasks(user_id): Observable<Task[]> {
+    let url: string = `${this.BASE_URL}/tasks/${user_id}`;
+    return this.http.get<Task[]>(url);
+  }
+
+  @Cacheable()
   get_personal_tasks(user_id): Observable<Task[]> {
     let url: string = `${this.BASE_URL}/personal/${user_id}`;
     return this.http.get<Task[]>(url);
@@ -47,7 +53,7 @@ export class TaskService {
     return this.http.get<Task[]>(url);
   }
 
-  insert_study_task(task: Task, user_id, course_id): Promise<any> {
+  insert_study_task(user_id, course_id, task: Task): Promise<any> {
     let url: string = `${this.BASE_URL}/study/${user_id}`;
     console.log(url);
     let new_task = {
@@ -55,26 +61,23 @@ export class TaskService {
       'task_description': task['description'],
       'start_time': task['start'],
       'end_time': task['end'],
-      'finished': false,
       'course_id': course_id
     };
     console.log(new_task);
-    console.log('me voa cagar en la madre del diablo');
     // this post is not working
     return this.http.post(url, new_task, {headers: this.httpheaders}).toPromise();
   }
 
   insert_personal_task(user_id, task: Task): Promise<any> {
-    console.log('aqui se jodio');
     let url: string = `${this.BASE_URL}/personal/${user_id}`;
     let new_task = {
       'task_name': task['title'],
       'task_description': task['description'],
       'start_time': task['start'],
       'end_time': task['end'],
-      'finished': false,
     };
     console.log(new_task);
+    console.log(url);
     return this.http.post(url, new_task, {headers: this.httpheaders}).toPromise();
   }
 

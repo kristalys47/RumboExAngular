@@ -25,15 +25,17 @@ export class ScheduleComponent implements OnInit {
               private data: StudentProvider) { }
 
   ngOnInit() {
+    console.log('se jodio');
     this.route.queryParams.subscribe(params => {
       this.view = JSON.parse(params['view']);
     });
 
-    this.taskService.get_all().subscribe(tasks => {
-      tasks.forEach(task => {
+    this.taskService.get_tasks(this.current_user_id).subscribe(data => {
+      data.forEach(task => {
         this.mapTasksToCalendar(task);
-      })
-    })
+      });
+    });
+    console.log(this.events);
   }
 
   mapTasksToCalendar(task) {

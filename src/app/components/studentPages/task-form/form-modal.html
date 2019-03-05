@@ -4,19 +4,22 @@
     <!-- Task type -->
     <li>
 
+      <app-erroralert></app-erroralert>
+
       <mat-radio-group [(ngModel)]="data.type">Type:&nbsp;
-        <mat-radio-button [value]="'study'">Study</mat-radio-button>&nbsp;
-        <mat-radio-button [value]="'personal'">Personal</mat-radio-button>&nbsp;
+        <mat-radio-button [value]="0">Study</mat-radio-button>&nbsp;
+        <mat-radio-button [value]="1">Personal</mat-radio-button>&nbsp;
       </mat-radio-group>
     </li>
 
     <!-- Course, only shown if it is a study task -->
-    <li *ngIf="data.type == 'study'">
+    <li *ngIf="data.type == 0">
       <!--Course:&nbsp;-->
       <mat-form-field class="form-field">
         <mat-select placeholder="Course" [(ngModel)]="data.course">
-          <!--<mat-option *ngFor="let course of courses" [value]="course.name">-->
-          <!--</mat-option>-->
+          <mat-option *ngFor="let course of courses" [value]="course.course_id">
+            {{course.name}}
+          </mat-option>
         </mat-select>
       </mat-form-field>
     </li>
@@ -88,5 +91,5 @@
 
 <!-- Create Task button -->
 <div mat-dialog-actions>
-  <button mat-button [mat-dialog-close]="data" (onclick)="insertTask()">Create Task</button>
+  <button mat-button (click)="insertTask()">Create Task</button>
 </div>
