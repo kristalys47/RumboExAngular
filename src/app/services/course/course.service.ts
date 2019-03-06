@@ -53,4 +53,9 @@ export class CourseService {
     return this.http.post(url, course, {headers: this.httpheaders}).toPromise();
   }
 
+  insert_grade(user_id, grade) : Promise<any> {
+    let url: string = `${FLASK_URL}/grade/${user_id}`;
+    return this.http.post(url, grade, {headers: this.httpheaders}).toPromise();
+  }
+
 }

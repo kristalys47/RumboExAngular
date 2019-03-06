@@ -48,6 +48,14 @@
               </mat-form-field></td>
               <td><mat-form-field><input matInput placeholder="Weight" [(ngModel)]="newGrade.weight"></mat-form-field></td>
               <td>
+                <mat-form-field>
+                  <div class="example-tel-input-container">
+                    <input class="example-tel-input-element" [(ngModel)]="newGrade.grade" size="3">
+                    <span class="example-tel-input-spacer">/</span>
+                    <input class="example-tel-input-element" [(ngModel)]="newGrade.total" size="3">
+                  </div>
+                </mat-form-field>
+              </td>
                 <!--<div [formGroup]="parts">-->
                   <!--<input class="area" formControlName="area" size="3">-->
                   <!--<span>&ndash;</span>-->
@@ -57,7 +65,16 @@
                 <!--</div>-->
 
 
-                <mat-form-field><input matInput placeholder="Grade" [(ngModel)]="newGrade.grade"></mat-form-field></td>
+                <!--<div class="row">-->
+                  <!--&lt;!&ndash;<tbody>&ndash;&gt;-->
+                  <!--&lt;!&ndash;<tr></tr>&ndash;&gt;-->
+                    <!--<div class="col-sm-1"><mat-form-field width="1px"><input matInput placeholder="" [(ngModel)]="newGrade.grade" width="100%"></mat-form-field></div>-->
+                    <!--<div class="col-sm-1">/</div>-->
+                    <!--<div class="col-sm-5"><mat-form-field><input matInput placeholder="" [(ngModel)]="newGrade.total"></mat-form-field></div>-->
+                  <!--&lt;!&ndash;</tr>&ndash;&gt;-->
+                  <!--&lt;!&ndash;</tbody>&ndash;&gt;-->
+                <!--</div>-->
+
 
             </tr>
 
@@ -123,7 +140,10 @@
             </mat-list>
           <!--</div>-->
           <!--<button mat-mini-fab (click)="openForm()"><mat-icon>add</mat-icon></button>-->
-          <app-task-form [course]="course.course_id"></app-task-form>
+
+
+          <!-- New Task Form button -->
+          <!--<app-task-form [course]="course.course_id"></app-task-form>-->
         </div>
 
         <mat-divider [vertical]="true"></mat-divider>

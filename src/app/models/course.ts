@@ -19,7 +19,8 @@ export interface Grade {
   date: string,
   grade: number,
   total: number,
-  weight: number
+  weight: number,
+  course_id?: number
 }
 
 export class Grade implements Grade {
@@ -28,7 +29,8 @@ export class Grade implements Grade {
     date?: string,
     grade?: number,
     total?:number,
-    weight?: number
+    weight?: number,
+    course_id?: number
   ) {}
 }
 

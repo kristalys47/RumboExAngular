@@ -49,9 +49,9 @@ export class CourseDetailComponent implements OnInit {
       .queryParams
       .subscribe(params => {
         this.course = JSON.parse(params['course']);
-        // this.course.general_average = this.calculateAverage(this.course.grades);
-        // this.course.status = this.getCourseStatus(this.course.general_average);
-        // this.course.cummulative_average = this.calculateCummulativeAverage(this.course.grades);
+        this.course.general_average = this.calculateAverage(this.course.grades);
+        this.course.status = this.getCourseStatus(this.course.general_average);
+        this.course.cummulative_average = this.calculateCummulativeAverage(this.course.grades);
         console.log(this.course);
       });
 
@@ -102,7 +102,10 @@ export class CourseDetailComponent implements OnInit {
   }
 
   getCourseStatus(avg: number) {
-    if(avg >= 90) {
+    if (avg == null) {
+      return Status.Undefined;
+    }
+    else if(avg >= 90) {
       return Status.Excellent;
     }
     else if(avg >=80) {
@@ -117,13 +120,19 @@ export class CourseDetailComponent implements OnInit {
   }
 
   addGrade() {
-    console.log(this.newGrade, this.grades);
-    // add grade to Grades array
-    this.grades.push(this.newGrade);
-    // set newGrade to null for next grade
-    this.newGrade = {name: null, date: null, weight: null, grade: null, total: null};
-    // update gpa
-    console.log(this.newGrade);
+    this.newGrade.course_id = this.course.course_id;
+    this.courseService.insert_grade(this.curr_student_id, this.newGrade).then(res => {
+      console.log(res);
+      // add grade to Grades array
+      this.course.grades.push(this.newGrade);
+      // set newGrade to null for next grade
+      this.newGrade = {name: null, date: null, weight: null, grade: null, total: null};
+      // update gpa
+      this.course.general_average = this.calculateAverage(this.course.grades);
+      this.course.status = this.getCourseStatus(this.course.general_average);
+      this.course.cummulative_average = this.calculateCummulativeAverage(this.course.grades);
+    })
+      .catch(err => {console.log(err);});
   }
 
   checkTask(task: Task) {

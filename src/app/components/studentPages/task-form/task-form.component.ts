@@ -13,10 +13,11 @@ import {Task} from "../../../models/task";
 })
 export class TaskFormComponent implements OnInit {
 
-  // If modal is opened from course page, this will be the course id
-  // Else this will be null
+  // If modal is opened from course page, input will be the course id
+  // Else input will be null
   @Input() course: number;
 
+  // When task is successfully inserted, task will be emitted to parent component
   @Output() taskEvent = new EventEmitter<Task>();
 
   current_user_id = sessionStorage.getItem('userid');
@@ -135,18 +136,19 @@ export class FormModal {
       // concatenating starting date and time
       let start: Date = new Date(this.task.start);
       start = new Date(start.getFullYear(), start.getMonth(), start.getDate(), this.start_time.getHours(), this.start_time.getMinutes());
-      this.task.start = start.toString();
+      console.log(this.task.start, start.toUTCString());
+      this.task.start = start.toUTCString();
 
       // concatenating ending date and time
       let end: Date = new Date(this.task.end);
       end = new Date(end.getFullYear(), end.getMonth(), end.getDate(), this.end_time.getHours(), this.end_time.getMinutes());
-      this.task.end = end.toString();
+      this.task.end = end.toUTCString();
 
       this.error.hidemessage();
       if(this.task.description == null) {
         this.task.description = null;
       }
-      
+
       // Close dialog and return task
       this.dialogRef.close(this.task);
     }

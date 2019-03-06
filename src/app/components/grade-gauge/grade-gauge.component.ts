@@ -17,6 +17,11 @@ export class GradeGaugeComponent implements OnInit {
 
   ngOnInit() {
     this.buildGauge();
+
+    if(this.grades.general == 'null') {
+      this.grades.general = 'N/A';
+    }
+
   }
 
   buildGauge() {
