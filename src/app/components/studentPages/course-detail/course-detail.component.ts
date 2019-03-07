@@ -102,25 +102,16 @@ export class CourseDetailComponent implements OnInit {
   }
 
   getCourseStatus(avg: number) {
-    if (avg == null) {
-      return Status.Undefined;
-    }
-    else if(avg >= 90) {
-      return Status.Excellent;
-    }
-    else if(avg >=80) {
-      return Status.Passing;
-    }
-    else if(avg >=75) {
-      return Status.Surviving;
-    }
-    else {
-      return Status.NotPassing;
-    }
+    if (avg == null) { return Status.Undefined; }
+    else if(avg >= 90) { return Status.Excellent; }
+    else if(avg >= 80) { return Status.Passing; }
+    else if(avg >= 75) { return Status.Surviving; }
+    else { return Status.NotPassing; }
   }
 
   addGrade() {
     this.newGrade.course_id = this.course.course_id;
+    console.log(this.newGrade);
     this.courseService.insert_grade(this.curr_student_id, this.newGrade).then(res => {
       console.log(res);
       // add grade to Grades array
@@ -128,6 +119,7 @@ export class CourseDetailComponent implements OnInit {
       // set newGrade to null for next grade
       this.newGrade = {name: null, date: null, weight: null, grade: null, total: null};
       // update gpa
+      // chequear por que esto no funciona
       this.course.general_average = this.calculateAverage(this.course.grades);
       this.course.status = this.getCourseStatus(this.course.general_average);
       this.course.cummulative_average = this.calculateCummulativeAverage(this.course.grades);

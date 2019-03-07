@@ -98,6 +98,7 @@ th, td {
   outline: none;
   font: inherit;
   text-align: center;
+  overflow: hidden;
 }
 
 .example-tel-input-spacer {

@@ -23,91 +23,85 @@
         <div class="table-responsive">
           <table class="table table-hover ">
             <thead>
-            <tr>
-              <th>Name</th>
-              <th>Date</th>
-              <th>Weight</th>
-              <th>Grade</th>
-            </tr>
+              <tr>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Weight</th>
+                <th>Grade</th>
+              </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let g of course.grades">
-              <th scope="row">{{g.name}}</th>
-              <td>Sep. 2</td>
-              <td>{{g.weight}} %</td>
-              <td>{{g.grade}} / {{g.total}}</td>
-            </tr>
+              <tr *ngFor="let g of course.grades">
+                <!-- Name -->
+                <th scope="row">{{g.name}}</th>
+                <!-- Date -->
+                <td>{{g.date | date}}</td>
+                <!-- Weight -->
+                <td>{{g.weight}} %</td>
+                <!-- Grade -->
+                <td>{{g.grade}} / {{g.total}}</td>
+              </tr>
 
-            <!-- New grade form -->
-            <tr>
-              <td scope="row"><mat-form-field><input matInput placeholder="New Grade Name" [(ngModel)]="newGrade.name"></mat-form-field></td>
-              <td><mat-form-field>
-                <input matInput disabled [matDatepicker]="picker" placeholder="Date" [(ngModel)]="newGrade.date">
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker disabled="false"></mat-datepicker>
-              </mat-form-field></td>
-              <td><mat-form-field><input matInput placeholder="Weight" [(ngModel)]="newGrade.weight"></mat-form-field></td>
-              <td>
-                <mat-form-field>
-                  <div class="example-tel-input-container">
-                    <input class="example-tel-input-element" [(ngModel)]="newGrade.grade" size="3">
-                    <span class="example-tel-input-spacer">/</span>
-                    <input class="example-tel-input-element" [(ngModel)]="newGrade.total" size="3">
-                  </div>
-                </mat-form-field>
-              </td>
-                <!--<div [formGroup]="parts">-->
-                  <!--<input class="area" formControlName="area" size="3">-->
-                  <!--<span>&ndash;</span>-->
-                  <!--<input class="exchange" formControlName="exchange" size="3">-->
-                  <!--<span>&ndash;</span>-->
-                  <!--<input class="subscriber" formControlName="subscriber" size="4">-->
-                <!--</div>-->
+              <!-- New grade form -->
+              <tr>
+                <!-- Name -->
+                <td scope="row">
+                  <mat-form-field>
+                    <input matInput placeholder="New Grade Name" [(ngModel)]="newGrade.name">
+                  </mat-form-field>
+                </td>
+                <!-- Date -->
+                <td>
+                  <mat-form-field>
+                    <input matInput disabled [matDatepicker]="picker" placeholder="Date" [(ngModel)]="newGrade.date">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker disabled="false"></mat-datepicker>
+                  </mat-form-field>
+                </td>
+                <!-- Weight -->
+                <td>
+                  <mat-form-field>
+                    <input matInput placeholder="Weight" [(ngModel)]="newGrade.weight">
+                    <span matSuffix>%</span>
+                  </mat-form-field>
+                </td>
+                <!-- Grade -->
+                <td>
+                  <mat-form-field>
+                    <div class="example-tel-input-container">
+                      <input matInput class="example-tel-input-element" [(ngModel)]="newGrade.grade" size="3">
+                      <span class="example-tel-input-spacer">/</span>
+                      <input matInput class="example-tel-input-element" [(ngModel)]="newGrade.total" size="3">
+                    </div>
+                  </mat-form-field>
+                </td>
+                  <!--<div [formGroup]="parts">-->
+                    <!--<input class="area" formControlName="area" size="3">-->
+                    <!--<span>&ndash;</span>-->
+                    <!--<input class="exchange" formControlName="exchange" size="3">-->
+                    <!--<span>&ndash;</span>-->
+                    <!--<input class="subscriber" formControlName="subscriber" size="4">-->
+                  <!--</div>-->
 
 
-                <!--<div class="row">-->
-                  <!--&lt;!&ndash;<tbody>&ndash;&gt;-->
-                  <!--&lt;!&ndash;<tr></tr>&ndash;&gt;-->
-                    <!--<div class="col-sm-1"><mat-form-field width="1px"><input matInput placeholder="" [(ngModel)]="newGrade.grade" width="100%"></mat-form-field></div>-->
-                    <!--<div class="col-sm-1">/</div>-->
-                    <!--<div class="col-sm-5"><mat-form-field><input matInput placeholder="" [(ngModel)]="newGrade.total"></mat-form-field></div>-->
-                  <!--&lt;!&ndash;</tr>&ndash;&gt;-->
-                  <!--&lt;!&ndash;</tbody>&ndash;&gt;-->
-                <!--</div>-->
+                  <!--<div class="row">-->
+                    <!--&lt;!&ndash;<tbody>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<tr></tr>&ndash;&gt;-->
+                      <!--<div class="col-sm-1"><mat-form-field width="1px"><input matInput placeholder="" [(ngModel)]="newGrade.grade" width="100%"></mat-form-field></div>-->
+                      <!--<div class="col-sm-1">/</div>-->
+                      <!--<div class="col-sm-5"><mat-form-field><input matInput placeholder="" [(ngModel)]="newGrade.total"></mat-form-field></div>-->
+                    <!--&lt;!&ndash;</tr>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</tbody>&ndash;&gt;-->
+                  <!--</div>-->
 
 
-            </tr>
+              </tr>
 
             <button mat-button (click)="addGrade()">Add</button>
 
             </tbody>
           </table>
         </div>
-
-        <!--<table mat-table class="mat-elevation-z8">-->
-          <!--<ng-container matColumnDef="name">-->
-            <!--<th mat-header-cell *matHeaderCellDef> Name </th>-->
-            <!--<td mat-cell *matCellDef="let element"> {{element.position}} </td>-->
-          <!--</ng-container>-->
-
-          <!--<ng-container matColumnDef="date">-->
-            <!--<th mat-header-cell *matHeaderCellDef> Date </th>-->
-            <!--<td mat-cell *matCellDef="let element"> {{element.name}} </td>-->
-          <!--</ng-container>-->
-
-          <!--<ng-container matColumnDef="weight">-->
-            <!--<th mat-header-cell *matHeaderCellDef> Weight </th>-->
-            <!--<td mat-cell *matCellDef="let element"> {{element.weight}} </td>-->
-          <!--</ng-container>-->
-
-          <!--<ng-container matColumnDef="grade">-->
-            <!--<th mat-header-cell *matHeaderCellDef> Grade </th>-->
-            <!--<td mat-cell *matCellDef="let element"> {{element.symbol}} </td>-->
-          <!--</ng-container>-->
-
-          <!--<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>-->
-          <!--<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>-->
-        <!--</table>-->
       </mat-card-content>
       <!--</mat-expansion-panel>-->
     </mat-card>

@@ -49,12 +49,12 @@ export class CourseService {
 
   insert_course(user_id, course): Promise<any> {
     let url: string = `${this.BASE_URL}/${user_id}`;
-    // let url: string = `${FLASK_URL}/register/${user_id}`;
     return this.http.post(url, course, {headers: this.httpheaders}).toPromise();
   }
 
   insert_grade(user_id, grade) : Promise<any> {
     let url: string = `${FLASK_URL}/grade/${user_id}`;
+    console.log(url, grade);
     return this.http.post(url, grade, {headers: this.httpheaders}).toPromise();
   }
 
