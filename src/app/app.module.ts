@@ -95,6 +95,7 @@ import { PsychologistRegisterComponent } from './components/registers/psychologi
 import { AnfitrionRegisterComponent } from './components/registers/anfitrion-register/anfitrion-register.component';
 import { FinishedTaskPipe } from './pipes/finishedTask/finished-task.pipe';
 import { CourseSelectionComponent } from './components/registers/course-selection/course-selection.component';
+import { AllChatsComponent } from './components/all-chats/all-chats.component';
 
 @NgModule({
   declarations: [
@@ -157,6 +158,7 @@ import { CourseSelectionComponent } from './components/registers/course-selectio
     AnfitrionRegisterComponent,
     FinishedTaskPipe,
     CourseSelectionComponent,
+    AllChatsComponent,
     // NotificationsComponent
   ],
   imports: [

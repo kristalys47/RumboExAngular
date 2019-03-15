@@ -1,32 +1,32 @@
-<mat-card>
-  <mat-card-title>{{chat.receipient}}Sergio</mat-card-title>
+<mat-card class="chat-container">
+  <mat-card-title class="chat-title">{{chat.contact.name}} {{chat.contact.lastname}}</mat-card-title>
   <mat-card-content>
-    <!--<mat-card *ngFor="let m of chat.messages">-->
+    <mat-card *ngFor="let m of chat.messages" class="message">
       <!--<mat-card-title *ngIf="m.sent_by==usr_id; else receipient" >You</mat-card-title>-->
-      <!--<mat-card-title #receipient>{{chat.receipient}}</mat-card-title>-->
-      <!--<p>{{m.text}}</p>-->
-      <!--<p>{{m.date | date}}</p>-->
-    <!--</mat-card>-->
+      <!--<mat-card-title #receipient>Not You</mat-card-title>-->
+      <p class="text">{{m.text}}</p>
+      <p class="timestamp">{{m.date | date: 'MMM d, hh:mm aa'}}</p>
+    </mat-card>
     <!-- this is hardcoded -->
-    <mat-card>
-      <mat-card-title >Sergio</mat-card-title>
-      <p>Te estas colgando</p>
-    </mat-card>
-     <mat-card>
-      <mat-card-title >You</mat-card-title>
-      <p>Tengo zika</p>
-    </mat-card>
-     <mat-card>
-      <mat-card-title >Sergio</mat-card-title>
-      <p>estudia desde el hospital</p>
-    </mat-card>
-     <mat-card>
-      <mat-card-title >Sergio</mat-card-title>
-      <p>o date de baja</p>
-    </mat-card>
-    <!-- -->
-    <mat-card>
-      <textarea></textarea>
-    </mat-card>
+    <!--<mat-card>-->
+      <!--<mat-card-title >Sergio</mat-card-title>-->
+      <!--<p>Te estas colgando</p>-->
+    <!--</mat-card>-->
+     <!--<mat-card>-->
+      <!--<mat-card-title >You</mat-card-title>-->
+      <!--<p>Tengo zika</p>-->
+    <!--</mat-card>-->
+     <!--<mat-card>-->
+      <!--<mat-card-title >Sergio</mat-card-title>-->
+      <!--<p>estudia desde el hospital</p>-->
+    <!--</mat-card>-->
+     <!--<mat-card>-->
+      <!--<mat-card-title >Sergio</mat-card-title>-->
+      <!--<p>o date de baja</p>-->
+    <!--</mat-card>-->
+    <!--&lt;!&ndash; &ndash;&gt;-->
+    <!--<mat-card>-->
+      <!--<textarea></textarea>-->
+    <!--</mat-card>-->
   </mat-card-content>
 </mat-card>

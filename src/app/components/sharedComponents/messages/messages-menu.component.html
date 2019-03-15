@@ -10,42 +10,42 @@
       </li>
       <li>
         <div class="message-center">
-          <!--<div  *ngFor="let m of messages">-->
-            <!--&lt;!&ndash; Message &ndash;&gt;-->
-            <!--<a href="#">-->
+          <div  *ngFor="let m of messages">
+            <!-- Message -->
+            <a [routerLink]="[ '/studentmain', { outlets: { content: 'chat' } } ]" [queryParams]="{ chat: m | json }">
+              <div class="user-img"> <img src="images/users/default-profile.png" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
+              <div class="mail-contnet">
+                <h5>{{m.contact.name}} {{m.contact.lastname}}</h5>
+                <span class="mail-desc">{{m.messages[0].text | slice:0:40}}</span>
+                <span class="time">{{m.messages[0].date | date}}</span>
+              </div>
+            </a>
+          </div>
+           <!--this is hardcoded -->
+          <!--<a [routerLink]="[ '/studentmain', { outlets: { content: 'chat' } }]">-->
               <!--<div class="user-img"> <img src="images/users/5.jpg" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>-->
               <!--<div class="mail-contnet">-->
-                <!--<h5>{{m.receipient}}</h5>-->
-                <!--<span class="mail-desc">{{m.messages[0].text | slice:0:40}}</span>-->
-                <!--<span class="time">{{m.messages[0].date | date}}</span>-->
+                <!--<h5>Sergio</h5>-->
+                <!--<span class="mail-desc">Te estas colgando</span>-->
+                <!--<span class="time"></span>-->
               <!--</div>-->
             <!--</a>-->
-          <!--</div>-->
-          <!-- this is hardcoded -->
-          <a [routerLink]="[ '/studentmain', { outlets: { content: 'chat' } }]">
-              <div class="user-img"> <img src="images/users/5.jpg" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
-              <div class="mail-contnet">
-                <h5>Sergio</h5>
-                <span class="mail-desc">Te estas colgando</span>
-                <span class="time"></span>
-              </div>
-            </a>
-          <a href="#">
-              <div class="user-img"> <img src="images/users/5.jpg" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
-              <div class="mail-contnet">
-                <h5>Julia</h5>
-                <span class="mail-desc">...</span>
-                <span class="time"></span>
-              </div>
-            </a>
-          <a href="#">
-              <div class="user-img"> <img src="images/users/5.jpg" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
-              <div class="mail-contnet">
-                <h5>Anfitrion</h5>
-                <span class="mail-desc">Recuerda tu cita el lunes</span>
-                <span class="time"></span>
-              </div>
-            </a>
+          <!--<a href="#">-->
+              <!--<div class="user-img"> <img src="images/users/5.jpg" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>-->
+              <!--<div class="mail-contnet">-->
+                <!--<h5>Julia</h5>-->
+                <!--<span class="mail-desc">...</span>-->
+                <!--<span class="time"></span>-->
+              <!--</div>-->
+            <!--</a>-->
+          <!--<a href="#">-->
+              <!--<div class="user-img"> <img src="images/users/5.jpg" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>-->
+              <!--<div class="mail-contnet">-->
+                <!--<h5>Anfitrion</h5>-->
+                <!--<span class="mail-desc">Recuerda tu cita el lunes</span>-->
+                <!--<span class="time"></span>-->
+              <!--</div>-->
+            <!--</a>-->
           <!-- -->
         </div>
       </li>

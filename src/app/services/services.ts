@@ -3,7 +3,7 @@
 // production: when backend is running on server
 // export const FLASK_URL = 'http://mystudycoach.uprm.edu:8080';
 
-// development: when backend is running on testing vm
+// testing: when backend is running on testing vm
 // export const FLASK_URL = 'http://136.145.58.178:8080';
 
 // development: when backend is running locally

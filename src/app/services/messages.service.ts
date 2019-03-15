@@ -9,7 +9,7 @@ import {FLASK_URL} from "./services";
 })
 export class MessagesService {
 
-  private BASE_URL: string = FLASK_URL + 'messages';
+  private BASE_URL: string = FLASK_URL + '/messages';
   private httpheaders: HttpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
 
   constructor(private http: HttpClient) { }

@@ -9,7 +9,7 @@
         <li class="nav-divider"></li>
         <!-- Home items -->
         <li class="nav-label">Home</li>
-        <li class="nav-item"> <a class="has-arrow  " href="#home" data-toggle="collapse" aria-expanded="false"><i class="fa fa-columns"></i><span class="hide-menu">Resources</span></a>
+        <li class="nav-item"> <a class="has-arrow  " href="javascript:void(0);" data-toggle="collapse" aria-expanded="false"><i class="fa fa-columns"></i><span class="hide-menu">Resources</span></a>
           <ul id="home" aria-expanded="false" class="collapse">
             <li><a [routerLink]="[ '/studentmain', { outlets: { content: 'dashboard' } }]" [queryParams]="{ courses: courses | json }">Dashboard</a></li>
             <li><a [routerLink]="[ '/studentmain', { outlets: { content: 'mentors' } }]">Mentoria</a></li>
@@ -18,7 +18,7 @@
         </li>
         <!-- Courses items -->
         <li class="nav-label">Courses</li>
-        <li class="nav-item"> <a class="has-arrow  " href="#courses" data-toggle="collapse" aria-expanded="false"><i class="fa fa-columns"></i><span class="hide-menu">Courses</span></a>
+        <li class="nav-item"> <a class="has-arrow  " href="javascript:void(0);" data-toggle="collapse" aria-expanded="false"><i class="fa fa-columns"></i><span class="hide-menu">Courses</span></a>
           <ul id="courses" aria-expanded="false" class="collapse">
             <div *ngFor="let c of courses">
               <li><a [routerLink]="[ '/studentmain', { outlets: { content: 'course' } }]" [queryParams]="{ course: c | json }">{{c.name}}</a></li>
@@ -27,7 +27,7 @@
         </li>
         <!-- Schedule items -->
         <li class="nav-label">Schedule</li>
-        <li class="nav-item"> <a class="has-arrow  " href="#schedule" data-toggle="collapse" aria-expanded="false"><i class="fa fa-envelope"></i><span class="hide-menu">Schedule</span></a>
+        <li class="nav-item"> <a class="has-arrow  " href="javascript:void(0);" data-toggle="collapse" aria-expanded="false"><i class="fa fa-envelope"></i><span class="hide-menu">Schedule</span></a>
           <ul id="schedule" aria-expanded="false" class="collapse">
             <li><a [routerLink]="[ '/studentmain', { outlets: { content: 'schedule' } }]" [queryParams]="{ view: 'day' | json }">Today</a></li>
             <!--<li><a [routerLink]="[ '/studentmain', { outlets: { content: 'today' } }]">Tomorrow</a></li>-->

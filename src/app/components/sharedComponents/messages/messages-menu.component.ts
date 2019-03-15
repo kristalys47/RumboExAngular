@@ -15,7 +15,7 @@ export class MessagesMenuComponent implements OnInit {
 
   ngOnInit() {
     this.messageService.get_messages(this.usr_id).subscribe(data => {
-      this.messages = data;
+      this.messages = data.Chats;
       console.log(this.messages);
     })
   }

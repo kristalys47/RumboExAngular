@@ -34,9 +34,6 @@ export class CourseDetailComponent implements OnInit {
   sub;
 
   newGrade: Grade = new Grade();
-  //   {
-  //   evaluation: any, date: any, weight: any, grade: any
-  // } = {evaluation: null, date: null, weight: null, grade: null}; // need to be initialized o si no tira error
 
   constructor(private route: ActivatedRoute,
               private taskService: TaskService,
@@ -83,6 +80,11 @@ export class CourseDetailComponent implements OnInit {
     // });
   }
 
+  /*
+  * Given a set of grades, it will calculate the average.
+  * The average takes into consideration the weight of each grade and divides the sum of the grades by the percentage of
+  * the weight taken up to date.
+  * */
   calculateAverage(grades: Grade[]) {
     let avg: number = 0;
     let cummulative_weight: number = 0;
@@ -90,35 +92,46 @@ export class CourseDetailComponent implements OnInit {
       avg = avg + ((grade.grade / grade.total) * grade.weight);
       cummulative_weight = cummulative_weight + grade.weight;
     });
-    return (avg/cummulative_weight * 100);
+    return parseFloat((avg/cummulative_weight * 100).toFixed(2));
   }
 
+  /*
+  *  Given a set of grades, calculate the cummulative grade.
+  *  The cummulative grade takes into consideration the weight of each grade, and only adds the grades up to date.
+  * */
   calculateCummulativeAverage(grades: Grade[]) {
     let avg: number = 0;
     grades.forEach(grade => {
       avg = avg + ((grade.grade / grade.total) * grade.weight);
     });
-    return (avg);
+    return parseFloat(avg.toFixed(2));
   }
 
+  /*
+  *  Given a number as the average of the grades, return the status on course.
+  * */
   getCourseStatus(avg: number) {
-    if (avg == null) { return Status.Undefined; }
-    else if(avg >= 90) { return Status.Excellent; }
+    if(avg >= 90) { return Status.Excellent; }
     else if(avg >= 80) { return Status.Passing; }
     else if(avg >= 75) { return Status.Surviving; }
-    else { return Status.NotPassing; }
+    else if (avg >=0 ) { return Status.NotPassing; }
+    else { return Status.Undefined; }
   }
 
+  /*
+  *  Add a grade to the set of grades of the course
+  * */
   addGrade() {
     this.newGrade.course_id = this.course.course_id;
     console.log(this.newGrade);
-    this.courseService.insert_grade(this.curr_student_id, this.newGrade).then(res => {
+    this.courseService.insert_grade(this.curr_student_id, this.newGrade)
+      .then(res => {
       console.log(res);
       // add grade to Grades array
       this.course.grades.push(this.newGrade);
       // set newGrade to null for next grade
       this.newGrade = {name: null, date: null, weight: null, grade: null, total: null};
-      // update gpa
+      // update gpa and status
       // chequear por que esto no funciona
       this.course.general_average = this.calculateAverage(this.course.grades);
       this.course.status = this.getCourseStatus(this.course.general_average);
@@ -127,6 +140,10 @@ export class CourseDetailComponent implements OnInit {
       .catch(err => {console.log(err);});
   }
 
+  /*
+  *  Check a task and change the finished status;
+  *  If it is done, it will change to undone; If undone, it will change to done.
+  * */
   checkTask(task: Task) {
     console.log(task.finished);
     task.finished = !task.finished;
@@ -137,27 +154,6 @@ export class CourseDetailComponent implements OnInit {
   ngOnDestroy() {
     this.sub.unsubscribe();
   }
-
-  get_total_grade() {
-    this.progress = 0;
-    for(let i = 0; i < this.grades.length; i++) {
-      let g = this.grades[i];
-      this.progress += g['grade'] / g['total'] * g['weight'];
-    }
-    console.log('progress:', this.progress);
-  }
-
-  // openForm() {
-  //   console.log('opened');
-  //   const dialogRef = this.dialog.open(NewCourseTaskForm,{
-  //     data: {course: this.course.name}
-  //   });
-  //
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     console.log(result);
-  //     this.createTask(result);
-  //   });
-  // }
 
   createTask(data) {
     console.log('data:', data);
