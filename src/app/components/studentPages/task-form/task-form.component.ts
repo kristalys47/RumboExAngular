@@ -47,32 +47,32 @@ export class TaskFormComponent implements OnInit {
     });
   }
 
-  createTask(data) {
-    console.log('data:', data);
+  createTask(task) {
+    console.log('task:', task);
 
     // If modal opened from course page, set type to 'study' and course id to input course id
     if(this.course) {
-      data.type = 0;
-      data.course = this.course;
+      task.type = 0;
+      task.course = this.course;
     }
 
     // check the type of task
     // 0: study
     // 1: personal
-    if(data.type == 1) {
-      this.taskService.insert_personal_task(this.current_user_id, data)
+    if(task.type == 1) {
+      this.taskService.insert_personal_task(this.current_user_id, task)
         .then(res => {
           console.log(res);
-          this.taskEvent.emit(data);
+          this.taskEvent.emit(task);
           // lo que se hace si registro el task, por ej un snack o modal
         })
         .catch(err => {console.log(err);});
     }
-    else if (data.type == 0) {
-      this.taskService.insert_study_task(this.current_user_id, data.course, data)
+    else if (task.type == 0) {
+      this.taskService.insert_study_task(this.current_user_id, task.course, task)
         .then(res => {
           console.log(res);
-          this.taskEvent.emit(data);
+          this.taskEvent.emit(task);
         })
         .catch(err => {console.log(err);});
     }

@@ -20,4 +20,9 @@ export class MessagesService {
     return this.http.get(url);
   }
 
+  insert_message(user_id, msg): Promise<any> {
+    let url: string = `${this.BASE_URL}/${user_id}`;
+    return this.http.post(url, msg, {headers: this.httpheaders}).toPromise();
+  }
+
 }

@@ -1,0 +1,26 @@
+.chat-container {
+  margin-left: 25%;
+  margin-right: 25%;
+}
+
+.card-body {
+  /*position: absolute;*/
+  /*height: 100%;*/
+  /*overflow-y: auto;*/
+}
+
+#sent {
+  /*float: right;*/
+  margin-right: 0%;
+  margin-left: auto;
+}
+
+#recieved {
+
+}
+
+.new-message {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}

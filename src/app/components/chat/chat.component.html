@@ -1,32 +1,46 @@
-<mat-card class="chat-container">
-  <mat-card-title class="chat-title">{{chat.contact.name}} {{chat.contact.lastname}}</mat-card-title>
-  <mat-card-content>
-    <mat-card *ngFor="let m of chat.messages" class="message">
-      <!--<mat-card-title *ngIf="m.sent_by==usr_id; else receipient" >You</mat-card-title>-->
-      <!--<mat-card-title #receipient>Not You</mat-card-title>-->
-      <p class="text">{{m.text}}</p>
-      <p class="timestamp">{{m.date | date: 'MMM d, hh:mm aa'}}</p>
-    </mat-card>
-    <!-- this is hardcoded -->
-    <!--<mat-card>-->
-      <!--<mat-card-title >Sergio</mat-card-title>-->
-      <!--<p>Te estas colgando</p>-->
-    <!--</mat-card>-->
-     <!--<mat-card>-->
-      <!--<mat-card-title >You</mat-card-title>-->
-      <!--<p>Tengo zika</p>-->
-    <!--</mat-card>-->
-     <!--<mat-card>-->
-      <!--<mat-card-title >Sergio</mat-card-title>-->
-      <!--<p>estudia desde el hospital</p>-->
-    <!--</mat-card>-->
-     <!--<mat-card>-->
-      <!--<mat-card-title >Sergio</mat-card-title>-->
-      <!--<p>o date de baja</p>-->
-    <!--</mat-card>-->
-    <!--&lt;!&ndash; &ndash;&gt;-->
-    <!--<mat-card>-->
-      <!--<textarea></textarea>-->
-    <!--</mat-card>-->
-  </mat-card-content>
-</mat-card>
+<script src="https://cdn.rawgit.com/d-oliveros/ngSmoothScroll/master/lib/angular-smooth-scroll.js"></script>
+<script src="https://cdn.rawgit.com/LightZam/zInfiniteScroll/master/zInfiniteScroll.js"></script>
+
+<div class="container card chat-container">
+  <mat-card-title class="chat-title font-weight-bold">{{chat.contact.name}} {{chat.contact.lastname}}</mat-card-title>
+  <div class="card-body">
+    <div class="row" z-infinite-scroll="chat.messages" inverse="true" body-scroll="true" *ngFor="let m of chat.messages">
+      <!--<div smooth-scroll  duration="0" ng-repeat="m in messages">-->
+        <!--works-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<div *ngFor="let m of chat.messages" class="message row">-->
+
+      <ng-container *ngIf="m.sent_by==usr_id; then sent; else recieved"></ng-container>
+
+      <!-- Messages sent by current user -->
+      <ng-template #sent>
+        <!--<div id="sent">-->
+        <div class="card border col-sm-5" id="sent">
+          <p class="card-text text font-weight-bold">{{m.text}}</p>
+          <p class="timestamp font-weight-lighter text-right"><font size="-1">{{m.date | date: 'MMM d, hh:mm aa'}}</font></p>
+        </div>
+        <!--</div>-->
+      </ng-template>
+
+      <!-- Messages sent by contact -->
+      <ng-template #recieved>
+        <div class="card border border-primary float-left col-sm-5" id="recieved">
+          <p class="card-text text font-weight-bold">{{m.text}}</p>
+          <p class="timestamp font-weight-lighter text-right"><font size="-1">{{m.date | date: 'MMM d, hh:mm aa'}}</font></p>
+        </div>
+      </ng-template>
+
+    </div>
+    <mat-divider></mat-divider>
+
+
+
+  </div><!-- Text box to write new message -->
+    <div class="new-message">
+      <mat-form-field appearance="fill">
+        <textarea matInput id="newMessage" placeholder="New Message" [(ngModel)]="text" rows="3"></textarea>
+      </mat-form-field>
+      <button mat-button (click)="sendMessage()"><mat-icon>send</mat-icon></button>
+    </div>
+</div>
