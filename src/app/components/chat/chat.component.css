@@ -1,22 +1,27 @@
 .chat-container {
   margin-left: 25%;
   margin-right: 25%;
+  alignment: center;
 }
 
 .card-body {
   /*position: absolute;*/
-  /*height: 100%;*/
-  /*overflow-y: auto;*/
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 #sent {
   /*float: right;*/
-  margin-right: 0%;
+  margin-right: 15px;
   margin-left: auto;
+  padding-bottom: 0.0005%; /* tacky way to reduce bottom spacing on card, but it works */
 }
 
 #recieved {
-
+  margin-left: 15px;
+  margin-right: auto;
+  padding-bottom: 0.0005%;
 }
 
 .new-message {

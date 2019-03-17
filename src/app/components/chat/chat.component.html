@@ -4,8 +4,8 @@
 <div class="container card chat-container">
   <mat-card-title class="chat-title font-weight-bold">{{chat.contact.name}} {{chat.contact.lastname}}</mat-card-title>
   <div class="card-body">
-    <div class="row" z-infinite-scroll="chat.messages" inverse="true" body-scroll="true" *ngFor="let m of chat.messages">
-      <!--<div smooth-scroll  duration="0" ng-repeat="m in messages">-->
+    <div class="row body" z-infinite-scroll="chat.messages" inverse="true" body-scroll="true" *ngFor="let m of chat.messages">
+      <!--<div *ngFor="let m of chat.messages">-->
         <!--works-->
       <!--</div>-->
     <!--</div>-->
@@ -30,7 +30,7 @@
           <p class="timestamp font-weight-lighter text-right"><font size="-1">{{m.date | date: 'MMM d, hh:mm aa'}}</font></p>
         </div>
       </ng-template>
-
+      <!--</div>-->
     </div>
     <mat-divider></mat-divider>
 
