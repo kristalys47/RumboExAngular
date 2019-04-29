@@ -26,6 +26,9 @@ export class RegisterComponent implements OnInit {
     })
   }
 
+  /*
+  *   Register student
+  * */
   registration(): void {
     // if no input username, set username same to email
     if(!this.user.username) {
@@ -44,6 +47,9 @@ export class RegisterComponent implements OnInit {
     });
   }
 
+  /*
+  *   Check that every field is valid
+  * */
   register() {
     if(!this.user.name) {
       this.error.displaymessage("Name required.");

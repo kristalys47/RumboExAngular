@@ -43,20 +43,20 @@ export class CourseDetailComponent implements OnInit {
               private authService: AuthService) { }
 
   ngOnInit() {
+    // get the course id from query param
     this.sub = this.route
       .queryParams
       .subscribe(params => {
         this.curr_course_id = JSON.parse(params['course_id']);
-        // this.course.general_average = this.calculateAverage(this.course.grades);
-        // this.course.status = this.getCourseStatus(this.course.general_average);
-        // this.course.cummulative_average = this.calculateCummulativeAverage(this.course.grades);
-        // console.log(this.course);
       });
+    // get course details from server
     this.courseService.get_course(this.curr_course_id, this.curr_student_id).subscribe(data => {
       this.course = data.Course;
       this.updateGradeStatus();
       console.log(this.course);
     });
+    this.resetGrade();
+    console.log(this.newGrade);
   }
 
   /*
@@ -69,8 +69,11 @@ export class CourseDetailComponent implements OnInit {
     let cummulative_weight: number = 0;
     console.log(grades);
     grades.forEach(grade => {
-      avg = avg + ((grade.grade / grade.total) * grade.weight);
-      cummulative_weight = cummulative_weight + grade.weight;
+      if(grade.grade && grade.total) {
+        // todo: calcular avg cuando no se tiene weight de la nota
+        avg = avg + ((grade.grade / grade.total) * grade.weight);
+        cummulative_weight = cummulative_weight + grade.weight;
+      }
     });
     console.log((avg/cummulative_weight * 100).toFixed(2));
     return parseFloat((avg/cummulative_weight * 100).toFixed(2));
@@ -83,7 +86,9 @@ export class CourseDetailComponent implements OnInit {
   private calculateCummulativeAverage(grades: Grade[]) {
     let avg: number = 0;
     grades.forEach(grade => {
-      avg = avg + ((grade.grade / grade.total) * grade.weight);
+      if(grade.grade && grade.total) {
+        avg = avg + ((grade.grade / grade.total) * grade.weight);
+      }
     });
     return parseFloat(avg.toFixed(2));
   }
@@ -100,7 +105,8 @@ export class CourseDetailComponent implements OnInit {
   }
 
   /*
-  *   When a grade is added, deleted or edited, this methods recalculates the gpa and the course status
+  *   When component is initialized or the array of grades modified (a grade is added, deleted or edited),
+  *   this methods recalculates the gpa and the course status
   * */
   private updateGradeStatus() {
     this.course.general_average = this.calculateAverage(this.course.grades);
@@ -109,12 +115,18 @@ export class CourseDetailComponent implements OnInit {
   }
 
   /*
+  *   This sets every field in new Grade to null
+  * */
+  private resetGrade() {
+    this.newGrade = {grade_id: null, name: null, date: null, weight: null, grade: null, total: null, course_id: null};
+  }
+
+  /*
   *   Add a grade to the set of grades of the course
   * */
   addGrade() {
     this.newGrade.course_id = this.course.course_id;
     console.log(typeof this.newGrade.grade, this.newGrade.grade);
-
     console.log(this.newGrade);
     this.courseService.insert_grade(this.curr_student_id, this.newGrade)
       .then(res => {
@@ -124,7 +136,7 @@ export class CourseDetailComponent implements OnInit {
       // add grade to Grades array
       this.course.grades.push(this.newGrade);
       // set newGrade to null for next grade
-      this.newGrade = new Grade();
+      this.resetGrade();
       // this.newGrade = {grade_id: null, name: null, date: null, weight: null, grade: null, total: null};
       // update gpa and status
       this.updateGradeStatus();

@@ -11,6 +11,7 @@ export const courses: Course[] = [
     section_num: '010',
     grades: [
       {
+        grade_id: 1,
         name: 'Examen 1',
         date: '2019-02-18',
         grade: 75,
@@ -18,6 +19,7 @@ export const courses: Course[] = [
         total: 100
       },
       {
+        grade_id: 2,
         name: 'Quiz',
         date: '2019-02-18',
         grade: 5,

@@ -55,10 +55,10 @@
   <div>{{user.name}} {{user.lastname}}</div><br/>
   <!-- Student Number -->
   <h5>Student Number</h5>
-  <div>{{user.student_num}}</div><br />
+  <div>{{user.student_num | studentNum}}</div><br />
   <!-- Phone number -->
   <h5>Phone Number</h5>
-  <div>{{user.phone_num}}</div><br />
+  <div>{{user.phone_num | phone}}</div><br />
   <!-- Save button when editing info -->
   <button mat-button *ngIf="edit" (click)="save()">Save changes</button>
 </mat-card>

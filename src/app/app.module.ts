@@ -97,6 +97,7 @@ import { FinishedTaskPipe } from './pipes/finishedTask/finished-task.pipe';
 import { CourseSelectionComponent } from './components/registers/course-selection/course-selection.component';
 import { AllChatsComponent } from './components/all-chats/all-chats.component';
 import { PhonePipe } from './pipes/phone/phone.pipe';
+import { StudentNumPipe } from './pipes/student-num/student-num.pipe';
 
 @NgModule({
   declarations: [
@@ -161,6 +162,7 @@ import { PhonePipe } from './pipes/phone/phone.pipe';
     CourseSelectionComponent,
     AllChatsComponent,
     PhonePipe,
+    StudentNumPipe,
     // NotificationsComponent
   ],
   imports: [

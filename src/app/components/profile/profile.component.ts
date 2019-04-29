@@ -9,7 +9,7 @@ import {StudentService} from "../../services/student/student.service";
 })
 export class ProfileComponent implements OnInit {
 
-  userid = sessionStorage.getItem('token');
+  userid = sessionStorage.getItem('userid');
   user;
   student: any;
   courses: any;
