@@ -40,27 +40,53 @@
   </div>
 </mat-card>
 
-<mat-card class="col-sm-8">
-  <mat-card-title>{{user.role}} Details</mat-card-title>
-  <!-- Edit button -->
-  <div align="right" *ngIf="!edit"><button mat-button (click)="toggleEdit()">edit</button></div>
-  <!-- Email Address -->
-  <h5>Email Address</h5>
-  <div>{{user.email}}</div><br/>
-  <!-- Username -->
-  <h5>Username</h5>
-  <div>{{user.username}}</div><br/>
-  <!-- Full Name -->
-  <h5>Full Name</h5>
-  <div>{{user.name}} {{user.lastname}}</div><br/>
-  <!-- Student Number -->
-  <h5>Student Number</h5>
-  <div>{{user.student_num | studentNum}}</div><br />
-  <!-- Phone number -->
-  <h5>Phone Number</h5>
-  <div>{{user.phone_num | phone}}</div><br />
-  <!-- Save button when editing info -->
-  <button mat-button *ngIf="edit" (click)="save()">Save changes</button>
-</mat-card>
+  <ng-template [ngIf]="!edit" [ngIfElse]="editable">
+    <mat-card class="col-sm-8">
+      <!-- Edit button -->
+      <div align="right"><button mat-button (click)="toggleEdit()">edit</button></div>
+      <mat-card-title>{{user.role_name | titlecase}} Details</mat-card-title>
+      <!-- Email Address -->
+      <h5>Email Address</h5>
+      <div>{{user.email}}</div><br/>
+      <!-- Username -->
+      <h5>Username</h5>
+      <div>{{user.username}}</div><br/>
+      <!-- Full Name -->
+      <h5>Full Name</h5>
+      <div>{{user.name}} {{user.lastname}}</div><br/>
+      <!-- Student Number -->
+      <h5>Student Number</h5>
+      <div>{{user.student_num | studentNum}}</div><br />
+      <!-- Phone number -->
+      <h5>Phone Number</h5>
+      <div>{{user.phone_num | phone}}</div><br />
+    </mat-card>
+  </ng-template>
+
+  <ng-template #editable>
+    <mat-card class="col-sm-8">
+      <mat-card-title>{{user.role_name | titlecase}} Details</mat-card-title>
+      <!-- Email Address -->
+      <h5>Email Address</h5>
+      <mat-form-field><input #email matInput [value]="user.email"></mat-form-field>
+      <!-- Username -->
+      <h5>Username</h5>
+      <mat-form-field><input #username matInput [value]="user.username"></mat-form-field>
+      <!-- Name -->
+      <h5>Name</h5>
+      <mat-form-field><input #name matInput [value]="user.name"></mat-form-field>
+      <h5>Last Name</h5>
+      <mat-form-field><input #lastname matInput [value]="user.lastname"></mat-form-field>
+      <!-- Student Number -->
+      <h5>Student Number</h5>
+      <mat-form-field><input #studentnum matInput [value]="user.student_num"></mat-form-field>
+      <!-- Phone number -->
+      <h5>Phone Number</h5>
+      <mat-form-field><input #phonenum matInput [value]="user.phone_num"></mat-form-field>
+      <!-- Save button when editing info -->
+      <br/><button mat-button (click)="save(email.value,username.value,name.value,lastname.value,studentnum.value,phonenum.value)">Save changes</button>
+    </mat-card>
+  </ng-template>
+
 
 </div>

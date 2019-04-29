@@ -41,4 +41,9 @@ export class StudentService {
     let url: string = `${this.BASE_URL}/faculties`;
     return this.http.get(url);
   }
+
+  updateStudent(student_id, data): Promise<any> {
+    let url: string = `${this.BASE_URL}/student/${student_id}`;
+    return this.http.put(url,data,{headers: this.httpheaders}).toPromise();
+  }
 }
