@@ -6,32 +6,35 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FilterPipe implements PipeTransform {
 
+  // hardcoded but need to get from database
   departments= [
-    {num: 4321, name: 'Artes y Ciencias'},
-    {num: 9987, name: 'Ciencias Agricolas'},
-    {num: 1234, name: 'Ingenieria'},
-    {num: 7856, name: 'Administracion de Empresas'}
+    {num: 2, name: 'Artes y Ciencias'},
+    {num: 3, name: 'Ciencias Agricolas'},
+    {num: 4, name: 'Ingenieria'},
+    {num: 1, name: 'Administracion de Empresas'}
   ];
 
-  transform(value: Array<any>, filterValue: any): any {
-    console.log(value, filterValue);
+  // list: array of students that is to be filtered
+  // filterValue: dict where key is attribute to filter by, value is the item to look for; ex: {department: Ingenieria}
+  transform(list: Array<any>, filterValue: any): any {
+    console.log(list, filterValue);
     // if filter value is all or no arguments are given, return all students
     if (!filterValue || filterValue == 'all') {
-      return value;
+      return list;
     }
     else {
-      return value.slice().filter((student) => {
+      return list.slice().filter((student) => {
         // keys in params are the attributes to be filtering
         for (let key in filterValue) {
           switch (key) {
-            // if filtering name, return student if first letter of name is equal to value
+            // if filtering name, return student if first letter of name is equal to list
             case('name' || 'alphabetical'):
               // if first letter of first name equals selected letter
               if (student.name[0].toLowerCase() == filterValue[key]) {
                 return student;
               }
-            case('department'):
-              if (student.department_name == filterValue[key]) {
+            case('faculty'):
+              if (student.faculty_name == filterValue[key]) {
                 return student;
               }
 
@@ -60,10 +63,15 @@ export class FilterPipe implements PipeTransform {
               // }
               // ;
             // return student;
+
+            // to do
             case('alert'):
               return;
+
+            // to do
             case('goals'):
               return;
+
             case('search'):
               console.log(filterValue[key]);
               var full_name = student.name+' '+student.lastname;

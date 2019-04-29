@@ -4,6 +4,10 @@
   alignment: center;
 }
 
+.card {
+  position: relative;
+}
+
 .card-body {
   /*position: absolute;*/
   height: 100%;
@@ -15,17 +19,29 @@
   /*float: right;*/
   margin-right: 15px;
   margin-left: auto;
-  padding-bottom: 0.0005%; /* tacky way to reduce bottom spacing on card, but it works */
+  /*padding-bottom: 0.0005%; !* tacky way to reduce bottom spacing on card, but it works *!*/
 }
 
 #recieved {
   margin-left: 15px;
   margin-right: auto;
-  padding-bottom: 0.0005%;
+  /*padding-bottom: 0.0005%;*/
 }
 
 .new-message {
   display: flex;
   flex-direction: column;
   width: 100%;
+}
+
+.timestamp {
+  position: absolute;
+  bottom: -38px;
+  /*margin-right: 0%;*/
+  /*margin-left: auto;*/
+  float: right;
+}
+
+.chat-divider {
+  bottom: 100px;
 }

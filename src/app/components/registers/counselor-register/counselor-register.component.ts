@@ -14,8 +14,8 @@ export class CounselorRegisterComponent implements OnInit {
 
   user: User = new User();
   passwordAgain;
-  key;
-  KEY = 'secret';
+  input_key: string = '';
+  KEY:string = 'secret';
 
   constructor(private auth: AuthService, private router: Router, private error: ErroralertService) { }
 
@@ -23,10 +23,15 @@ export class CounselorRegisterComponent implements OnInit {
   }
 
   registration(): void {
-    this.auth.register(this.user)
+    this.auth.counselorregister(this.user)
     .then((user) => {
       console.log(user);
-      this.router.navigate(['/studentmain']);
+      this.router.navigate(['/counselorlogin'])
+        .then(result => {
+          console.log(result);
+          alert('Registration successful! You can now login.');
+        })
+        .catch(err => {console.log(err);});
     })
     .catch((err) => {
       console.log(err);
@@ -55,7 +60,8 @@ export class CounselorRegisterComponent implements OnInit {
     else if(this.user.password != this.passwordAgain) {
       this.error.displaymessage("Passwords do not match.");
     }
-    else if(this.key != this.KEY) {
+    else if(this.input_key != this.KEY) {
+      console.log(this.input_key, this.KEY);
       this.error.displaymessage("Invalid key.");
     }
     else {

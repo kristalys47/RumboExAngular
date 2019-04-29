@@ -96,6 +96,7 @@ import { AnfitrionRegisterComponent } from './components/registers/anfitrion-reg
 import { FinishedTaskPipe } from './pipes/finishedTask/finished-task.pipe';
 import { CourseSelectionComponent } from './components/registers/course-selection/course-selection.component';
 import { AllChatsComponent } from './components/all-chats/all-chats.component';
+import { PhonePipe } from './pipes/phone/phone.pipe';
 
 @NgModule({
   declarations: [
@@ -159,6 +160,7 @@ import { AllChatsComponent } from './components/all-chats/all-chats.component';
     FinishedTaskPipe,
     CourseSelectionComponent,
     AllChatsComponent,
+    PhonePipe,
     // NotificationsComponent
   ],
   imports: [
@@ -175,12 +177,24 @@ import { AllChatsComponent } from './components/all-chats/all-chats.component';
   entryComponents: [
     MsgInputForm,
     FormModal,
-    DialogMessageComponent
+    DialogMessageComponent,
+    // CommentButtonComponent
   ],
   // entryComponents: [NewCourseTaskForm, NewTaskForm],
   // Each guard just check that the user have an specific characteristic to authorize the navegation. In this case it checks that the user
   // have the role to enter the respective pages. It is like and RBAC but for Angular.
-  providers: [AuthService, TaskService, AuthGuard, AdminGuard, StudentGuard, StudentService, ErroralertService, CourseService, GooglechartService, StudentProvider],
+  providers: [
+    AuthService,
+    TaskService,
+    AuthGuard,
+    AdminGuard,
+    StudentGuard,
+    StudentService,
+    ErroralertService,
+    CourseService,
+    GooglechartService,
+    StudentProvider,
+    CommentButtonComponent],
   bootstrap: [AppComponent]
 })
 

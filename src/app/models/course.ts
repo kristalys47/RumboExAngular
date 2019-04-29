@@ -15,6 +15,7 @@ export interface Course {
 }
 
 export interface Grade {
+  grade_id: number,
   name: string,
   date: string,
   grade: number,
@@ -25,6 +26,7 @@ export interface Grade {
 
 export class Grade implements Grade {
   constructor(
+    grade_id?: number,
     name?: string,
     date?: string,
     grade?: number,

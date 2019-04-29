@@ -45,7 +45,7 @@
                           <!-- Key -->
                           <div class="form-group">
                             <label>Key</label>
-                            <input type="text" class="form-control" placeholder="enter key that was provided for you" [(ngModel)]="key">
+                            <input type="password" class="form-control" placeholder="enter key that was provided for you" [(ngModel)]="input_key" [ngModelOptions]="{standalone: true}">
                           </div>
                             <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Register</button>
                         </form>

@@ -3,6 +3,7 @@ import {Student} from "../../../models/student";
 import {Course} from "../../../models/course";
 import {Task} from '../../../models/task';
 import {StudentService} from "../../../services/student/student.service";
+import {CommentButtonComponent} from "../../comment-button/comment-button.component";
 
 interface StudentDetail {
   student: Student,
@@ -18,17 +19,22 @@ interface StudentDetail {
 })
 export class StudentDetailComponent implements OnInit {
 
-  student;
-  // @Input() student: StudentDetail;
+  // student: Student;
+  @Input() student: StudentDetail;
 
-  constructor(private studentService: StudentService) {
+  constructor(private studentService: StudentService, private commentComponent: CommentButtonComponent) {
     // console.log(this.student);
   }
 
   ngOnInit() {
-    this.studentService.getStudent(0).subscribe(data => {
-      this.student = data;
-    })
+    // this.studentService.getStudent().subscribe(data => {
+    //   this.student = data;
+    // })
+    console.log(this.student);
+  }
+
+  comment() {
+    // this.commentComponent.openForm();
   }
 
 }

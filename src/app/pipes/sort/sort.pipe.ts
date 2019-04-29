@@ -13,6 +13,7 @@ interface Sort {
 export class SortPipe implements PipeTransform {
 
   transform(list: Array<any>, sort: Sort): any {
+    console.log(list, sort);
     const data = list.slice();
     if (!sort.active || sort.direction === '') {
       return data;

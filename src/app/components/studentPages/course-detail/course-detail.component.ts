@@ -16,8 +16,7 @@ import {Course, Grade, Status} from "../../../models/course";
   templateUrl: './course-detail.component.html',
   styleUrls: ['./course-detail.component.css']
 })
-// this whole code is so messy and ugly
-// i will find the time to clean it... i promise :)
+
 export class CourseDetailComponent implements OnInit {
 
   @Input() student: Student;
@@ -33,6 +32,8 @@ export class CourseDetailComponent implements OnInit {
 
   sub;
 
+  editable;
+
   newGrade: Grade = new Grade();
 
   constructor(private route: ActivatedRoute,
@@ -45,39 +46,17 @@ export class CourseDetailComponent implements OnInit {
     this.sub = this.route
       .queryParams
       .subscribe(params => {
-        this.course = JSON.parse(params['course']);
-        this.course.general_average = this.calculateAverage(this.course.grades);
-        this.course.status = this.getCourseStatus(this.course.general_average);
-        this.course.cummulative_average = this.calculateCummulativeAverage(this.course.grades);
-        console.log(this.course);
+        this.curr_course_id = JSON.parse(params['course_id']);
+        // this.course.general_average = this.calculateAverage(this.course.grades);
+        // this.course.status = this.getCourseStatus(this.course.general_average);
+        // this.course.cummulative_average = this.calculateCummulativeAverage(this.course.grades);
+        // console.log(this.course);
       });
-
-    // this.courseService.get_course(this.course.id).subscribe(data => {
-    //   if(data) {
-    //     this.course = data;
-    //     this.grades = this.course.grades;
-    //     console.log('course:', this.course);
-    //   }
-    // });
-
-    // this.courseService.get_grades_by_course_id(this.curr_course_id).subscribe(data => {
-    //   this.grades = data;
-    //   console.log('grades:', this.grades);
-    //   this.get_total_grade();
-    // });
-    //
-    // this.taskService.get_study_tasks_by_course(this.curr_student_id, this.curr_course_id).subscribe(data => {
-    //   data.map(task => {
-    //       if (task['finished'] == false) {
-    //         this.undoneTasks.push(task);
-    //       }
-    //       else {
-    //         this.doneTasks.push(task);
-    //       }
-    //     }
-    //   );
-    //   console.log('tasks:', this.undoneTasks, this.doneTasks);
-    // });
+    this.courseService.get_course(this.curr_course_id, this.curr_student_id).subscribe(data => {
+      this.course = data.Course;
+      this.updateGradeStatus();
+      console.log(this.course);
+    });
   }
 
   /*
@@ -85,13 +64,15 @@ export class CourseDetailComponent implements OnInit {
   * The average takes into consideration the weight of each grade and divides the sum of the grades by the percentage of
   * the weight taken up to date.
   * */
-  calculateAverage(grades: Grade[]) {
+  private calculateAverage(grades: Grade[]) {
     let avg: number = 0;
     let cummulative_weight: number = 0;
+    console.log(grades);
     grades.forEach(grade => {
       avg = avg + ((grade.grade / grade.total) * grade.weight);
       cummulative_weight = cummulative_weight + grade.weight;
     });
+    console.log((avg/cummulative_weight * 100).toFixed(2));
     return parseFloat((avg/cummulative_weight * 100).toFixed(2));
   }
 
@@ -99,7 +80,7 @@ export class CourseDetailComponent implements OnInit {
   *  Given a set of grades, calculate the cummulative grade.
   *  The cummulative grade takes into consideration the weight of each grade, and only adds the grades up to date.
   * */
-  calculateCummulativeAverage(grades: Grade[]) {
+  private calculateCummulativeAverage(grades: Grade[]) {
     let avg: number = 0;
     grades.forEach(grade => {
       avg = avg + ((grade.grade / grade.total) * grade.weight);
@@ -110,7 +91,7 @@ export class CourseDetailComponent implements OnInit {
   /*
   *  Given a number as the average of the grades, return the status on course.
   * */
-  getCourseStatus(avg: number) {
+  private getCourseStatus(avg: number) {
     if(avg >= 90) { return Status.Excellent; }
     else if(avg >= 80) { return Status.Passing; }
     else if(avg >= 75) { return Status.Surviving; }
@@ -119,25 +100,86 @@ export class CourseDetailComponent implements OnInit {
   }
 
   /*
-  *  Add a grade to the set of grades of the course
+  *   When a grade is added, deleted or edited, this methods recalculates the gpa and the course status
+  * */
+  private updateGradeStatus() {
+    this.course.general_average = this.calculateAverage(this.course.grades);
+    this.course.status = this.getCourseStatus(this.course.general_average);
+    this.course.cummulative_average = this.calculateCummulativeAverage(this.course.grades);
+  }
+
+  /*
+  *   Add a grade to the set of grades of the course
   * */
   addGrade() {
     this.newGrade.course_id = this.course.course_id;
+    console.log(typeof this.newGrade.grade, this.newGrade.grade);
+
     console.log(this.newGrade);
     this.courseService.insert_grade(this.curr_student_id, this.newGrade)
       .then(res => {
       console.log(res);
+      this.newGrade.grade_id = res.grade_id;
+      console.log(this.newGrade);
       // add grade to Grades array
       this.course.grades.push(this.newGrade);
       // set newGrade to null for next grade
-      this.newGrade = {name: null, date: null, weight: null, grade: null, total: null};
+      this.newGrade = new Grade();
+      // this.newGrade = {grade_id: null, name: null, date: null, weight: null, grade: null, total: null};
       // update gpa and status
-      // chequear por que esto no funciona
-      this.course.general_average = this.calculateAverage(this.course.grades);
-      this.course.status = this.getCourseStatus(this.course.general_average);
-      this.course.cummulative_average = this.calculateCummulativeAverage(this.course.grades);
+      this.updateGradeStatus();
     })
       .catch(err => {console.log(err);});
+  }
+
+  /*
+  *   Update a grade whose information has been modified
+  * */
+  updateGrade(grade, newName, newDate, newWeight, newGrade, newTotal) {
+    console.log(grade);
+    if(grade.name!=newName){
+      this.courseService.edit_grade(this.curr_student_id,{'g_id': grade.grade_id, 'g_name': newName});
+      grade.name = newName;
+    }
+    if(grade.date!=newDate){
+      this.courseService.edit_grade(this.curr_student_id,{'g_id': grade.grade_id, 'date': newDate});
+      grade.date = newDate;
+    }
+    if(grade.weight!=newWeight){
+      this.courseService.edit_grade(this.curr_student_id,{'g_id': grade.grade_id, 'weight': newWeight});
+      grade.weight = newWeight;
+      this.updateGradeStatus();
+    }
+    if(grade.grade!=newGrade){
+      this.courseService.edit_grade(this.curr_student_id,{'g_id': grade.grade_id, 'grade': newGrade});
+      grade.grade = newGrade;
+      this.updateGradeStatus();
+    }
+    if(grade.total!=newTotal){
+      this.courseService.edit_grade(this.curr_student_id,{'g_id': grade.grade_id, 'total': newTotal});
+      grade.total = newTotal;
+      this.updateGradeStatus();
+    }
+    // prevent grade from being editable any more
+    this.editable = null;
+  }
+
+  /*
+  *   Delete a grade
+  * */
+  deleteGrade(grade_id) {
+    // send delete request to server
+    this.courseService.remove_grade(this.curr_student_id, grade_id)
+      // if delete was successful in db
+      .then(res => {
+        console.log(res);
+        // remove grade from array
+        this.course.grades = this.course.grades.filter(grade => {
+          if (grade.grade_id!=grade_id) {return grade;}
+        });
+        this.updateGradeStatus();
+      })
+      .catch(err => {console.log(err);})
   }
 
   /*

@@ -15,12 +15,11 @@
 
       <!-- Messages sent by current user -->
       <ng-template #sent>
-        <!--<div id="sent">-->
+        <!--<div class="row">-->
         <div class="card border col-sm-5" id="sent">
           <p class="card-text text font-weight-bold">{{m.text}}</p>
           <p class="timestamp font-weight-lighter text-right"><font size="-1">{{m.date | date: 'MMM d, hh:mm aa'}}</font></p>
         </div>
-        <!--</div>-->
       </ng-template>
 
       <!-- Messages sent by contact -->
@@ -30,17 +29,17 @@
           <p class="timestamp font-weight-lighter text-right"><font size="-1">{{m.date | date: 'MMM d, hh:mm aa'}}</font></p>
         </div>
       </ng-template>
-      <!--</div>-->
+
     </div>
-    <mat-divider></mat-divider>
+    <mat-divider class="chat-divider"></mat-divider>
+  </div>
 
+  <!-- Text box to write new message -->
+  <div class="new-message">
+    <mat-form-field appearance="fill">
+      <textarea matInput id="newMessage" placeholder="New Message" [(ngModel)]="text" rows="3"></textarea>
+    </mat-form-field>
+    <button mat-button (click)="sendMessage()"><mat-icon>send</mat-icon></button>
+  </div>
 
-
-  </div><!-- Text box to write new message -->
-    <div class="new-message">
-      <mat-form-field appearance="fill">
-        <textarea matInput id="newMessage" placeholder="New Message" [(ngModel)]="text" rows="3"></textarea>
-      </mat-form-field>
-      <button mat-button (click)="sendMessage()"><mat-icon>send</mat-icon></button>
-    </div>
 </div>

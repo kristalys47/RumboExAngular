@@ -26,10 +26,10 @@ export class StudentService {
   }
 
   @Cacheable()
-  getstudentlist(): Observable<any> {
-    // let url: string = `${this.BASE_URL}/student`;
-    // return this.http.get<any>(url);
-    return of(students);
+  getstudentlist(mentor_id): Observable<any> {
+    let url: string = `${this.BASE_URL}/studentlist/${mentor_id}`;
+    return this.http.get<any>(url);
+    // return of(students);
   }
 
   getstudentpromise(): Observable<Student[]> {

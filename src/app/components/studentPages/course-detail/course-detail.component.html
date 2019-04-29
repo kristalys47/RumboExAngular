@@ -9,7 +9,21 @@
     <mat-card>
       <mat-card-title>Progress</mat-card-title>
       <mat-card-content>
-        <app-grade-gauge [grades]="{ general: course.general_average | json, cummulative: course.cummulative_average | json }"></app-grade-gauge>
+        <div class="row">
+          <div class="col-sm-4 offset-2" >
+            <h5 class="center">Curent Grade</h5>
+            <!-- todo: cambiar el color del avg segun el status -->
+            <h1 class="center" style="color: green;">{{course.general_average | number : '.2-2'}} </h1>
+            <!--<div id="gauge1" class="chart"></div>-->
+          </div>
+          <div class="col-sm-6">
+            <h5 center>Acummulated Grade</h5>
+            <mat-progress-bar mode="determinate" value="{{course.cummulative_average}}"></mat-progress-bar>
+            <p>{{course.cummulative_average}} %</p>
+            <!--<div id="gauge2" class="chart"></div>-->
+          </div>
+        </div>
+        <!--<app-grade-gauge [grades]="{ general: course.general_average | json, cummulative: course.cummulative_average | json }"></app-grade-gauge>-->
       </mat-card-content>
     </mat-card>
 
@@ -21,33 +35,85 @@
       <!--</mat-expansion-panel-header>-->
       <mat-card-content>
         <div class="table-responsive">
-          <table class="table table-hover ">
+          <table class="table table-hover table-sm">
+            <!-- Header -->
             <thead>
               <tr>
                 <th>Name</th>
                 <th>Date</th>
                 <th>Weight</th>
                 <th>Grade</th>
+                <th class="th-sm"> </th>
               </tr>
             </thead>
+            <!-- Columns -->
             <tbody>
-              <tr *ngFor="let g of course.grades">
-                <!-- Name -->
-                <th scope="row">{{g.name}}</th>
-                <!-- Date -->
-                <td>{{g.date | date}}</td>
-                <!-- Weight -->
-                <td>{{g.weight}} %</td>
-                <!-- Grade -->
-                <td>{{g.grade}} / {{g.total}}</td>
-              </tr>
+              <ng-container *ngFor="let g of course.grades">
+                <!-- If editing current grade -->
+                <tr *ngIf="editable==g">
+                  <!-- Name -->
+                  <td scope="row">
+                    <mat-form-field>
+                      <input #name matInput [value]="g.name">
+                    </mat-form-field>
+                  </td>
+                  <!-- Date -->
+                  <td>
+                    <mat-form-field>
+                      <input #date matInput  [matDatepicker]="picker" [value]="g.date">
+                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                      <mat-datepicker #picker disabled="false"></mat-datepicker>
+                    </mat-form-field>
+                  </td>
+                  <!-- Weight -->
+                  <td>
+                    <mat-form-field>
+                      <input #weight matInput [value]="g.weight">
+                      <span matSuffix>%</span>
+                    </mat-form-field>
+                  </td>
+                  <!-- Grade -->
+                  <td>
+                    <mat-form-field>
+                      <div class="example-tel-input-container">
+                        <input #grade matInput class="example-tel-input-element" [value]="g.grade" size="3">
+                        <span class="example-tel-input-spacer">/</span>
+                        <input #total matInput class="example-tel-input-element" [value]="g.total" size="3">
+                      </div>
+                    </mat-form-field>
+                  </td>
+                  <!-- Save button -->
+                  <td>
+                    <button mat-button (click)="updateGrade(g,name.value,date.value,weight.value,grade.value,total.value)">Save</button>
+                  </td>
+                </tr>
+
+                <!-- If grade is not editable -->
+                <tr *ngIf="editable!=g">
+                  <!-- Name -->
+                  <th scope="row">{{g.name}}</th>
+                  <!-- Date -->
+                  <td>{{g.date | date}}</td>
+                  <!-- Weight -->
+                  <td>{{g.weight}} %</td>
+                  <!-- Grade -->
+                  <td>{{g.grade}} / {{g.total}}</td>
+                  <!-- Action buttons -->
+                  <td class="action-buttons">
+                    <!-- Edit grade -->
+                    <button mat-icon-button (click)="editable=g"><mat-icon>create</mat-icon></button>
+                    <!-- Delete grade -->
+                    <button mat-icon-button (click)="deleteGrade(g.grade_id)"><mat-icon>clear</mat-icon></button>
+                  </td>
+                </tr>
+              </ng-container>
 
               <!-- New grade form -->
               <tr>
                 <!-- Name -->
                 <td scope="row">
                   <mat-form-field>
-                    <input matInput placeholder="New Grade Name" [(ngModel)]="newGrade.name">
+                    <input matInput type="text" placeholder="New Grade Name" [(ngModel)]="newGrade.name">
                   </mat-form-field>
                 </td>
                 <!-- Date -->
@@ -61,7 +127,7 @@
                 <!-- Weight -->
                 <td>
                   <mat-form-field>
-                    <input matInput placeholder="Weight" [(ngModel)]="newGrade.weight">
+                    <input matInput type="number" placeholder="Weight" [(ngModel)]="newGrade.weight">
                     <span matSuffix>%</span>
                   </mat-form-field>
                 </td>
@@ -69,9 +135,9 @@
                 <td>
                   <mat-form-field>
                     <div class="example-tel-input-container">
-                      <input matInput class="example-tel-input-element" [(ngModel)]="newGrade.grade" size="3">
+                      <input matInput type="number" class="example-tel-input-element" [(ngModel)]="newGrade.grade" size="3">
                       <span class="example-tel-input-spacer">/</span>
-                      <input matInput class="example-tel-input-element" [(ngModel)]="newGrade.total" size="3">
+                      <input matInput type="number" class="example-tel-input-element" [(ngModel)]="newGrade.total" size="3">
                     </div>
                   </mat-form-field>
                 </td>
@@ -94,11 +160,11 @@
                     <!--&lt;!&ndash;</tbody>&ndash;&gt;-->
                   <!--</div>-->
 
-
+                <!-- Add new grade button -->
+                <td>
+                  <button mat-button (click)="addGrade()">Add</button>
+                </td>
               </tr>
-
-            <button mat-button (click)="addGrade()">Add</button>
-
             </tbody>
           </table>
         </div>

@@ -35,10 +35,10 @@ export class CourseService {
   }
 
   @Cacheable()
-  get_course(course_id): Observable<any> {
-    // let url: string = `${this.BASE_URL}/${course_id}`;
-    // return this.http.get(url);
-    return of(courses[course_id]);
+  get_course(course_id, student_id): Observable<any> {
+    let url: string = `${this.BASE_URL}/${course_id}/${student_id}`;
+    return this.http.get(url);
+    // return of(courses[course_id]);
   }
 
   @Cacheable()
@@ -54,8 +54,17 @@ export class CourseService {
 
   insert_grade(user_id, grade) : Promise<any> {
     let url: string = `${FLASK_URL}/grade/${user_id}`;
-    console.log(url, grade);
     return this.http.post(url, grade, {headers: this.httpheaders}).toPromise();
+  }
+
+  edit_grade(user_id, data): Promise<any> {
+    let url: string = `${FLASK_URL}/grade/${user_id}`;
+    return this.http.put(url, data, {headers: this.httpheaders}).toPromise();
+  }
+
+  remove_grade(user_id, grade_id): Promise<any> {
+    let url: string = `${FLASK_URL}/grade/${user_id}/${grade_id}`;
+    return this.http.delete(url, {headers: this.httpheaders}).toPromise();
   }
 
 }

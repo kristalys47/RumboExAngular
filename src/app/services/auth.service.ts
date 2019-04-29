@@ -56,6 +56,16 @@ export class AuthService {
     return this.http.post(url, user, {headers: this.httpheaders}).toPromise();
   }
 
+  counselorregister(user): Promise<any> {
+    let url: string = `${this.BASE_URL}/register-counselor`;
+    return this.http.post(url, user, {headers: this.httpheaders}).toPromise();
+  }
+
+  psychologistregister(user): Promise<any> {
+    let url: string = `${this.BASE_URL}/register-psychologist`;
+    return this.http.post(url, user, {headers: this.httpheaders}).toPromise();
+  }
+
   ensureAuthenticated(token): Promise<any> {
     let url: string = `${this.BASE_URL}/status`;
     let headers: Headers = new Headers({

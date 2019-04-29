@@ -15,6 +15,8 @@ export class ProfileComponent implements OnInit {
   courses: any;
   tasks: any;
 
+  edit: boolean = false;
+
   constructor(private data: StudentProvider, private studentService: StudentService) { }
 
   ngOnInit() {
@@ -24,6 +26,13 @@ export class ProfileComponent implements OnInit {
       this.user = data;
       console.log(this.user);
     });
+  }
 
+  toggleEdit() {
+    this.edit = !this.edit;
+  }
+
+  save() {
+    this.toggleEdit();
   }
 }

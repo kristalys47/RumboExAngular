@@ -22,7 +22,7 @@
   <!--</mat-card>-->
 <!--</div>-->
 
-<div class="row">
+<div class="profile-cards row">
 
 <mat-card class="col">
   <div class="card-body">
@@ -42,14 +42,25 @@
 
 <mat-card class="col-sm-8">
   <mat-card-title>{{user.role}} Details</mat-card-title>
+  <!-- Edit button -->
+  <div align="right" *ngIf="!edit"><button mat-button (click)="toggleEdit()">edit</button></div>
+  <!-- Email Address -->
   <h5>Email Address</h5>
   <div>{{user.email}}</div><br/>
+  <!-- Username -->
   <h5>Username</h5>
   <div>{{user.username}}</div><br/>
+  <!-- Full Name -->
   <h5>Full Name</h5>
   <div>{{user.name}} {{user.lastname}}</div><br/>
+  <!-- Student Number -->
   <h5>Student Number</h5>
-  <div>{{user.student_num}}</div>
+  <div>{{user.student_num}}</div><br />
+  <!-- Phone number -->
+  <h5>Phone Number</h5>
+  <div>{{user.phone_num}}</div><br />
+  <!-- Save button when editing info -->
+  <button mat-button *ngIf="edit" (click)="save()">Save changes</button>
 </mat-card>
 
 </div>

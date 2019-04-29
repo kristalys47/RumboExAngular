@@ -49,8 +49,9 @@ export class StudentmainComponent implements OnInit {
     this.studentService.getStudent(this.curr_user_id).subscribe(data => {
       // this.studentService.student = data;
       this.student = data;
+      console.log(this.student);
+
     });
-    console.log(this.student);
 
     this.courseService.get_courses(this.curr_user_id).subscribe(data => {
       this.courses = data;

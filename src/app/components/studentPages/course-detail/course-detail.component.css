@@ -15,10 +15,10 @@ mat-card{
     margin-top: 10px;
 }
 
-button {
-  position: absolute;
-  right: 45px;
-}
+/*button {*/
+  /*position: absolute;*/
+  /*right: 45px;*/
+/*}*/
 
 .example-container {
   width: 400px;
@@ -76,15 +76,15 @@ button {
 }
 
 table {
-  width: 100%;
-  table-layout: fixed;
+  /*width: 100%;*/
+  /*table-layout: fixed;*/
 }
 
 th, td {
-  overflow: hidden;
-  width: 200px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  /*overflow: hidden;*/
+  /*width: 200px;*/
+  /*text-overflow: ellipsis;*/
+  /*white-space: nowrap;*/
 }
 
 .example-tel-input-container {
@@ -108,4 +108,15 @@ th, td {
 
 :host.example-floating .example-tel-input-spacer {
   opacity: 1;
+}
+
+/*.action-buttons button {*/
+  /*margin-right: 8px;*/
+/*}*/
+
+/* this hides the spinners on number inputs */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

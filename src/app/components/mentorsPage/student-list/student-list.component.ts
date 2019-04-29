@@ -10,6 +10,8 @@ import {MatTableDataSource, MatSort, Sort} from "@angular/material";
 })
 export class StudentListComponent implements OnInit {
 
+  curr_usr_id = sessionStorage.getItem('userid');
+
   studentsList: Array<Student>;
   // filteredStudent: Array<Student>;
   // sortedStudent: Array<Student>;
@@ -17,19 +19,16 @@ export class StudentListComponent implements OnInit {
   displayedColumns: string[] = ['name', 'department_name', 'grade', 'email'];
   // dataSource: MatTableDataSource<any>;
 
+  // hardcoded, need to fetch from db
   departments = [
-    {num: 4321, name: 'Artes y Ciencias'},
-    {num: 9987, name: 'Ciencias Agricolas'},
-    {num: 1234, name: 'Ingenieria'},
-    {num: 7856, name: 'Administracion de Empresas'}
-    // {'Artes y Ciencias':''},
-    // {'Ciencias Agricolas':''},
-    // {Ingenieria: 'Ingernieria de Computadoras'},
-    // {'Administracion de Empresas':''}
+    {num: 1, name: 'Administracion de Empresas'},
+    {num: 2, name: 'Artes y Ciencias'},
+    {num: 3, name: 'Ciencias Agricolas'},
+    {num: 4, name: 'Ingenieria'},
   ];
 
   // needs to be real data fetched from db, need to create tables in db
-  goals = ['Personales', 'Academicas', 'Profesionales', 'Otras'];
+  goals = ['Academic', 'Professional', 'Personal', 'Other'];
 
   // hardcoded for demo
   goalData = [
@@ -37,6 +36,7 @@ export class StudentListComponent implements OnInit {
     {name:'Juan Alvarado',goal:'Identificar area de estudio de interes'}
   ];
 
+  // creates an array containing the letters of the alphabet
   alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
 
   // filteredData: any;
@@ -44,6 +44,15 @@ export class StudentListComponent implements OnInit {
   selected: string;
 
   filter: any;
+
+  // default filter when a selector is first chosen (first tab of every selection)
+  defaultFilter : {
+    all: null,
+    alphabetical : {name: 'a'},
+    faculty: {faculty: 'Administracion de Empresas'},
+    alert: {},
+    goals: {}
+  };
 
   sort : {
     direction: string,
@@ -53,7 +62,8 @@ export class StudentListComponent implements OnInit {
   constructor(private studentService: StudentService) { }
 
   ngOnInit() {
-    this.studentService.getstudentlist().subscribe(data => {
+    this.studentService.getstudentlist(this.curr_usr_id).subscribe(data => {
+      console.log(data);
       this.studentsList = data;
       // this.studentsList = data.Users;
       this.selected = 'all';

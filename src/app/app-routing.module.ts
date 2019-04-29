@@ -51,6 +51,7 @@ import {PsychologistRegisterComponent} from "./components/registers/psychologist
 import {AnfitrionRegisterComponent} from "./components/registers/anfitrion-register/anfitrion-register.component";
 import {CourseSelectionComponent} from "./components/registers/course-selection/course-selection.component";
 import {CourseDetailComponent} from "./components/studentPages/course-detail/course-detail.component";
+import {PsychologistloginComponent} from "./components/logins/psychologistlogin/psychologistlogin.component";
 
 
 const routes: Routes = [
@@ -61,6 +62,7 @@ const routes: Routes = [
   { path: 'adminlogin', component: AdminloginComponent },
   { path: 'studentlogin', component: StudentloginComponent },
   { path: 'counselorlogin', component: CounselorloginComponent },
+  { path: 'cpsychologistlogin', component: PsychologistloginComponent },
   { path: 'mentorlogin', component: MentorloginComponent },
   { path: 'professorlogin', component: ProfessorloginComponent },
   { path: 'advisorlogin', component: AdvisorloginComponent },

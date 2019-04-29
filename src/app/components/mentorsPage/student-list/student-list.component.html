@@ -5,7 +5,7 @@
     <!-- What to show selector -->
     <mat-form-field class="selector">
       <h5>Showing:</h5>
-      <mat-select [(ngModel)]="selected" (selectionChange)="selected = $event.value; filter = null">
+      <mat-select [(ngModel)]="selected" (selectionChange)="selected = $event.value; filter = defaultFilter[selected]">
         <mat-option value="all">All</mat-option>
         <mat-option value="alphabetical">Alphabetically</mat-option>
         <mat-option value="faculty">Faculty</mat-option>
@@ -22,13 +22,15 @@
     </mat-form-field>
 
 
-
+    <!-- Tabs to show -->
     <ng-container [ngSwitch]="selected">
 
+      <!-- Show all students -->
       <div *ngSwitchCase="'all'">
         <!-- no tabs to show -->
       </div>
 
+      <!-- Show students by letters of the alphabet -->
       <div *ngSwitchCase="'alphabetical'">
         <mat-tab-group (selectedTabChange)="filter = {'name': $event.tab.textLabel}">
           <mat-tab *ngFor="let letter of alphabet" label="{{letter}}" class="letter">
@@ -37,22 +39,30 @@
 
       </div>
 
+      <!-- Show students by faculty -->
       <div *ngSwitchCase="'faculty'">
-        <mat-tab-group (selectedTabChange)="filter = {'department': $event.tab.textLabel}">
+        <mat-tab-group (selectedTabChange)="filter = {'faculty': $event.tab.textLabel}">
           <mat-tab *ngFor="let department of departments" label="{{department.name}}">
           </mat-tab>
         </mat-tab-group>
       </div>
 
+      <!-- Show alert students -->
       <div *ngSwitchCase="'alert'">
+        <mat-tab-group>
+          <mat-tab label="Alert"></mat-tab>
+          <mat-tab label="Warning"></mat-tab>
+          <mat-tab label="Good"></mat-tab>
+        </mat-tab-group>
       </div>
 
+      <!-- Show students by goals -->
       <div *ngSwitchCase="'goals'">
         <mat-tab-group>
           <mat-tab *ngFor="let goal of goals" label="{{goal}}">
 
 
-
+            <!-- Student table divided by goals -->
             <table mat-table [dataSource]="goalData" class="table table-hover">
 
               <!-- Name Column -->
@@ -95,8 +105,8 @@
 
       <!-- Faculty Column -->
       <ng-container matColumnDef="department_name">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Faculty </th>
-        <td mat-cell *matCellDef="let element"> {{element.department_name}} </td>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Program </th>
+        <td mat-cell *matCellDef="let element"> {{element.program_name}} </td>
       </ng-container>
 
       <!-- Grade Average Column -->
