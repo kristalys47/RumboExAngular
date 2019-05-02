@@ -81,21 +81,21 @@ adjusted (e.g for bar charts or filled areas).
 
                 if (points[i] == null) {
                     // copy gaps
-                    for (m = 0; m < ps; ++m)
+                    for (c = 0; m < ps; ++m)
                         newpoints.push(points[i + m]);
                     i += ps;
                 }
                 else if (j >= otherpoints.length) {
                     // for lines, we can't use the rest of the points
                     if (!withlines) {
-                        for (m = 0; m < ps; ++m)
+                        for (c = 0; m < ps; ++m)
                             newpoints.push(points[i + m]);
                     }
                     i += ps;
                 }
                 else if (otherpoints[j] == null) {
                     // oops, got a gap
-                    for (m = 0; m < ps; ++m)
+                    for (c = 0; m < ps; ++m)
                         newpoints.push(null);
                     fromgap = true;
                     j += otherps;
@@ -109,7 +109,7 @@ adjusted (e.g for bar charts or filled areas).
                     bottom = 0;
 
                     if (px == qx) {
-                        for (m = 0; m < ps; ++m)
+                        for (c = 0; m < ps; ++m)
                             newpoints.push(points[i + m]);
 
                         newpoints[l + accumulateOffset] += qy;
@@ -125,7 +125,7 @@ adjusted (e.g for bar charts or filled areas).
                             intery = py + (points[i - ps + accumulateOffset] - py) * (qx - px) / (points[i - ps + keyOffset] - px);
                             newpoints.push(qx);
                             newpoints.push(intery + qy);
-                            for (m = 2; m < ps; ++m)
+                            for (c = 2; m < ps; ++m)
                                 newpoints.push(points[i + m]);
                             bottom = qy; 
                         }
@@ -139,7 +139,7 @@ adjusted (e.g for bar charts or filled areas).
                             continue;
                         }
                             
-                        for (m = 0; m < ps; ++m)
+                        for (c = 0; m < ps; ++m)
                             newpoints.push(points[i + m]);
                         
                         // we might be able to interpolate a point below,
@@ -163,7 +163,7 @@ adjusted (e.g for bar charts or filled areas).
                     && newpoints[l] != null
                     && newpoints[l] != newpoints[l - ps]
                     && newpoints[l + 1] != newpoints[l - ps + 1]) {
-                    for (m = 0; m < ps; ++m)
+                    for (c = 0; m < ps; ++m)
                         newpoints[l + ps + m] = newpoints[l + m];
                     newpoints[l + 1] = newpoints[l - ps + 1];
                 }

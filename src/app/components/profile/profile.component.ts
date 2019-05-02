@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {StudentProvider} from "../../providers/student-provider";
 import {StudentService} from "../../services/student/student.service";
+import {Student} from "../../models/student";
 
 @Component({
   selector: 'app-profile',
@@ -11,7 +12,7 @@ export class ProfileComponent implements OnInit {
 
   userid = sessionStorage.getItem('userid');
   user;
-  student: any;
+  student: Student = new Student();
   courses: any;
   tasks: any;
 
@@ -28,12 +29,17 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  /*
+  *   This function toggles the edit option between editable and non-editable
+  * */
   toggleEdit() {
     this.edit = !this.edit;
   }
 
+  /*
+  *   After editing user information, if data was modified it will send request to backend to alter db
+  * */
   save(email,username,name,lastname,studentnum,phonenum) {
-    // todo: still not implemented in backend
     if(this.user.email!=email) {
       this.studentService.updateStudent(this.userid, {'email': email});
       this.user.email = email;
@@ -58,6 +64,7 @@ export class ProfileComponent implements OnInit {
       this.studentService.updateStudent(this.userid,{'phone_num': phonenum});
       this.user.phone_num = phonenum;
     }
+    // Once the information is changed, change view to non-editable
     this.toggleEdit();
   }
 }

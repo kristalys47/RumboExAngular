@@ -25,4 +25,9 @@ export class MessagesService {
     return this.http.post(url, msg, {headers: this.httpheaders}).toPromise();
   }
 
+  set_message_seen(user_id, data): Promise<any> {
+    let url: string = `${this.BASE_URL}/${user_id}`;
+    return this.http.put(url, data, {headers: this.httpheaders}).toPromise()
+  }
+
 }

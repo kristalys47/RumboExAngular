@@ -17,7 +17,7 @@
 		},
 		bubblesConfig: {
 			popupTemplate: function ( geography, data ) {
-				return '<div class="datamap-sales-hover-tooltip">' + data.country + '<span class="m-l-5"></span>' + data.sold + '</div>'
+				return '<div class="datamap-sales-hover-tooltip">' + data.country + '<span class="c-l-5"></span>' + data.sold + '</div>'
 			},
 			borderWidth: 1,
 			highlightBorderWidth: 3,

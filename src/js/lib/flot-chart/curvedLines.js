@@ -261,7 +261,7 @@ ____________________________________________________
 						var length = segmentLengths[i];
 						var prev_length = segmentLengths[i - 1];
 						var common = length + prev_length;
-						//m = 3 (prev_length + length) / ((2 length + prev_length) / prev_slope + (length + 2 prev_length) / slope)
+						//c = 3 (prev_length + length) / ((2 length + prev_length) / prev_slope + (length + 2 prev_length) / slope)
 						gradients.push(3 * common / ((common + length) / prev_slope + (common + prev_length) / slope));
 					}
 				}

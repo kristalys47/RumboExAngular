@@ -40,6 +40,7 @@
   </div>
 </mat-card>
 
+  <!-- Non-editable view, only show data -->
   <ng-template [ngIf]="!edit" [ngIfElse]="editable">
     <mat-card class="col-sm-8">
       <!-- Edit button -->
@@ -63,6 +64,7 @@
     </mat-card>
   </ng-template>
 
+  <!-- Editable view, show data in input forms so that they can be changed -->
   <ng-template #editable>
     <mat-card class="col-sm-8">
       <mat-card-title>{{user.role_name | titlecase}} Details</mat-card-title>
@@ -79,14 +81,15 @@
       <mat-form-field><input #lastname matInput [value]="user.lastname"></mat-form-field>
       <!-- Student Number -->
       <h5>Student Number</h5>
-      <mat-form-field><input #studentnum matInput [value]="user.student_num"></mat-form-field>
+      <mat-form-field><input #studentnum matInput [value]="user.student_num | studentNum"></mat-form-field>
       <!-- Phone number -->
       <h5>Phone Number</h5>
-      <mat-form-field><input #phonenum matInput [value]="user.phone_num"></mat-form-field>
-      <!-- Save button when editing info -->
-      <br/><button mat-button (click)="save(email.value,username.value,name.value,lastname.value,studentnum.value,phonenum.value)">Save changes</button>
+      <mat-form-field><input #phonenum matInput [value]="user.phone_num | phone"></mat-form-field><br/>
+      <!-- Exit button to go back to non-editable view -->
+      <button mat-button (click)="toggleEdit()">Exit</button>
+      <!-- Save button after editing info -->
+      <button mat-button (click)="save(email.value,username.value,name.value,lastname.value,studentnum.value,phonenum.value)">Save changes</button>
     </mat-card>
   </ng-template>
-
 
 </div>

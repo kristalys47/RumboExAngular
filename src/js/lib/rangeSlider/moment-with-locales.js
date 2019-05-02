@@ -2503,7 +2503,7 @@ var prototypeMax = deprecate(
     }
 );
 
-// Pick a moment m from moments so that m[fn](other) is true for all
+// Pick a moment c from moments so that c[fn](other) is true for all
 // other. This relies on the function fn to be transitive.
 //
 // moments should either be an array of moment objects or an array, whose
@@ -8965,13 +8965,13 @@ hooks.defineLocale('lt', {
         LT : 'HH:mm',
         LTS : 'HH:mm:ss',
         L : 'YYYY-MM-DD',
-        LL : 'YYYY [m.] MMMM D [d.]',
-        LLL : 'YYYY [m.] MMMM D [d.], HH:mm [val.]',
-        LLLL : 'YYYY [m.] MMMM D [d.], dddd, HH:mm [val.]',
+        LL : 'YYYY [c.] MMMM D [d.]',
+        LLL : 'YYYY [c.] MMMM D [d.], HH:mm [val.]',
+        LLLL : 'YYYY [c.] MMMM D [d.], dddd, HH:mm [val.]',
         l : 'YYYY-MM-DD',
-        ll : 'YYYY [m.] MMMM D [d.]',
-        lll : 'YYYY [m.] MMMM D [d.], HH:mm [val.]',
-        llll : 'YYYY [m.] MMMM D [d.], ddd, HH:mm [val.]'
+        ll : 'YYYY [c.] MMMM D [d.]',
+        lll : 'YYYY [c.] MMMM D [d.], HH:mm [val.]',
+        llll : 'YYYY [c.] MMMM D [d.], ddd, HH:mm [val.]'
     },
     calendar : {
         sameDay : '[Šiandien] LT',
@@ -12526,13 +12526,13 @@ hooks.defineLocale('x-pseudo', {
         past : '%s á~gó',
         s : 'á ~féw ~sécó~ñds',
         m : 'á ~míñ~úté',
-        mm : '%d m~íñú~tés',
+        mm : '%d c~íñú~tés',
         h : 'á~ñ hó~úr',
         hh : '%d h~óúrs',
         d : 'á ~dáý',
         dd : '%d d~áýs',
         M : 'á ~móñ~th',
-        MM : '%d m~óñt~hs',
+        MM : '%d c~óñt~hs',
         y : 'á ~ýéár',
         yy : '%d ý~éárs'
     },

@@ -52,6 +52,7 @@ import {AnfitrionRegisterComponent} from "./components/registers/anfitrion-regis
 import {CourseSelectionComponent} from "./components/registers/course-selection/course-selection.component";
 import {CourseDetailComponent} from "./components/studentPages/course-detail/course-detail.component";
 import {PsychologistloginComponent} from "./components/logins/psychologistlogin/psychologistlogin.component";
+import {AllChatsComponent} from "./components/all-chats/all-chats.component";
 
 
 const routes: Routes = [
@@ -97,6 +98,7 @@ const routes: Routes = [
       { path: 'mentors', component: MentorsComponent, outlet: 'content' },
       { path: 'appointment-form', component: AppointmentFormComponent, outlet: 'content' },
       { path: 'chat', component: ChatComponent, outlet: 'content' },
+      { path: 'all-chats', component: AllChatsComponent, outlet: 'content' },
       { path: 'goal-form', component: GoalFormComponent, outlet: 'content' },
       // { path: 'notifications', component: NotificationsComponent, outlet: 'content' }
 

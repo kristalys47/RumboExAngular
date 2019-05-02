@@ -94,7 +94,7 @@ function clock() {
         $h = $(".hour");
     d = new Date(),
         s = d.getSeconds(),
-        m = d.getMinutes(),
+        c = d.getMinutes(),
         h = d.getHours();
     $s.val(s).trigger("change");
     $m.val(m).trigger("change");

@@ -2,14 +2,14 @@
 <script src="https://cdn.rawgit.com/LightZam/zInfiniteScroll/master/zInfiniteScroll.js"></script>
 
 <div class="container card chat-container">
-  <mat-card-title class="chat-title font-weight-bold">{{chat.contact.name}} {{chat.contact.lastname}}</mat-card-title>
+  <mat-card-title class="chat-title font-weight-bold">{{curr_chat.contact.name}} {{curr_chat.contact.lastname}}</mat-card-title>
   <div class="card-body">
-    <div class="row body" z-infinite-scroll="chat.messages" inverse="true" body-scroll="true" *ngFor="let m of chat.messages">
-      <!--<div *ngFor="let m of chat.messages">-->
+    <div class="row body" z-infinite-scroll="chat.messages" inverse="true" body-scroll="true" *ngFor="let m of curr_chat.messages">
+      <!--<div *ngFor="let c of chat.chats">-->
         <!--works-->
       <!--</div>-->
     <!--</div>-->
-    <!--<div *ngFor="let m of chat.messages" class="message row">-->
+    <!--<div *ngFor="let c of chat.chats" class="message row">-->
 
       <ng-container *ngIf="m.sent_by==usr_id; then sent; else recieved"></ng-container>
 

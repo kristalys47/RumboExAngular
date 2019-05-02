@@ -2494,13 +2494,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var b = this.rgb.b;
 	    var a = this.alpha;
 
-	    var m = typeof multiplier !== 'undefined' ? multiplier : 0.5;
+	    var c = typeof multiplier !== 'undefined' ? multiplier : 0.5;
 
 	    //todo: write a lerp function
-	    r = r + m * (color.rgb.r - r);
-	    g = g + m * (color.rgb.g - g);
-	    b = b + m * (color.rgb.b - b);
-	    a = a + m * (color.alpha - a);
+	    r = r + c * (color.rgb.r - r);
+	    g = g + c * (color.rgb.g - g);
+	    b = b + c * (color.rgb.b - b);
+	    a = a + c * (color.alpha - a);
 
 	    return new Color(Color.rgbToHex(r, g, b), {
 	        'alpha': a

@@ -164,6 +164,7 @@ import { StudentNumPipe } from './pipes/student-num/student-num.pipe';
     PhonePipe,
     StudentNumPipe,
     // NotificationsComponent
+
   ],
   imports: [
     MbscModule,

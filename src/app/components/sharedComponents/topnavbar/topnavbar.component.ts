@@ -24,7 +24,6 @@ export class TopnavbarComponent implements OnInit {
     // todo
     this.studentService.getStudent(this.curr_user_id).subscribe(data => {
       this.user = data;
-      console.log(this.user, 'testeando topnav');
     });
 
     // this.data.loadStudent(this.curr_user_id).then( (data) => {

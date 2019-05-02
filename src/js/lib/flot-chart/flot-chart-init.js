@@ -222,7 +222,7 @@ $( function () {
 		},
 		xaxis: {
 			mode: "time",
-			timeformat: "%m/%d",
+			timeformat: "%c/%d",
 			minTickSize: [ 1, "day" ]
 		},
 		grid: {
@@ -273,7 +273,7 @@ $( function () {
 		},
 		xaxis: {
 			mode: "time",
-			timeformat: "%m/%d",
+			timeformat: "%c/%d",
 			minTickSize: [ 1, "day" ]
 		},
 		grid: {

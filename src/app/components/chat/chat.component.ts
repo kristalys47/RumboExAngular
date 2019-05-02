@@ -10,11 +10,13 @@ import {Chat, Message} from "../../models/message";
 })
 export class ChatComponent implements OnInit {
 
-  usr_id = sessionStorage.getItem('userid');
-  chats: Array<any>;
+  usr_id = parseInt(sessionStorage.getItem('userid'));
+  chats: Array<Chat> = new Array<Chat>();
 
   // @Input()
-  chat: Chat;
+  curr_chat_id: number;
+  curr_chat: Chat;
+
   text: string;
   sub;
 
@@ -24,35 +26,44 @@ export class ChatComponent implements OnInit {
     this.sub = this.route
       .queryParams
       .subscribe(params => {
-        this.chat = JSON.parse(params['chat']);
-        console.log(this.chat);
+        this.curr_chat_id = JSON.parse(params['chat_id']);
+        console.log(this.curr_chat_id);
       });
 
-    // this.messageService.get_messages(this.usr_id).subscribe(chats => {
-    // chats.map((chat) => {
-    //   console.log(chat);
-    //   if (chat.chat_id == this.chat_id) {
-    //     this.chat = chat;
-    //     console.log(this.chat);
-    //   }
-    // });
-    // console.log('chat:', this.chat);
-    //     this.chats = chats;
-    //     console.log(this.chats);
-    //   })
-    // }
 
+    this.messageService.get_messages(this.usr_id).subscribe(data => {
+      this.chats = data.Chats;
+
+      // Find current (opened) chat in array of chats by chat_id
+      this.curr_chat = this.chats.find(chat => chat.chat_id == this.curr_chat_id);
+
+      // Once a chat is opened, set every message to seen
+      // Not very efficient since it updates every message even if seen attribute is already set to true
+      this.curr_chat.messages.forEach(message => {
+
+        // Only set to seen if message was not sent by current user
+        if (message.sent_to == this.usr_id) {
+          let data = {'msg_id': message.m_id};
+          this.messageService.set_message_seen(this.usr_id, data);
+        }
+
+      });
+    })
   }
 
+  /*
+  *   Send message to current chat
+  * */
   sendMessage() {
     // if there is no written text, don't send message
     if(this.text == null) return;
+    // current time
     let now: string = new Date().toUTCString();
     // create message object
     let msg: Message = new Message();
     msg.text = this.text;
-    msg.sent_by = Number(this.usr_id);
-    msg.sent_to = this.chat.contact.user_id;
+    msg.sent_by = this.usr_id;
+    msg.sent_to = this.curr_chat.contact.user_id;
     msg.date = now;
     msg.seen = false;
     console.log(msg);
@@ -62,7 +73,7 @@ export class ChatComponent implements OnInit {
       .then( res => {
         console.log(res);
         // add new message to message array
-        this.chat.messages.push(msg);
+        this.curr_chat.messages.push(msg);
         // set text null for next message
         this.text = null;
       })

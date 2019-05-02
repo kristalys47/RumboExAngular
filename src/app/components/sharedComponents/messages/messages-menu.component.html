@@ -6,30 +6,30 @@
   <div class="dropdown-menu dropdown-menu-right mailbox animated zoomIn" aria-labelledby="2">
     <ul>
       <li>
-        <div class="drop-title">You have 3 new messages</div>
+        <div class="drop-title">You have {{newMessages}} new messages</div>
       </li>
       <li>
         <div class="message-center">
-          <div  *ngFor="let m of messages">
+          <div  *ngFor="let c of chats">
             <!-- Message -->
-            <a [routerLink]="[ '/studentmain', { outlets: { content: 'chat' } } ]" [queryParams]="{ chat: m | json }">
+            <a [routerLink]="[ '/studentmain', { outlets: { content: 'chat' } } ]" [queryParams]="{ chat_id: c.chat_id | json }">
               <!-- Contact user profile picture -->
               <div class="user-img"> <img src="images/users/default-profile.png" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
               <!-- Message content -->
               <div class="mail-contnet">
                 <!-- Contact name -->
-                <h5>{{m.contact.name}} {{m.contact.lastname}}</h5>
-                <!-- Message text -->
-                <span class="mail-desc">{{m.messages[m.messages.length-1].text | slice:0:40}}</span>
-                <!-- Date sent -->
-                <span class="time">{{m.messages[m.messages.length-1].date | date}}</span>
+                <h5>{{c.contact.name}} {{c.contact.lastname}}</h5>
+                <!-- Message text, will show the text of the last message in chat, only 40 first chars will show -->
+                <span class="mail-desc">{{c.messages[c.messages.length-1].text | slice:0:40}}</span>
+                <!-- Date sent, will show date of last message in chat -->
+                <span class="time">{{c.messages[c.messages.length-1].date | date}}</span>
               </div>
             </a>
           </div>
         </div>
       </li>
       <li>
-        <a class="nav-link text-center" href="javascript:void(0);"> <strong>See all Messages</strong> <i class="fa fa-angle-right"></i> </a>
+        <a class="nav-link text-center" [routerLink]="[ '/studentmain', { outlets: { content: 'all-chats' } } ]"> <strong>See all Messages</strong> <i class="fa fa-angle-right"></i> </a>
       </li>
     </ul>
   </div>
