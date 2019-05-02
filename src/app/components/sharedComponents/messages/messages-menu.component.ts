@@ -9,7 +9,7 @@ import {Chat, Message} from "../../../models/message";
 })
 export class MessagesMenuComponent implements OnInit {
 
-  usr_id = sessionStorage.getItem('userid');
+  usr_id = parseInt(sessionStorage.getItem('userid'));
   chats: Array<Chat> = new Array<Chat>();
   newMessages: number;
 
@@ -31,12 +31,11 @@ export class MessagesMenuComponent implements OnInit {
     // if there are no new messages return 0
     let counter = 0;
     this.chats.forEach(chat => {
-      // last message sent in chat
-      let lastMessage: Message = chat.messages[chat.messages.length - 1];
+      // last message sent to current user in chat
+      let lastMessage: Message = chat.messages.reverse().find(m => m.sent_to == this.usr_id);
       // if boolean seen is false, message hasn't been seen, add 1 to counter
       if (!lastMessage.seen) {counter++;}
     });
-    console.log(counter);
     return counter;
   }
 
