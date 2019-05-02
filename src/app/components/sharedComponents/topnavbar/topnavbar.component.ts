@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {StudentProvider} from "../../../providers/student-provider";
 import {StudentService} from "../../../services/student/student.service";
 import {StudentProviderService} from "../../../providers/student-provider/student-provider.service";
+import {User} from "../../../models/user";
 
 @Component({
   selector: 'app-topnavbar',
@@ -14,14 +15,16 @@ export class TopnavbarComponent implements OnInit {
   role = sessionStorage.getItem('role');
   mainpath = '/'+this.role+'main'
   // user = sessionStorage.getItem('token');
-  user;
+  user: User = new User();
 
   constructor(private data: StudentProviderService, private studentService: StudentService) { }
 
   ngOnInit() {
 
+    // todo
     this.studentService.getStudent(this.curr_user_id).subscribe(data => {
       this.user = data;
+      console.log(this.user, 'testeando topnav');
     });
 
     // this.data.loadStudent(this.curr_user_id).then( (data) => {

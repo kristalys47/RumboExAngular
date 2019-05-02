@@ -30,7 +30,7 @@ export class CourseService {
 
   @Cacheable()
   get_courses_with_grades(user_id): Observable<any> {
-    let url: string = `${this.BASE_URL}s/grades/${user_id}`;
+    let url: string = `${this.BASE_URL}s/${user_id}`;
     return this.http.get(url)
   }
 

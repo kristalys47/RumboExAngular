@@ -189,6 +189,7 @@ export class CourseDetailComponent implements OnInit {
         this.course.grades = this.course.grades.filter(grade => {
           if (grade.grade_id!=grade_id) {return grade;}
         });
+        // update new gpa and status without deleted grade
         this.updateGradeStatus();
       })
       .catch(err => {console.log(err);})

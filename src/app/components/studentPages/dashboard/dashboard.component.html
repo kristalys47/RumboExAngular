@@ -4,7 +4,43 @@
       <!-- Courses table -->
       <div class="col-sm-4">
         <h2>My Courses</h2>
-        <app-student-courses-table [courses]="courses" [courseSelectDisabled]="true"></app-student-courses-table>
+        <!-- Table showing student's courses with gpa and status -->
+        <div class="table-responsive">
+          <table class="table table-hover ">
+            <thead>
+            <tr>
+              <th>Name</th>
+              <th>Grade</th>
+              <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let c of courses">
+              <!-- Course name -->
+              <th scope="row">
+                <!-- Students can select a course to view its details -->
+                <div *ngIf="!courseSelectDisabled; else disabled">
+                  <a [routerLink]="[ '/studentmain', { outlets: { content: 'course' } }]" [queryParams]="{ course: c.course_id }" >{{c.name}}</a>
+                </div>
+                <!-- Mentors are not allowed to click on courses -->
+                <ng-template #disabled>
+                  <a>{{c.name}}</a>
+                </ng-template>
+              </th>
+              <!-- Course grade -->
+              <td>{{c.general_average}}</td>
+              <!-- Course status -->
+              <td>
+                <span *ngIf="c.status==4" class="badge badge-success">EXCELLENT</span>
+                <span *ngIf="c.status==3" class="badge badge-success">PASSING</span>
+                <span *ngIf="c.status==1" class="badge badge-danger">NOT PASSING</span>
+                <span *ngIf="c.status==2" class="badge badge-warning">SURVIVING</span>
+                <span *ngIf="c.status==0" class="badge-info">N/A</span>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
       <!-- Time management graph -->
       <div class="col-lg-8">

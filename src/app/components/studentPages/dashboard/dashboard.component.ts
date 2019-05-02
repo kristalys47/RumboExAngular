@@ -5,6 +5,7 @@ import {GooglechartService} from '../../../services/googlechart.service';
 import {config} from 'rxjs';
 import {nextMonthDisabled} from '@ng-bootstrap/ng-bootstrap/datepicker/datepicker-tools';
 import {ActivatedRoute} from "@angular/router";
+import {Course, Grade, Status} from "../../../models/course";
 
 @Component({
   selector: 'app-dashboard',
@@ -16,7 +17,7 @@ export class DashboardComponent implements OnInit {
 
   curr_student_id = sessionStorage.getItem('userid');
 
-  courses = [];
+  courses: Array<Course> = new Array<Course>();
 
   google: any;
   personalTask = [];
@@ -49,9 +50,19 @@ export class DashboardComponent implements OnInit {
 //   }
   ngOnInit() {
 
-    this.route.queryParams.subscribe(params => {
-      this.courses = JSON.parse(params['courses']);
+    this.courseService.get_courses_with_grades(this.curr_student_id).subscribe(data => {
+      this.courses = data;
+      this.courses.forEach(course => {
+        this.updateGradeStatus(course);
+      });
+      console.log(this.courses);
     });
+
+    // todo
+    // this.route.queryParams.subscribe(params => {
+    //   this.courses = JSON.parse(params['courses']);
+    //   console.log(params['courses']);
+    // });
 
     // this.getChartValues();
     // this.courseService.get_courses(this.curr_student_id).subscribe(data => {
@@ -114,5 +125,60 @@ export class DashboardComponent implements OnInit {
   //     return 'NOT PASSING';
   //   }
   // }
+
+  /*
+  * Given a set of grades, it will calculate the average.
+  * The average takes into consideration the weight of each grade and divides the sum of the grades by the percentage of
+  * the weight taken up to date.
+  * */
+  private calculateAverage(grades: Grade[]) {
+    let avg: number = 0;
+    let cummulative_weight: number = 0;
+    console.log(grades);
+    grades.forEach(grade => {
+      if(grade.grade && grade.total) {
+        // todo: calcular avg cuando no se tiene weight de la nota
+        avg = avg + ((grade.grade / grade.total) * grade.weight);
+        cummulative_weight = cummulative_weight + grade.weight;
+      }
+    });
+    console.log((avg/cummulative_weight * 100).toFixed(2));
+    return parseFloat((avg/cummulative_weight * 100).toFixed(2));
+  }
+
+  /*
+  *  Given a set of grades, calculate the cummulative grade.
+  *  The cummulative grade takes into consideration the weight of each grade, and only adds the grades up to date.
+  * */
+  private calculateCummulativeAverage(grades: Grade[]) {
+    let avg: number = 0;
+    grades.forEach(grade => {
+      if(grade.grade && grade.total) {
+        avg = avg + ((grade.grade / grade.total) * grade.weight);
+      }
+    });
+    return parseFloat(avg.toFixed(2));
+  }
+
+  /*
+  *  Given a number as the average of the grades, return the status on course.
+  * */
+  private getCourseStatus(avg: number) {
+    if(avg >= 90) { return Status.Excellent; }
+    else if(avg >= 80) { return Status.Passing; }
+    else if(avg >= 75) { return Status.Surviving; }
+    else if (avg >=0 ) { return Status.NotPassing; }
+    else { return Status.Undefined; }
+  }
+
+  /*
+  *   When component is initialized or the array of grades modified (a grade is added, deleted or edited),
+  *   this methods recalculates the gpa and the course status
+  * */
+  private updateGradeStatus(course: Course) {
+    course.general_average = this.calculateAverage(course.grades);
+    course.status = this.getCourseStatus(course.general_average);
+    course.cummulative_average = this.calculateCummulativeAverage(course.grades);
+  }
 
 }
