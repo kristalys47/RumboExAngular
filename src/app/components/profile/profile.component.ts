@@ -34,18 +34,22 @@ export class ProfileComponent implements OnInit {
 
   save(email,username,name,lastname,studentnum,phonenum) {
     // todo: still not implemented in backend
-    // if(this.user.email!=email) {
-    //   this.studentService.updateStudent(this.userid, {'email': email});
-    // }
-    // if(this.user.username!=username) {
-    //
-    // }
-    // if(this.user.name!=name) {
-    //
-    // }
-    // if(this.user.lastname!=lastname) {
-    //
-    // }
+    if(this.user.email!=email) {
+      this.studentService.updateStudent(this.userid, {'email': email});
+      this.user.email = email;
+    }
+    if(this.user.username!=username) {
+      this.studentService.updateStudent(this.userid, {'username': username});
+      this.user.username = username;
+    }
+    if(this.user.name!=name) {
+      this.studentService.updateStudent(this.userid, {'name': name});
+      this.user.name = name;
+    }
+    if(this.user.lastname!=lastname) {
+      this.studentService.updateStudent(this.userid, {'lastname': lastname});
+      this.user.lastname = lastname;
+    }
     if(this.user.studentnum!=studentnum && studentnum.length==9) {
       this.studentService.updateStudent(this.userid,{'student_num': studentnum});
       this.user.student_num = studentnum;

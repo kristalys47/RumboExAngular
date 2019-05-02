@@ -1,5 +1,5 @@
 import {Component, OnInit, Inject, Input} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {Task} from '../../../models/task';
 import {TaskService} from '../../../services/task/task.service';
 import {CourseService} from '../../../services/course/course.service';
@@ -37,12 +37,29 @@ export class CourseDetailComponent implements OnInit {
   newGrade: Grade = new Grade();
 
   constructor(private route: ActivatedRoute,
+              private router: Router,
               private taskService: TaskService,
               private courseService: CourseService,
               public dialog: MatDialog,
-              private authService: AuthService) { }
+              private authService: AuthService) {
+
+    // this.router.routeReuseStrategy.shouldReuseRoute = () => {return false;}
+    //
+    // this.router.events.subscribe((evt) => {
+    //   if (evt instanceof NavigationEnd) {
+    //      // trick the Router into believing it's last link wasn't previously loaded
+    //      this.router.navigated = false;
+    //      // if you need to scroll back to top, here is the right place
+    //      window.scrollTo(0, 0);
+    //   }
+    // });
+
+
+ }
 
   ngOnInit() {
+
+
     // get the course id from query param
     this.sub = this.route
       .queryParams

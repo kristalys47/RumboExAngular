@@ -27,8 +27,13 @@ export class DashboardComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private courseService: CourseService,
-              private chartService: GooglechartService  ){
+              private chartService: GooglechartService){
               // private taskCountService: TaskCountService) {
+
+
+
+
+
   }
 // getChartValues() {
 //        this.taskCountService.get_apppointment_tasks_count(this.curr_student_id).subscribe(data => {
@@ -50,6 +55,7 @@ export class DashboardComponent implements OnInit {
 //   }
   ngOnInit() {
 
+    // todo: esto no hace refresh si se hace cambio en la pag del curso
     this.courseService.get_courses_with_grades(this.curr_student_id).subscribe(data => {
       this.courses = data;
       this.courses.forEach(course => {

@@ -20,7 +20,7 @@
               <th scope="row">
                 <!-- Students can select a course to view its details -->
                 <div *ngIf="!courseSelectDisabled; else disabled">
-                  <a [routerLink]="[ '/studentmain', { outlets: { content: 'course' } }]" [queryParams]="{ course: c.course_id }" >{{c.name}}</a>
+                  <a [routerLink]="[ '/studentmain', { outlets: { content: 'course' } }]" [queryParams]="{ course_id: c.course_id }" >{{c.name}}</a>
                 </div>
                 <!-- Mentors are not allowed to click on courses -->
                 <ng-template #disabled>
