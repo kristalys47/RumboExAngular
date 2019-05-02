@@ -35,13 +35,18 @@
 }
 
 .timestamp {
-  position: absolute;
-  bottom: -38px;
+  /*position: absolute;*/
+  /*bottom: -38px;*/
   /*margin-right: 0%;*/
   /*margin-left: auto;*/
+  margin-bottom: 0%;
   float: right;
 }
 
 .chat-divider {
   bottom: 100px;
+}
+
+.mat-form-field.mat-form-field {
+  width: 100%;
 }

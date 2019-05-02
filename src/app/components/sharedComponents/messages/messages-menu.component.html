@@ -1,7 +1,7 @@
 <!-- Messages -->
 <div class="navbar-nav my-lg-0 nav-item dropdown">
   <a class="nav-link dropdown-toggle text-muted  " href="#" id="2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-envelope"></i>
-    <!--<div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>-->
+    <div *ngIf="newMessages > 0" class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
   </a>
   <div class="dropdown-menu dropdown-menu-right mailbox animated zoomIn" aria-labelledby="2">
     <ul>
@@ -12,9 +12,12 @@
         <div class="message-center">
           <div  *ngFor="let c of chats">
             <!-- Message -->
-            <a [routerLink]="[ '/studentmain', { outlets: { content: 'chat' } } ]" [queryParams]="{ chat_id: c.chat_id | json }">
+             <a [routerLink]="[ '/studentmain', { outlets: { content: 'chat' } } ]" [queryParams]="{ chat_id: c.chat_id | json }">
               <!-- Contact user profile picture -->
-              <div class="user-img"> <img src="images/users/default-profile.png" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
+              <div class="user-img"> <img src="images/users/default-profile.png" alt="user" class="img-circle">
+                <!-- If message hasn't been opened -->
+                <span *ngIf="!c.messages[c.messages.length-1].seen" class="profile-status online pull-right"></span>
+              </div>
               <!-- Message content -->
               <div class="mail-contnet">
                 <!-- Contact name -->

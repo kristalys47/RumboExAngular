@@ -15,10 +15,9 @@
 
       <!-- Messages sent by current user -->
       <ng-template #sent>
-        <!--<div class="row">-->
         <div class="card border col-sm-5" id="sent">
           <p class="card-text text font-weight-bold">{{m.text}}</p>
-          <p class="timestamp font-weight-lighter text-right"><font size="-1">{{m.date | date: 'MMM d, hh:mm aa'}}</font></p>
+          <p class="timestamp font-weight-lighter text-right mat-small">{{m.date | date: 'MMM d, hh:mm aa'}}</p>
         </div>
       </ng-template>
 
@@ -26,7 +25,7 @@
       <ng-template #recieved>
         <div class="card border border-primary float-left col-sm-5" id="recieved">
           <p class="card-text text font-weight-bold">{{m.text}}</p>
-          <p class="timestamp font-weight-lighter text-right"><font size="-1">{{m.date | date: 'MMM d, hh:mm aa'}}</font></p>
+          <p class="timestamp font-weight-lighter text-right mat-small">{{m.date | date: 'MMM d, hh:mm aa'}}</p>
         </div>
       </ng-template>
 
@@ -36,10 +35,18 @@
 
   <!-- Text box to write new message -->
   <div class="new-message">
-    <mat-form-field appearance="fill">
-      <textarea matInput id="newMessage" placeholder="New Message" [(ngModel)]="text" rows="3"></textarea>
-    </mat-form-field>
-    <button mat-button (click)="sendMessage()"><mat-icon>send</mat-icon></button>
+    <table>
+      <tr>
+        <td width="100%">
+          <mat-form-field appearance="fill">
+            <textarea matInput id="newMessage" placeholder="New Message" [(ngModel)]="text" rows="3"></textarea>
+          </mat-form-field>
+        </td>
+        <td>
+          <button mat-button (click)="sendMessage()"><mat-icon>send</mat-icon></button>
+        </td>
+      </tr>
+    </table>
   </div>
 
 </div>

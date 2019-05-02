@@ -17,7 +17,7 @@ export class ChatComponent implements OnInit {
   curr_chat_id: number;
   curr_chat: Chat;
 
-  text: string;
+  text: string = null;
   sub;
 
   constructor(private messageService: MessagesService, private route: ActivatedRoute) { }
@@ -37,17 +37,19 @@ export class ChatComponent implements OnInit {
       // Find current (opened) chat in array of chats by chat_id
       this.curr_chat = this.chats.find(chat => chat.chat_id == this.curr_chat_id);
 
-      // Once a chat is opened, set every message to seen
-      // Not very efficient since it updates every message even if seen attribute is already set to true
-      this.curr_chat.messages.forEach(message => {
+      // Once a chat is opened, set every unseen message to seen
+      for (let message of this.curr_chat.messages) {
 
         // Only set to seen if message was not sent by current user
         if (message.sent_to == this.usr_id) {
+          // Assuming messages are ordered by most recent to least recent, if a message is seen every message after that will be seen as well
+          // todo: check if this is true
+          if (message.seen) {break;}
+
           let data = {'msg_id': message.m_id};
           this.messageService.set_message_seen(this.usr_id, data);
         }
-
-      });
+      }
     })
   }
 
@@ -55,6 +57,7 @@ export class ChatComponent implements OnInit {
   *   Send message to current chat
   * */
   sendMessage() {
+    console.log(this.text);
     // if there is no written text, don't send message
     if(this.text == null) return;
     // current time
