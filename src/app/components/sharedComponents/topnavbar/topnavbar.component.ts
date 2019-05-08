@@ -3,6 +3,9 @@ import {StudentProvider} from "../../../providers/student-provider";
 import {StudentService} from "../../../services/student/student.service";
 import {StudentProviderService} from "../../../providers/student-provider/student-provider.service";
 import {User} from "../../../models/user";
+import 'jquery';
+import '../../../../assets/js/theme';
+declare var $ : any;
 
 @Component({
   selector: 'app-topnavbar',
@@ -21,7 +24,8 @@ export class TopnavbarComponent implements OnInit {
 
   ngOnInit() {
 
-    // todo
+    // $.myTheme.navbar.activate();
+
     this.studentService.getStudent(this.curr_user_id).subscribe(data => {
       this.user = data;
     });

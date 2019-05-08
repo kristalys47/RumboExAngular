@@ -5,6 +5,9 @@ import {CourseService} from "../../../services/course/course.service";
 import {Course, Grade, Status} from "../../../models/course";
 import {Student} from "../../../models/student";
 import {StudentProviderService} from "../../../providers/student-provider/student-provider.service";
+import 'jquery';
+import '../../../../assets/js/theme';
+declare var $ : any;
 
 @Component({
   selector: 'app-studentmain',
@@ -24,6 +27,8 @@ export class StudentmainComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    // $.myTheme.navbar.activate();
 
     console.log(this.curr_user_id);
 
@@ -55,11 +60,11 @@ export class StudentmainComponent implements OnInit {
 
     this.courseService.get_courses(this.curr_user_id).subscribe(data => {
       this.courses = data;
-      this.courses.forEach(course => {
-        course.general_average = this.calculateAverage(course.grades);
-        course.status = this.getCourseStatus(course.general_average);
-        course.cummulative_average = this.calculateCummulativeAverage(course.grades);
-      });
+      // this.courses.forEach(course => {
+      //   course.general_average = this.calculateAverage(course.grades);
+      //   course.status = this.getCourseStatus(course.general_average);
+      //   course.cummulative_average = this.calculateCummulativeAverage(course.grades);
+      // });
       console.log(this.courses);
     });
 
