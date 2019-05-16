@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {MessagesService} from "../../../services/messages.service";
+import {MessagesService} from "../../../services/messages/messages.service";
 import {Chat, Message} from "../../../models/message";
 
 @Component({
@@ -10,12 +10,21 @@ import {Chat, Message} from "../../../models/message";
 export class MessagesMenuComponent implements OnInit {
 
   usr_id = parseInt(sessionStorage.getItem('userid'));
+  role = sessionStorage.getItem('role');
+  main_path = `/${this.role}main`;
   chats: Array<Chat> = new Array<Chat>();
   newMessages: number;
 
   constructor(private messageService: MessagesService) { }
 
   ngOnInit() {
+
+    if(this.role=='counselor'||this.role=='psychologist') {
+      this.role = 'mentor';
+      this.main_path = `/${this.role}main`;
+    }
+    console.log(this.main_path);
+
     this.messageService.get_messages(this.usr_id).subscribe(data => {
       this.chats = data.Chats;
       this.newMessages = this.countNewMessages();

@@ -12,7 +12,7 @@
         <div class="message-center">
           <div  *ngFor="let c of chats">
             <!-- Message -->
-             <a [routerLink]="[ '/studentmain', { outlets: { content: 'chat' } } ]" [queryParams]="{ chat_id: c.chat_id | json }">
+             <a [routerLink]="[ main_path, { outlets: { content: 'chat' } } ]" [queryParams]="{ chat_id: c.chat_id | json }">
               <!-- Contact user profile picture -->
               <div class="user-img"> <img src="images/users/default-profile.png" alt="user" class="img-circle">
                 <!-- If message hasn't been opened -->

@@ -112,6 +112,7 @@ const routes: Routes = [
       { path: 'student-detail', component: StudentDetailComponent, outlet: 'content' },
       { path: 'student-list', component: StudentListComponent, outlet: 'content' },
       { path: 'home', component: MentorCalendarComponent, outlet: 'content' },
+      { path: 'chat', component: ChatComponent, outlet: 'content' },
       // { path: 'notifications', component: NotificationsComponent, outlet: 'content' }
     ]
   },
