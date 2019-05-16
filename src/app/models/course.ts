@@ -10,6 +10,7 @@ export interface Course {
   grades: Grade[],
   cummulative_average?: number,
   general_average?: number,
+  credits: number,
   status: Status,
   tasks: Task[]
 }

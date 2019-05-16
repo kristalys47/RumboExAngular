@@ -5,9 +5,7 @@ import {CourseService} from "../../../services/course/course.service";
 import {Course, Grade, Status} from "../../../models/course";
 import {Student} from "../../../models/student";
 import {StudentProviderService} from "../../../providers/student-provider/student-provider.service";
-import 'jquery';
-import '../../../../assets/js/theme';
-declare var $ : any;
+
 
 @Component({
   selector: 'app-studentmain',
@@ -27,8 +25,6 @@ export class StudentmainComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    // $.myTheme.navbar.activate();
 
     console.log(this.curr_user_id);
 

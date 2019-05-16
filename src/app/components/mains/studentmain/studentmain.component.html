@@ -8,13 +8,13 @@
 
     <!-- using jquery -->
 
+    <!-- chequear que carajo esta pasando aqui con el collapse (despues de 4 clicks se cierra) -->
     <nav class="sidebar-nav">
       <ul id="sidebarnav">
         <li class="nav-divider"></li>
 
         <!-- Home items -->
         <li class="nav-label">Home</li>
-        <!-- Collapse item -->
         <li class="nav-item"><a class="has-arrow " href='#home' data-toggle="collapse" aria-expanded="false"><i class="fa fa-columns"></i><span class="hide-menu">Resources</span></a>
           <ul id="home" aria-expanded="false" class="collapse">
             <li><a [routerLink]="[ '/studentmain', { outlets: { content: 'dashboard' } }]">Dashboard</a></li>

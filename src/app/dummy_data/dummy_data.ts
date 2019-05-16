@@ -7,6 +7,7 @@ export const courses: Course[] = [
     course_id: 0,
     codification: 'MATE3001',
     name: 'Precalculo 1',
+    credits: 3,
     professor_id: 802899000,
     section_num: '010',
     grades: [
@@ -52,6 +53,7 @@ export const courses: Course[] = [
     course_id: 1,
     codification: 'HUMA3001',
     name: 'Humanidades',
+    credits: 3,
     professor_id: 802889000,
     section_num: '020',
     grades: null,

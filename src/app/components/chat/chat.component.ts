@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {MessagesService} from "../../services/messages.service";
+import {MessagesService} from "../../services/messages/messages.service";
 import {ActivatedRoute} from "@angular/router";
 import {Chat, Message} from "../../models/message";
 

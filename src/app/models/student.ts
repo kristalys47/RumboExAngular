@@ -13,7 +13,7 @@ export class Student extends User implements Student {
   faculty_name: string;
   faculty_num: number;
   program_name: string;
-  program_num: number
+  program_num: number;
   student_num: string;
   gpa: number;
   constructor() {

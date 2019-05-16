@@ -3,7 +3,7 @@ import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material";
 import {MbscDatetimeOptions} from "@mobiscroll/angular";
 import {TaskService} from "../../services/task/task.service";
 import {DialogMessageComponent} from "../dialog-message/dialog-message.component";
-import {MessagesService} from "../../services/messages.service";
+import {MessagesService} from "../../services/messages/messages.service";
 import {Message} from "../../models/message";
 
 @Component({
@@ -21,7 +21,7 @@ export class CommentButtonComponent implements OnInit {
   ngOnInit() {
   }
 
-  openForm() {
+  openForm(send_msg_to_id: number) {
     console.log('opened');
     const dialogRef = this.dialog.open(MsgInputForm, {
       data: {}
@@ -29,20 +29,24 @@ export class CommentButtonComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
+      this.sendMessage(send_msg_to_id, result.text);
       // this.openDialog();
     });
   }
 
-  sendMessage() {
+  sendMessage(send_msg_to_id, text) {
     // if there is no written text, don't send message
-    if (this.text == null) return;
+    if (text == null) return;
+    // current time
     let now: string = new Date().toUTCString();
     // create message object
     let msg: Message = new Message();
-    msg.text = this.text;
+    msg.text = text;
     msg.sent_by = Number(this.usr_id);
+    msg.sent_to = send_msg_to_id;
     msg.date = now;
     msg.seen = false;
+    console.log(msg);
     this.messagesService.insert_message(this.usr_id, msg)
       .then(res => {
         console.log(res);
@@ -57,7 +61,7 @@ export class CommentButtonComponent implements OnInit {
 
   openDialog() {
     const dialogRef = this.dialog.open(DialogMessageComponent, {
-      data: {msg: 'Your message has been sent to '}
+      data: {msg: 'Your message has been sent'}
     });
   };
 

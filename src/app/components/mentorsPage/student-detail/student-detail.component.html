@@ -25,7 +25,40 @@
   <div class="row">
   <div class="col-sm-4">
   <h2>Courses</h2>
-  <app-student-courses-table [courseSelectDisabled]="true"></app-student-courses-table>
+  <div class="table-responsive">
+
+    <table class="table table-hover ">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Grade</th>
+        <th>Status</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let c of courses">
+        <!-- Course name -->
+        <th scope="row">
+          <!-- Mentors are not allowed to click on courses -->
+          <div>
+            <a>{{c.name}}</a>
+          </div>
+        </th>
+        <!-- Course grade -->
+        <td>{{c.general_average}}</td>
+        <!-- Course status -->
+        <td>
+          <span *ngIf="c.status==4" class="badge badge-success">EXCELLENT</span>
+          <span *ngIf="c.status==3" class="badge badge-success">PASSING</span>
+          <span *ngIf="c.status==1" class="badge badge-danger">NOT PASSING</span>
+          <span *ngIf="c.status==2" class="badge badge-warning">SURVIVING</span>
+          <span *ngIf="c.status==0" class="badge-info">N/A</span>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
   <a mat-fab (click)="comment()"><mat-icon>comment</mat-icon></a>
   </div>
 <!--</mat-card>-->
@@ -43,7 +76,12 @@
 <!-- Gauges showing student's grade -->
 <mat-card class="col-sm-4">
   <h2>GPA</h2>
-  <app-grade-gauge></app-grade-gauge>
+  <div class="row">
+  <div class="col-sm-4 offset-2" >
+    <h1 class="center" style="color: green;">{{student.gpa | number : '.2-2'}}</h1>
+    <!--<div id="gauge1" class="chart"></div>-->
+  </div>
+</div>
   <a mat-fab (click)="comment()"><mat-icon>comment</mat-icon></a>
 </mat-card>
 

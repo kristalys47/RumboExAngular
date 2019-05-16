@@ -12,7 +12,7 @@ import {AuthService} from "../../../services/auth.service";
 import {Student} from "../../../models/student";
 import {Course, Grade, Status} from "../../../models/course";
 import {coerceBooleanProperty} from "@angular/cdk/coercion";
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {FocusMonitor} from "@angular/cdk/a11y";
 import {Subject} from "rxjs/Subject";
 
@@ -64,19 +64,20 @@ export class CourseDetailComponent implements OnInit {
 
   ngOnInit() {
 
-
     // get the course id from query param
-    this.sub = this.route
-      .queryParams
-      .subscribe(params => {
+    this.sub = this.route.queryParams.subscribe(params => {
         this.curr_course_id = JSON.parse(params['course_id']);
       });
+
     // get course details from server
     this.courseService.get_course(this.curr_course_id, this.curr_student_id).subscribe(data => {
       this.course = data.Course;
+      // set course's gpa and status
       this.updateGradeStatus();
       console.log(this.course);
     });
+
+    // initialize new grade's fields to null
     this.resetGrade();
     console.log(this.newGrade);
   }
@@ -170,12 +171,14 @@ export class CourseDetailComponent implements OnInit {
   *   Update a grade whose information has been modified
   * */
   updateGrade(grade, newName, newDate, newWeight, newGrade, newTotal) {
-    console.log(grade);
+    console.log(grade, newName, newDate, newWeight, newGrade, newTotal);
     if(grade.name!=newName){
       this.courseService.edit_grade(this.curr_student_id,{'g_id': grade.grade_id, 'g_name': newName});
       grade.name = newName;
     }
-    if(grade.date!=newDate){
+    if(!this.isSameDay(new Date(grade.date), new Date(newDate))){
+      console.log(newDate, typeof(newDate), grade.date, typeof grade.date);
+      console.log(new Date(grade.date), new Date(newDate));
       this.courseService.edit_grade(this.curr_student_id,{'g_id': grade.grade_id, 'date': newDate});
       grade.date = newDate;
     }
@@ -253,6 +256,28 @@ export class CourseDetailComponent implements OnInit {
                         event.previousIndex,
                         event.currentIndex);
     }
+  }
+
+  /*
+  *   Create a Form Control from a date to be used in a datepicker input field
+  * */
+  dateToFormControl(date: string) {
+    console.log(date);
+    return (new FormControl(new Date(date))).value;
+  }
+
+  /*
+  *   Checks whether two dates are the same day, doesn't count the time
+  * */
+  private isSameDay(date1: Date, date2: Date) {
+    console.log(date1, date2);
+    // check year
+    if(date1.getFullYear()!=date2.getFullYear()) {return false;}
+    // check month
+    if(date1.getMonth()!=date2.getMonth()) {return false;}
+    // check day
+    if(date1.getDay()!=date2.getDay()) {return false;}
+    return true;
   }
 
 //   export class MyTel {
