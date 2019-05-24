@@ -32,11 +32,18 @@ export class StudentService {
     // return of(students);
   }
 
+  @Cacheable()
+  getMentorsByStudentId(student_id): Observable<any> {
+    let url: string = `${this.BASE_URL}/mentors/${student_id}`
+    return this.http.get<any>(url);
+  }
+
   getstudentpromise(): Observable<Student[]> {
     let url: string = `${this.BASE_URL}/student`;
     return this.http.get<Student[]>(url);
   }
 
+  @Cacheable()
   getFaculties() : Observable<any> {
     let url: string = `${this.BASE_URL}/faculties`;
     return this.http.get(url);

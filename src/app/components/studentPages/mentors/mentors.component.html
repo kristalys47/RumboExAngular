@@ -20,10 +20,13 @@
           identificar intereses vocacionales.</mat-card-subtitle>
       </mat-card-header>
       <mat-divider></mat-divider>
+      <mat-card-content>
+        <br/><p>Consejero asignado: {{counselor.name}} {{counselor.lastname}}</p>
+      </mat-card-content>
 
         <mat-card-actions>
           <button mat-button (click)="goToForm('counselor')">Sacar cita</button>
-          <button mat-button>Contactar</button>
+          <button mat-button (click)="sendMessage(counselor.id)">Contactar</button>
         </mat-card-actions>
 
     </mat-card>
@@ -38,10 +41,13 @@
           problemas de amigos.</mat-card-subtitle>
       </mat-card-header>
       <mat-divider></mat-divider>
+      <mat-card-content>
+        <br/><p>Psicologo asignado: {{psychologist.name}} {{psychologist.lastname}}</p>
+      </mat-card-content>
 
         <mat-card-actions>
           <button mat-button (click)="goToForm('psychologist')">Sacar cita</button>
-          <button mat-button>Contactar</button>
+          <button mat-button (click)="sendMessage(psychologist.id)">Contactar</button>
         </mat-card-actions>
     </mat-card>
   </div>
